@@ -1,27 +1,21 @@
-import { PrismaClient } from "@prisma/client";
-import { Request, Response } from "express";
-import { TPost } from "../../utils/@types";
+import { Request, Response } from 'express';
+import { CreatePostUseCase } from '../../domain/useCases/post/postUseCase';
+
+const newPost = new CreatePostUseCase();
 
 export const createPost = async (req: Request, res: Response) => {
   try {
-    const { title, content, createdAt, updatedAt, userId }: TPost = req.body;
-    const prisma = new PrismaClient();
-
-    const newPost = await prisma.post.create({
-      data: {
-        title,
-        content,
-        createdAt,
-        updatedAt,
-        userId,
-      },
-    });
+    const { title, content, userId } = req.body;
+    const post = await newPost.execute(title, content,userId);
 
     return res.status(200).json({
-      msg: "post created successfully",
-      newPost,
+      msg: 'post created successfully',
+      post
     });
   } catch (error) {
-    return error;
+    return res.status(400).json({
+      msg: 'some error occurred',
+      error
+    });
   }
 };

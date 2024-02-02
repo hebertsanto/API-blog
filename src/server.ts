@@ -1,7 +1,7 @@
-import express from "express";
-import { config } from "dotenv";
-import { PrismaClient } from "@prisma/client";
-import { routes } from "./routes";
+import express from 'express';
+import { config } from 'dotenv';
+import { PrismaClient } from '@prisma/client';
+import { routes } from './routes';
 config();
 
 const app = express();
@@ -13,7 +13,7 @@ const prisma = new PrismaClient();
 async function main() {}
 main()
   .then(async () => {
-    console.log("tudo certo com o prisma");
+    console.log('tudo certo com o prisma');
     await prisma.$disconnect();
   })
   .catch(async (e) => {
@@ -22,6 +22,6 @@ main()
     process.exit(1);
   });
   
-  app.listen(4000, () => {
-    console.log('serve is running');
-  })
+app.listen(4000, () => {
+  console.log('serve is running');
+});
