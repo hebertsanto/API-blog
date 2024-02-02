@@ -3,18 +3,18 @@ import { GetPostByIdUseCase } from '../../domain/useCases/post/getPostByIdUseCas
 
 const postUseCase = new GetPostByIdUseCase();
 
-export const getPostById = async(req: Request, res: Response) => {
+export const getPostById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const post = await postUseCase.execute(parseInt(id));
     return res.status(200).json({
       msg: 'post found successfully',
-      post
+      post,
     });
   } catch (error) {
     res.status(400).json({
       msg: 'some error occurred',
-      error
+      error,
     });
   }
 };
