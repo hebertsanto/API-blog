@@ -1,5 +1,5 @@
-import { IPost } from '../../../utils/@types'
-import { prisma } from '../../database/primaClient'
+import { IPost } from '../../../utils/@types';
+import { prisma } from '../../database/primaClient';
 
 export class CreatePostRepository {
   async execute({ title, content, userId }: IPost) {
@@ -9,7 +9,7 @@ export class CreatePostRepository {
         content,
         userId,
       },
-    })
-    return newPost
+    });
+    return newPost;
   }
 }

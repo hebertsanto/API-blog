@@ -1,4 +1,4 @@
-import { prisma } from '../../database/primaClient'
+import { prisma } from '../../database/primaClient';
 
 export class GetUserRepository {
   async execute(id: number) {
@@ -6,7 +6,7 @@ export class GetUserRepository {
       where: {
         id: id,
       },
-    })
-    return user
+    });
+    return user;
   }
 }
