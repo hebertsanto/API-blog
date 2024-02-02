@@ -1,5 +1,5 @@
-import { IUser } from '../../../utils/@types';
-import { prisma } from '../../database/primaClient';
+import { IUser } from '../../../utils/@types'
+import { prisma } from '../../database/primaClient'
 
 export class CreateUserRepository {
   async execute({ name, email, password }: IUser) {
@@ -7,16 +7,16 @@ export class CreateUserRepository {
       data: {
         name,
         email,
-        password
-      }
-    });
-    return newuser;
+        password,
+      },
+    })
+    return newuser
   }
-  async findEmail(email : string) {
+  async findEmail(email: string) {
     return await prisma.user.findUnique({
       where: {
-        email
-      }
-    });
+        email,
+      },
+    })
   }
 }
