@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { CreatePostUseCase } from '../../domain/useCases/post/createPostUseCase'
+import { CreatePostUseCase } from '../../domain/useCases/post/postUseCase'
 
 const newPost = new CreatePostUseCase()
 

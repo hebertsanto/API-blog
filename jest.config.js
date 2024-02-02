@@ -1,3 +1,4 @@
+//eslint-disable-next-line
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
@@ -6,4 +7,4 @@ module.exports = {
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1',
   },
-}
+};
