@@ -7,6 +7,7 @@ import { updatePostController } from '../controllers/post/updatePostController';
 import { getPostById } from '../controllers/post/getPostByIdController';
 import { deleteUser } from '../controllers/user/deleteUserController';
 import { searchPosts } from '../controllers/post/searchPostController';
+import { loginController } from '../controllers/auth/loginController';
 
 export const router = express.Router();
 
@@ -17,5 +18,6 @@ router.put('/post/:id', updatePostController);
 router.get('/search', searchPosts);
 
 router.post('/user', createUser);
+router.post('/login', loginController);
 router.delete('/user/:id', deleteUser);
 router.get('/user/:id', getUserById);

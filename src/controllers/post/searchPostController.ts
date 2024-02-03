@@ -3,7 +3,7 @@ import { SearchPostUseCase } from '../../domain/useCases/post/searchPostUseCase'
 
 const searchPostUseCase = new SearchPostUseCase();
 
-export const searchPosts = async(req : Request, res : Response) => {
+export const searchPosts = async (req: Request, res: Response) => {
   try {
     const { query } = req.query;
 
@@ -11,17 +11,18 @@ export const searchPosts = async(req : Request, res : Response) => {
 
     if (postsFound.length == 0) {
       return res.status(400).json({
-        msg: 'No posts found'
+        msg: 'No posts found',
       });
     }
 
     return res.status(200).json({
       msg: 'search query has been made successfully',
-      postsFound
+      postsFound,
     });
   } catch (error) {
     return res.status(400).json({
       msg: 'some error occurred',
-      error});
+      error,
+    });
   }
 };

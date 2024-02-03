@@ -2,7 +2,7 @@ import { MissingParamError } from '../errors/missingParamError';
 import bcrypt from 'bcrypt';
 
 export class Encrypter {
-  async compare(value: string, hash:string) {
+  async compare(value: string, hash: string) {
     if (!value) {
       throw new MissingParamError('value');
     }

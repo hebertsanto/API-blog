@@ -9,4 +9,16 @@ export class GetUserRepository {
     });
     return user;
   }
+  async findeUserByEmail(email: string) {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+    return {
+      id: user?.id,
+      email: user?.email,
+      password: user?.password,
+    };
+  }
 }
