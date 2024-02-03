@@ -12,6 +12,7 @@ import { createComment } from '../controllers/comment/createCommentController';
 import { deleteComment } from '../controllers/comment/deleteCommentController';
 import { getCommentById } from '../controllers/comment/getCommentController';
 import { updateComment } from '../controllers/comment/updateCommentController';
+import { listComments } from '../controllers/comment/listCommentController';
 
 export const router = express.Router();
 
@@ -26,6 +27,7 @@ router.get('/search', searchPosts);
 
 router.post('/comment', createComment);
 router.delete('/comment/:id', deleteComment);
+router.get('/comments/post/:id', listComments);
 router.put('/comment/:id', updateComment);
 router.get('/comment/:id', getCommentById);
 

@@ -37,9 +37,9 @@ model Comment {
 
 model Profile {
   id     Int      @id @default(autoincrement())
-  name String
+  name   String
   social String[]
-  job   String
+  job    String
   userId Int
   user   User     @relation(fields: [userId], references: [id])
 }
