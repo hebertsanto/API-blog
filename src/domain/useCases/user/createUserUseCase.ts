@@ -1,4 +1,5 @@
 import { CreateUserRepository } from '../../../adapters/repositories/user/createUserRepository';
+import { IUser } from '../../../utils/@types';
 
 export class UserUseCase {
   private userRepository: CreateUserRepository;
@@ -7,18 +8,16 @@ export class UserUseCase {
     this.userRepository = new CreateUserRepository();
   }
 
-  async create(name: string, password: string, email: string) {
-    const userExist = await this.userRepository.findEmail(email);
-
-    if (userExist) {
-      throw new Error('this user already exists');
-    }
-
-    const user = await this.userRepository.execute({
+  async create({ name, password, email }: IUser) {
+    const newUser = await this.userRepository.execute({
       name,
       email,
       password,
     });
-    return user;
+    return newUser;
+  }
+  async findUserExist(user: string) {
+    const existerUser = await this.userRepository.findEmail(user);
+    return existerUser;
   }
 }

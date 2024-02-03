@@ -5,18 +5,20 @@ export class CreateUserRepository {
   async execute({ name, email, password }: IUser) {
     const newuser = await prisma.user.create({
       data: {
-        name,
-        email,
-        password,
+        name: name,
+        email: email,
+        password: password,
       },
     });
     return newuser;
   }
-  async findEmail(email: string) {
-    return await prisma.user.findUnique({
+  async findEmail(userEmail: string) {
+    const user = await prisma.user.findUnique({
       where: {
-        email,
+        email: userEmail,
       },
     });
+
+    return user;
   }
 }
