@@ -9,6 +9,7 @@ import { deleteUser } from '../controllers/user/deleteUserController';
 import { searchPosts } from '../controllers/post/searchPostController';
 import { loginController } from '../controllers/auth/loginController';
 import { createComment } from '../controllers/comment/createCommentController';
+import { deleteComment } from '../controllers/comment/deleteCommentController';
 
 export const router = express.Router();
 
@@ -21,6 +22,7 @@ router.get('/search', searchPosts);
 
 //comment
 router.post('/comment', createComment);
+router.delete('/comment/:id', deleteComment);
 //user
 router.post('/user', createUser);
 router.post('/login', loginController);
