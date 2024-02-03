@@ -6,6 +6,9 @@ export class GetUserRepository {
       where: {
         id: id,
       },
+      include: {
+        posts: true
+      }
     });
     return user;
   }

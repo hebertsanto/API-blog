@@ -9,13 +9,15 @@ possui as seguintes funcionalidades :
 - [x] usuário pode apagar posts
 - [x] usuário pode editar posts
 - [x] usuário pode pegar um post pelo seu id
+- [x] listar todos os posts de um usuário
 - [x] usário pode pesquisar posts
 - [x] usuário pode apagar sua conta [isso apagará seus posts também]
 - [x] usuários relacionados a seus posts
 - [x] adicionar comentários aos posts
 - [x] apagar um comentário
-- [ ] pegar um comentário
-- [ ] editar um comemtário
+- [x] pegar um comentário
+- [x] editar um comemtário
+- [ ] listar todos os comentários de um usuário, se houver
 - [ ] criar um perfil com informações
 
 tentei manter uma arquitetura legal e bem organizada, pretendo ir melhorando este projeto
