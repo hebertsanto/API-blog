@@ -5,13 +5,15 @@ import { getUserById } from '../controllers/user/getUserController';
 import { deletePost } from '../controllers/post/deletePostController';
 import { updatePostController } from '../controllers/post/updatePostController';
 import { getPostById } from '../controllers/post/getPostByIdController';
+import { deleteUser } from '../controllers/user/deleteUserController';
 
-export const routes = express.Router();
+export const router = express.Router();
 
-routes.post('/post', createPost);
-routes.post('/delete', deletePost);
-routes.get('/post/:id', getPostById);
-routes.put('/post/:id', updatePostController);
+router.post('/post', createPost);
+router.post('/delete', deletePost);
+router.get('/post/:id', getPostById);
+router.put('/post/:id', updatePostController);
 
-routes.post('/user', createUser);
-routes.get('/user/:id', getUserById);
+router.post('/user', createUser);
+router.delete('/user/:id', deleteUser);
+router.get('/user/:id', getUserById);
