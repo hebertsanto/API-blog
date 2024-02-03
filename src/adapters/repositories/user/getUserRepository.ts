@@ -7,8 +7,8 @@ export class GetUserRepository {
         id: id,
       },
       include: {
-        posts: true
-      }
+        posts: true,
+      },
     });
     return user;
   }

@@ -2,7 +2,7 @@ import { GetCommentById } from '../../../adapters/repositories/comments/getComme
 import { MissingParamError } from '../../../utils/errors/missingParamError';
 
 export class GetCommentUseCase {
-  comment : GetCommentById;
+  comment: GetCommentById;
 
   constructor() {
     this.comment = new GetCommentById();
@@ -11,7 +11,6 @@ export class GetCommentUseCase {
   async execute(id: number) {
     if (!id) {
       throw new MissingParamError('id comment not provided');
-
     }
     const commentFound = await this.comment.execute(id);
 

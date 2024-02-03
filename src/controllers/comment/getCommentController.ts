@@ -1,27 +1,26 @@
 import { Request, Response } from 'express';
 import { GetCommentUseCase } from '../../domain/useCases/comment/getCommentUseCase';
 
-
 const getCommentByIdUseCase = new GetCommentUseCase();
 
-export const getCommentById = async(req: Request, res: Response) => {
+export const getCommentById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
     if (!id) {
       return res.status(400).json({
-        msg: 'id not found'
+        msg: 'id not found',
       });
     }
     const comment = await getCommentByIdUseCase.execute(parseInt(id));
 
     return res.status(200).json({
       msg: 'comment here',
-      comment
+      comment,
     });
   } catch (error) {
     return res.status(500).json({
-      msg: 'internal error server'
+      msg: 'internal error server',
     });
   }
 };

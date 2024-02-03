@@ -42,4 +42,3 @@ abaixo listarei algumas tecnologias ultilizadas
 - github actions (estou focado em aprender)
 
 ![modelagem](https://i.ibb.co/Gkzpm75/Screenshot-from-2024-02-03-16-29-57.png)
-
