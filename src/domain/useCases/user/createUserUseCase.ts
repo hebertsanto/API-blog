@@ -14,7 +14,7 @@ export class UserUseCase {
     const newUser = await this.userRepository.execute({
       name,
       email,
-      password : String(passwordhash),
+      password: String(passwordhash),
     });
     return newUser;
   }

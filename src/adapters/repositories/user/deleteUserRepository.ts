@@ -1,8 +1,8 @@
 import { prisma } from '../../database/primaClient';
 
 export class DeleteUserRepository {
-  async execute(id : number) {
-    const deleteUser =   await prisma.user.delete({
+  async execute(id: number) {
+    const deleteUser = await prisma.user.delete({
       where: { id: id },
     });
 
@@ -11,8 +11,7 @@ export class DeleteUserRepository {
     });
     return {
       deleteUser,
-      deleteAllPosts
+      deleteAllPosts,
     };
-
   }
 }
