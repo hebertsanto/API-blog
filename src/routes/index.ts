@@ -6,6 +6,7 @@ import { deletePost } from '../controllers/post/deletePostController';
 import { updatePostController } from '../controllers/post/updatePostController';
 import { getPostById } from '../controllers/post/getPostByIdController';
 import { deleteUser } from '../controllers/user/deleteUserController';
+import { searchPosts } from '../controllers/post/searchPostController';
 
 export const router = express.Router();
 
@@ -13,6 +14,7 @@ router.post('/post', createPost);
 router.post('/delete', deletePost);
 router.get('/post/:id', getPostById);
 router.put('/post/:id', updatePostController);
+router.get('/search', searchPosts);
 
 router.post('/user', createUser);
 router.delete('/user/:id', deleteUser);
