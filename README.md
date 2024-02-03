@@ -12,6 +12,11 @@ possui as seguintes funcionalidades :
 - [x] usário pode pesquisar posts
 - [x] usuário pode apagar sua conta [isso apagará seus posts também]
 - [x] usuários relacionados a seus posts
+- [x] adicionar comentários aos posts
+- [x] apagar um comentário
+- [ ] pegar um comentário
+- [ ] editar um comemtário
+- [ ] criar um perfil com informações
 
 tentei manter uma arquitetura legal e bem organizada, pretendo ir melhorando este projeto
 pois foi algo que gostei de fazer, foquei bastante na estrutura de diretorios desta aplicação, foi a primeira vez que
@@ -22,6 +27,7 @@ abaixo listarei algumas tecnologias ultilizadas
 
 - node js
 - typescript
+- express
 - eslint
 - prettier
 - commitlint
@@ -32,3 +38,6 @@ abaixo listarei algumas tecnologias ultilizadas
 - jest
 - git
 - github actions (estou focado em aprender)
+
+![modelagem](https://i.ibb.co/Gkzpm75/Screenshot-from-2024-02-03-16-29-57.png)
+
