@@ -1,4 +1,4 @@
-import { prisma } from '../../database/primaClient';
+import { prisma } from '../../database/prismaClient';
 
 export class DeletePostRepository {
   async execute(id: number) {

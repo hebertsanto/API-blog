@@ -1,9 +1,8 @@
 import { DeleteCommentRepository } from '../../../adapters/repositories/comments/deleteCommentRepository';
 import { MissingParamError } from '../../../utils/errors/missingParamError';
 
-
 export class DeleteCommentUseCase {
-  private delete : DeleteCommentRepository;
+  private delete: DeleteCommentRepository;
 
   constructor() {
     this.delete = new DeleteCommentRepository();

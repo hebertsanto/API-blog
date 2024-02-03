@@ -1,5 +1,5 @@
 import { IUser } from '../../../utils/@types';
-import { prisma } from '../../database/primaClient';
+import { prisma } from '../../database/prismaClient';
 
 export class CreateUserRepository {
   async execute({ name, email, password }: IUser) {

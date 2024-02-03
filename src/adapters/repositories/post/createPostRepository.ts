@@ -1,5 +1,5 @@
 import { IPost } from '../../../utils/@types';
-import { prisma } from '../../database/primaClient';
+import { prisma } from '../../database/prismaClient';
 
 export class CreatePostRepository {
   async execute({ title, content, userId }: IPost) {

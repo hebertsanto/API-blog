@@ -1,5 +1,5 @@
 import { IComment } from '../../../utils/@types';
-import { prisma } from '../../database/primaClient';
+import { prisma } from '../../database/prismaClient';
 
 export class CreateCommentRepository {
   async execute({ comment, postId }: IComment) {

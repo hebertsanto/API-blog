@@ -1,4 +1,4 @@
-import { prisma } from './primaClient';
+import { prisma } from './prismaClient';
 
 async function main() {}
 main()
