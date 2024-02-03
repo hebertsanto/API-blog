@@ -10,6 +10,7 @@ import { searchPosts } from '../controllers/post/searchPostController';
 import { loginController } from '../controllers/auth/loginController';
 import { createComment } from '../controllers/comment/createCommentController';
 import { deleteComment } from '../controllers/comment/deleteCommentController';
+import { getCommentById } from '../controllers/comment/getCommentController';
 
 export const router = express.Router();
 
@@ -21,8 +22,11 @@ router.put('/post/:id', updatePostController);
 router.get('/search', searchPosts);
 
 //comment
+
 router.post('/comment', createComment);
 router.delete('/comment/:id', deleteComment);
+router.get('/comment/:id', getCommentById);
+
 //user
 router.post('/user', createUser);
 router.post('/login', loginController);
