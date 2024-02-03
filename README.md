@@ -1,7 +1,8 @@
 ## visão geral da api de blog
 
-esta api foi feita para aprimorar meu conhecimento de clean architecture
-possui as seguintes funcionalidades :
+esta api foi feita para aprimorar meu conhecimento de clean architecture e obtive bastante aprendizado.
+
+## funcionalidades do sistema
 
 - [x] criar um usuário.
 - [x] logar o usuário gerando um token de acesso.
@@ -25,7 +26,7 @@ pois foi algo que gostei de fazer, foquei bastante na estrutura de diretorios de
 organizei um projeto assim então se vc tiver alguma dica de melhoria não hesite em me chamar para conversarmos.
 aqui no meu perfil tem todas as minhas redes socias.
 
-abaixo listarei algumas tecnologias ultilizadas
+## tecnologias ultilizadas neste projeto
 
 - node js
 - typescript
@@ -41,5 +42,14 @@ abaixo listarei algumas tecnologias ultilizadas
 - git
 - github actions (estou focado em aprender)
 
+## modelagem dos dados (podem ocorrer alterações)
+
 ![modelagem](https://i.ibb.co/Gkzpm75/Screenshot-from-2024-02-03-16-29-57.png)
+
+## entre em contato comigo (ficarei extremamente feliz)
+
+- E-mail : hebertsantosdeveloper@gmail.com
+- Linkedin: [@hebert santos](https://www.linkedin.com/in/hebert-santos-241429243/)
+- portifolio : [clique aqui](https://ihebert.vercel.app/)
+
 
