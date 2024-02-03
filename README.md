@@ -45,8 +45,6 @@ aqui no meu perfil tem todas as minhas redes socias.
 ## modelagem dos dados (podem ocorrer alterações)
 
 ![modelagem](https://i.ibb.co/Gkzpm75/Screenshot-from-2024-02-03-16-29-57.png)
-<<<<<<< HEAD
-=======
 
 ## entre em contato comigo (ficarei extremamente feliz)
 
@@ -54,5 +52,3 @@ aqui no meu perfil tem todas as minhas redes socias.
 - Linkedin: [@hebert santos](https://www.linkedin.com/in/hebert-santos-241429243/)
 - portifolio : [clique aqui](https://ihebert.vercel.app/)
 
-
->>>>>>> 5e1db1d06ca875b76331b79b0c43a8608bfd29a3
