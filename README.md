@@ -18,7 +18,7 @@ esta api foi feita para aprimorar meu conhecimento de clean architecture e obtiv
 - [x] apagar um comentário
 - [x] pegar um comentário
 - [x] editar um comemtário
-- [ ] listar todos os comentários de um usuário, se houver
+- [x] listar todos os comentários de um post, se houver
 - [ ] criar um perfil com informações
 
 tentei manter uma arquitetura legal e bem organizada, pretendo ir melhorando este projeto
@@ -51,4 +51,3 @@ aqui no meu perfil tem todas as minhas redes socias.
 - E-mail : hebertsantosdeveloper@gmail.com
 - Linkedin: [@hebert santos](https://www.linkedin.com/in/hebert-santos-241429243/)
 - portifolio : [clique aqui](https://ihebert.vercel.app/)
-

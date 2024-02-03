@@ -7,8 +7,8 @@ export class ListCommentsRepository {
         id: userId,
       },
       include: {
-        post:  { include: { Comment: true}}
-      }
+        post: { include: { Comment: true } },
+      },
     });
     return commentsFound;
   }
