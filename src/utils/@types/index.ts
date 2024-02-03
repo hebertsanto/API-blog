@@ -11,3 +11,12 @@ export interface IUser {
   email: string
   password: string
 }
+export interface IProfile {
+  name: string
+  social?: string[]
+  jop: string
+}
+export interface IComment {
+  comment: string
+  postId: number
+}

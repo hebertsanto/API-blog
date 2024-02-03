@@ -8,15 +8,20 @@ import { getPostById } from '../controllers/post/getPostByIdController';
 import { deleteUser } from '../controllers/user/deleteUserController';
 import { searchPosts } from '../controllers/post/searchPostController';
 import { loginController } from '../controllers/auth/loginController';
+import { createComment } from '../controllers/comment/createCommentController';
 
 export const router = express.Router();
 
+//posts
 router.post('/post', createPost);
 router.post('/delete', deletePost);
 router.get('/post/:id', getPostById);
 router.put('/post/:id', updatePostController);
 router.get('/search', searchPosts);
 
+//comment
+router.post('/comment', createComment);
+//user
 router.post('/user', createUser);
 router.post('/login', loginController);
 router.delete('/user/:id', deleteUser);
