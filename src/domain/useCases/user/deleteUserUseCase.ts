@@ -1,12 +1,9 @@
 import { DeleteUserRepository } from '../../../adapters/repositories/user/deleteUserRepository';
 
 export class DeleteUserUseCase {
-  private deleteUser: DeleteUserRepository;
+  constructor(private deleteUser: DeleteUserRepository) {}
 
-  constructor() {
-    this.deleteUser = new DeleteUserRepository();
-  }
-  async execute(id: number) {
+  async execute(id: string) {
     if (!id) {
       throw new Error('id not found');
     }

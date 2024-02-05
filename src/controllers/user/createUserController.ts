@@ -1,31 +1,15 @@
 import { Request, Response } from 'express';
-import { UserUseCase } from '../../domain/useCases/user/createUserUseCase';
-
-const userUseCase = new UserUseCase();
+import { makeCreateUserUseCase } from '../../domain/useCases/factories/make-user-use-case';
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const { name, email, password } = req.body;
 
-    if (!regexEmail.test(email)) {
-      return res.status(400).json({
-        message: 'Invalid email format',
-      });
-    }
-    const existerUser = await userUseCase.findUserExist(email);
-    if (existerUser && existerUser.email) {
-      return res.status(400).json({
-        msg: 'User already exists',
-      });
-    }
+    const createUserUseCase = makeCreateUserUseCase();
 
-    const newUser = await userUseCase.create({ name, email, password });
+    await createUserUseCase.create({ name, email, password });
 
-    return res.status(201).json({
-      msg: 'user created successfully',
-      newUser,
-    });
+    return res.status(200).json();
   } catch (error) {
     return res.status(500).json({
       msg: 'internal server error',
