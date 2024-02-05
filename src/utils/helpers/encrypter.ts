@@ -10,6 +10,6 @@ export class Encrypter {
       throw new MissingParamError('hash');
     }
     const isValidPassword = await bcrypt.compare(value, hash);
-    return isValidPassword; // Retorna diretamente o resultado booleano
+    return isValidPassword;
   }
 }

@@ -16,22 +16,18 @@ import { listComments } from '../http/controllers/comment/list-controller';
 
 export const router = express.Router();
 
-//posts
 router.post('/post', createPost);
 router.delete('/post/:id', deletePost);
 router.get('/post/:id', getPostById);
 router.put('/post/:id', updatePostController);
-router.get('/search', searchPosts);
-
-//comment
+router.get('/post/search', searchPosts);
 
 router.post('/comment', createComment);
 router.delete('/comment/:id', deleteComment);
-router.get('/comments/post/:id', listComments);
+router.get('/comment/post/:id', listComments);
 router.put('/comment/:id', updateComment);
 router.get('/comment/:id', getCommentById);
 
-//user
 router.post('/user', createUser);
 router.post('/login', loginController);
 router.delete('/user/:id', deleteUser);

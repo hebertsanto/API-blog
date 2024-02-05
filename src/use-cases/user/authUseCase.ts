@@ -2,18 +2,9 @@ import { GetUserRepository } from '../../adapters/repositories/user/get-user-rep
 import { MissingParamError } from '../../utils/errors/missingParamError';
 import { Encrypter } from '../../utils/helpers/encrypter';
 import { TokenGenerator } from '../../utils/helpers/tokenGenerator';
+import { UserDoesNotExists } from '../../utils/errors/missingParamError';
+import { PasswordDoesNotMatch } from '../../utils/errors/missingParamError';
 
-
-export class PasswordDoesNotMatch extends Error {
-  constructor() {
-    super('password invalid');
-  }
-}
-export class UserDoesNotExists extends Error {
-  constructor() {
-    super('user not found on database');
-  }
-}
 export class AuthUseCase {
   private encrypter: Encrypter;
   private user: GetUserRepository;
@@ -36,7 +27,10 @@ export class AuthUseCase {
     if (!user.email) {
       throw new UserDoesNotExists();
     }
-    const isValidPassword = await this.encrypter.compare(password, user?.password as string);
+    const isValidPassword = await this.encrypter.compare(
+      password,
+      user?.password as string,
+    );
 
     if (!isValidPassword) {
       throw new PasswordDoesNotMatch();
@@ -44,7 +38,7 @@ export class AuthUseCase {
     const token = await this.acesstoken.generateToken(user.id);
     return {
       user,
-      token
+      token,
     };
   }
 }

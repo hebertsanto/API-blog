@@ -7,12 +7,8 @@ export class UserIdDoeNotExistError extends Error {
 }
 
 export class CreatePostUseCase {
-
-  constructor(
-    private createPostRepository: CreatePostRepository,
-  ) {}
+  constructor(private createPostRepository: CreatePostRepository) {}
   async execute(title: string, content: string, userId: string) {
-
     const createPost = await this.createPostRepository.execute({
       title,
       content,

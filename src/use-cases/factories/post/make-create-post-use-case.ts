@@ -6,5 +6,4 @@ export async function makeCreatePostUseCase() {
   const createPostUseCase = new CreatePostUseCase(createPostRepository);
 
   return createPostUseCase;
-
 }

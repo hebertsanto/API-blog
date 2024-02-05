@@ -8,7 +8,6 @@ export const deleteUser = async (req: Request, res: Response) => {
   try {
     await deleteUser.execute(id);
     return res.status(200);
-
   } catch (error) {
     return res.status(400).json({
       msg: 'some error occurred',
