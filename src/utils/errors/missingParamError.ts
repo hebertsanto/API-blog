@@ -22,7 +22,6 @@ export class TokenWasNoProviderError extends Error {
   }
 }
 
-
 export class TokenIsNotValidError extends Error {
   constructor() {
     super('token was no valid');

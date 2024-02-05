@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
-import {AuthUseCase } from '../../../use-cases/user/authUseCase';
-import { PasswordDoesNotMatch, UserDoesNotExists } from '../../../utils/errors/missingParamError';
+import { AuthUseCase } from '../../../use-cases/user/authUseCase';
+import {
+  PasswordDoesNotMatch,
+  UserDoesNotExists,
+} from '../../../utils/errors/missingParamError';
 
 const makeAuthenticationUser = new AuthUseCase();
 export const loginController = async (req: Request, res: Response) => {
