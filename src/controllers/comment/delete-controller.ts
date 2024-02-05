@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DeleteCommentUseCase } from '../../domain/useCases/comment/deleteCommentUseCase';
+import { DeleteCommentUseCase } from '../../domain/useCases/comment/delete-comment-use-case';
 
 const deleteCommentUseCase = new DeleteCommentUseCase();
 

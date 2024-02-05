@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ListCommentsUseCase } from '../../domain/useCases/comment/listCommentsUseCase';
+import { ListCommentsUseCase } from '../../domain/useCases/comment/list-comment-use-case';
 
 const comments = new ListCommentsUseCase();
 export const listComments = async (req: Request, res: Response) => {

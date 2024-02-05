@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UpdateCommentUseCase } from '../../domain/useCases/comment/updateCommentUseCase';
+import { UpdateCommentUseCase } from '../../domain/useCases/comment/update-comment-use-case';
 
 const update = new UpdateCommentUseCase();
 

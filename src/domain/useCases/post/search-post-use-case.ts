@@ -1,4 +1,4 @@
-import { SearchPostRepository } from '../../../adapters/repositories/post/searchPostRepository';
+import { SearchPostRepository } from '../../../adapters/repositories/post/search-post-repository';
 
 export class SearchPostUseCase {
   private posts: SearchPostRepository;

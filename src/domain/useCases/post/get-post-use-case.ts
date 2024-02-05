@@ -1,4 +1,4 @@
-import { GetPostByIdRepository } from '../../../adapters/repositories/post/getPostByIdRepository';
+import { GetPostByIdRepository } from '../../../adapters/repositories/post/get-post-repository';
 import { MissingParamError } from '../../../utils/errors/missingParamError';
 
 export class GetPostByIdUseCase {

@@ -1,4 +1,4 @@
-import { UpdatePostRepository } from '../../../adapters/repositories/post/updatePostRepository';
+import { UpdatePostRepository } from '../../../adapters/repositories/post/update-post-repository';
 import { IPost } from '../../../utils/@types';
 
 export class UpdatePostUseCase {

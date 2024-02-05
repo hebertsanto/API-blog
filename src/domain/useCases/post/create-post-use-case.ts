@@ -1,4 +1,4 @@
-import { CreatePostRepository } from '../../../adapters/repositories/post/createPostRepository';
+import { CreatePostRepository } from '../../../adapters/repositories/post/create-post-repository';
 
 export class CreatePostUseCase {
   private createPost: CreatePostRepository;

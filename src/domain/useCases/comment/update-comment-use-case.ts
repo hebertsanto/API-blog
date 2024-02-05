@@ -1,4 +1,4 @@
-import { UpdateCommentRepository } from '../../../adapters/repositories/comments/updateCommentRepository';
+import { UpdateCommentRepository } from '../../../adapters/repositories/comments/update-comment-repository';
 import { IComment } from '../../../utils/@types';
 import { MissingParamError } from '../../../utils/errors/missingParamError';
 

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { SearchPostUseCase } from '../../domain/useCases/post/searchPostUseCase';
+import { SearchPostUseCase } from '../../domain/useCases/post/search-post-use-case';
 
 const searchPostUseCase = new SearchPostUseCase();
 

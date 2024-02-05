@@ -1,4 +1,4 @@
-import { GetUserRepository } from '../../../adapters/repositories/user/getUserRepository';
+import { GetUserRepository } from '../../../adapters/repositories/user/get-user-repository';
 
 export class GetUserByIdUseCase {
   private getUserById: GetUserRepository;

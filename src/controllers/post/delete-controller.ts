@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DeletePostUseCase } from '../../domain/useCases/post/deletePostUseCase';
+import { DeletePostUseCase } from '../../domain/useCases/post/delete-post-use-case';
 
 const post = new DeletePostUseCase();
 

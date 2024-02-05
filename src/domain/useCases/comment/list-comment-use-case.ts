@@ -1,4 +1,4 @@
-import { ListCommentsRepository } from '../../../adapters/repositories/comments/listCommentaryPostRepository';
+import { ListCommentsRepository } from '../../../adapters/repositories/comments/list-comment-repository';
 import { MissingParamError } from '../../../utils/errors/missingParamError';
 
 export class ListCommentsUseCase {

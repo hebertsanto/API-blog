@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UpdatePostUseCase } from '../../domain/useCases/post/updatePostUsecase';
+import { UpdatePostUseCase } from '../../domain/useCases/post/update-post-use-case';
 
 const update = new UpdatePostUseCase();
 export const updatePostController = async (req: Request, res: Response) => {

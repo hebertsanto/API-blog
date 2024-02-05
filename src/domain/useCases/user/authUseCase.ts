@@ -1,4 +1,4 @@
-import { GetUserRepository } from '../../../adapters/repositories/user/getUserRepository';
+import { GetUserRepository } from '../../../adapters/repositories/user/get-user-repository';
 import { MissingParamError } from '../../../utils/errors/missingParamError';
 import { Encrypter } from '../../../utils/helpers/encrypter';
 import { TokenGenerator } from '../../../utils/helpers/tokenGenerator';

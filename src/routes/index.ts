@@ -1,18 +1,18 @@
 import express from 'express';
-import { createPost } from '../controllers/post/createPostController';
-import { createUser } from '../controllers/user/createUserController';
-import { getUserById } from '../controllers/user/getUserController';
-import { deletePost } from '../controllers/post/deletePostController';
-import { updatePostController } from '../controllers/post/updatePostController';
-import { getPostById } from '../controllers/post/getPostByIdController';
-import { deleteUser } from '../controllers/user/deleteUserController';
-import { searchPosts } from '../controllers/post/searchPostController';
+import { createPost } from '../controllers/post/create-controller';
+import { createUser } from '../controllers/user/create-controller';
+import { getUserById } from '../controllers/user/get-controller';
+import { deletePost } from '../controllers/post/delete-controller';
+import { updatePostController } from '../controllers/post/update-controller';
+import { getPostById } from '../controllers/post/get-controller';
+import { deleteUser } from '../controllers/user/delete-controller';
+import { searchPosts } from '../controllers/post/search-controller';
 import { loginController } from '../controllers/auth/loginController';
-import { createComment } from '../controllers/comment/createCommentController';
-import { deleteComment } from '../controllers/comment/deleteCommentController';
-import { getCommentById } from '../controllers/comment/getCommentController';
-import { updateComment } from '../controllers/comment/updateCommentController';
-import { listComments } from '../controllers/comment/listCommentController';
+import { createComment } from '../controllers/comment/create-controller';
+import { deleteComment } from '../controllers/comment/delete-controller';
+import { getCommentById } from '../controllers/comment/get-controller';
+import { updateComment } from '../controllers/comment/update-controller';
+import { listComments } from '../controllers/comment/list-controller';
 
 export const router = express.Router();
 

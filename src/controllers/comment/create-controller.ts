@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CreateCommentUseCase } from '../../domain/useCases/comment/createCommentUseCase';
+import { CreateCommentUseCase } from '../../domain/useCases/comment/create-comment-use-case';
 
 const createCommentUseCase = new CreateCommentUseCase();
 

@@ -1,4 +1,4 @@
-import { DeleteCommentRepository } from '../../../adapters/repositories/comments/deleteCommentRepository';
+import { DeleteCommentRepository } from '../../../adapters/repositories/comments/delete-comment-repository';
 import { MissingParamError } from '../../../utils/errors/missingParamError';
 
 export class DeleteCommentUseCase {

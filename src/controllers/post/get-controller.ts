@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { GetPostByIdUseCase } from '../../domain/useCases/post/getPostByIdUseCase';
+import { GetPostByIdUseCase } from '../../domain/useCases/post/get-post-use-case';
 
 const postUseCase = new GetPostByIdUseCase();
 
