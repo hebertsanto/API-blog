@@ -6,7 +6,7 @@ export const updatePostController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { title, content, userId } = req.body;
-    const updatedPost = await update.execute(parseInt(id), {
+    const updatedPost = await update.execute(id, {
       title,
       content,
       userId,

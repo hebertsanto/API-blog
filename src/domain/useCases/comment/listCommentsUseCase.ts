@@ -8,12 +8,12 @@ export class ListCommentsUseCase {
     this.Listcomments = new ListCommentsRepository();
   }
 
-  async execute(userId: number) {
+  async execute(userId: string) {
     if (!userId) {
       throw new MissingParamError('userid');
     }
-    const commentsFound = await this.Listcomments.execute(userId);
+    const listComments = await this.Listcomments.execute(userId);
 
-    return commentsFound;
+    return listComments;
   }
 }

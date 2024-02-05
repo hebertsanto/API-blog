@@ -5,7 +5,7 @@ const getUser = new GetUserByIdUseCase();
 export const getUserById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const user = await getUser.execute(parseInt(id));
+    const user = await getUser.execute(id);
 
     return res.status(200).json({
       msg: 'user found',

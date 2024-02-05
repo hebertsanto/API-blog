@@ -1,7 +1,7 @@
 import { prisma } from '../../database/prismaClient';
 
 export class GetUserRepository {
-  async execute(id: number) {
+  async execute(id: string) {
     const user = await prisma.user.findUnique({
       where: {
         id: id,

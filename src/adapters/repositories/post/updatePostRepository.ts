@@ -2,7 +2,7 @@ import { IPost } from '../../../utils/@types';
 import { prisma } from '../../database/prismaClient';
 
 export class UpdatePostRepository {
-  async execute(id: number, data: IPost) {
+  async execute(id: string, data: IPost) {
     const updatePost = await prisma.post.update({
       where: {
         id: id,
@@ -13,7 +13,7 @@ export class UpdatePostRepository {
     });
     return updatePost;
   }
-  async findPost(id: number) {
+  async findPost(id: string) {
     const postFound = await prisma.post.findUnique({
       where: {
         id: id,

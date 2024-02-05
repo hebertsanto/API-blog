@@ -12,7 +12,7 @@ export const getCommentById = async (req: Request, res: Response) => {
         msg: 'id not found',
       });
     }
-    const comment = await getCommentByIdUseCase.execute(parseInt(id));
+    const comment = await getCommentByIdUseCase.execute(id);
 
     return res.status(200).json({
       msg: 'comment here',

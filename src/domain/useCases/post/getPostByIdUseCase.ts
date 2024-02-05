@@ -1,4 +1,5 @@
 import { GetPostByIdRepository } from '../../../adapters/repositories/post/getPostByIdRepository';
+import { MissingParamError } from '../../../utils/errors/missingParamError';
 
 export class GetPostByIdUseCase {
   private post: GetPostByIdRepository;
@@ -7,11 +8,11 @@ export class GetPostByIdUseCase {
     this.post = new GetPostByIdRepository();
   }
 
-  async execute(id: number) {
+  async execute(id: string) {
     const postFound = await this.post.execute(id);
 
-    if (!postFound) {
-      throw new Error('id not found');
+    if (!id) {
+      throw new MissingParamError('id');
     }
     return postFound;
   }

@@ -3,7 +3,7 @@ export interface IPost {
   content: string
   createdAt?: Date
   updatedAt?: Date
-  userId: number
+  userId: string
 }
 
 export interface IUser {
@@ -14,9 +14,9 @@ export interface IUser {
 export interface IProfile {
   name: string
   social?: string[]
-  jop: string
+  job: string
 }
 export interface IComment {
   comment: string
-  postId: number
+  postId: string
 }

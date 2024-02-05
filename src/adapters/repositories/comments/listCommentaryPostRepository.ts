@@ -1,7 +1,7 @@
 import { prisma } from '../../database/prismaClient';
 
 export class ListCommentsRepository {
-  async execute(userId: number) {
+  async execute(userId: string) {
     const commentsFound = await prisma.comment.findMany({
       where: {
         id: userId,

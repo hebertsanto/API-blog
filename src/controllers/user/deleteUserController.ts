@@ -1,22 +1,14 @@
 import { Request, Response } from 'express';
-import { DeleteUserUseCase } from '../../domain/useCases/user/deleteUserUseCase';
-
-const deleteUseCase = new DeleteUserUseCase();
+import { makeDeleteUserUseCase } from '../../domain/useCases/factories/delete-user-use-case';
 
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    if (!id) {
-      return res.status(400).json({
-        msg: 'user not found',
-      });
-    }
-    await deleteUseCase.execute(parseInt(id));
+    const deleteUser = makeDeleteUserUseCase();
 
-    return res.status(200).json({
-      msg: 'this user has been deleted',
-    });
+    await deleteUser.execute(id);
+    return res.status(200);
   } catch (error) {
     return res.status(400).json({
       msg: 'some error occurred',

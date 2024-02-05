@@ -7,7 +7,7 @@ export class GetUserByIdUseCase {
     this.getUserById = new GetUserRepository();
   }
 
-  async execute(id: number) {
+  async execute(id: string) {
     const user = this.getUserById.execute(id);
 
     if (!user) {

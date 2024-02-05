@@ -6,7 +6,7 @@ export class CreatePostUseCase {
   constructor() {
     this.createPost = new CreatePostRepository();
   }
-  async execute(title: string, content: string, userId: number) {
+  async execute(title: string, content: string, userId: string) {
     const createPost = await this.createPost.execute({
       title,
       content,

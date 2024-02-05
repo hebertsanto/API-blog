@@ -7,7 +7,7 @@ export class DeleteCommentUseCase {
   constructor() {
     this.delete = new DeleteCommentRepository();
   }
-  async execute(id: number) {
+  async execute(id: string) {
     if (!id) {
       throw new MissingParamError('id comment');
     }

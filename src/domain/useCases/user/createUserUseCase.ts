@@ -1,30 +1,34 @@
 import { CreateUserRepository } from '../../../adapters/repositories/user/createUserRepository';
 import { IUser } from '../../../utils/@types';
-import { HashPassword } from '../../../utils/helpers/hash';
+import { hash } from 'bcrypt';
+import { MissingParamError } from '../../../utils/errors/missingParamError';
 
-export class UserUseCase {
-  private userRepository: CreateUserRepository;
-  private passwordHash: HashPassword;
-  constructor() {
-    this.userRepository = new CreateUserRepository();
-    this.passwordHash = new HashPassword();
-  }
+export class CreateUserUseCase {
+  constructor(private userRepository: CreateUserRepository) {}
 
   async create({ name, password, email }: IUser) {
-    if (!name || !password || email) {
-      throw new Error('all params are required');
+    if (!name) {
+      throw new MissingParamError('name');
     }
-    const passwordhash = await this.passwordHash.hash(password);
+    if (!password) {
+      throw new MissingParamError('name');
+    }
+    if (!email) {
+      throw new MissingParamError('name');
+    }
+    const passwordhash = await hash(password, 6);
+    const verifyUserExists = await this.userRepository.findEmail(email);
 
-    const newUser = await this.userRepository.execute({
+    if (verifyUserExists) {
+      throw new Error('user already exists');
+    }
+    const user = await this.userRepository.execute({
       name,
       email,
       password: String(passwordhash),
     });
-    return newUser;
-  }
-  async findUserExist(user: string) {
-    const existerUser = await this.userRepository.findEmail(user);
-    return existerUser;
+    return {
+      user,
+    };
   }
 }

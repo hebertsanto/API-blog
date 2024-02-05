@@ -8,7 +8,7 @@ export class UpdatePostUseCase {
     this.update = new UpdatePostRepository();
   }
 
-  async execute(id: number, data: IPost) {
+  async execute(id: string, data: IPost) {
     const postid = await this.update.findPost(id);
     if (!postid) {
       throw new Error('id not found');

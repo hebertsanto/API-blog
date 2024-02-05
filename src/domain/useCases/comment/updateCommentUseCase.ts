@@ -8,7 +8,7 @@ export class UpdateCommentUseCase {
   constructor() {
     this.updateComment = new UpdateCommentRepository();
   }
-  async execute(id: number, data: IComment) {
+  async execute(id: string, data: IComment) {
     if (!id) {
       throw new MissingParamError('id');
     }

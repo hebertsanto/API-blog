@@ -8,7 +8,7 @@ export class GetCommentUseCase {
     this.comment = new GetCommentById();
   }
 
-  async execute(id: number) {
+  async execute(id: string) {
     if (!id) {
       throw new MissingParamError('id comment not provided');
     }

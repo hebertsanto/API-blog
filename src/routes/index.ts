@@ -18,7 +18,7 @@ export const router = express.Router();
 
 //posts
 router.post('/post', createPost);
-router.post('/delete', deletePost);
+router.delete('/post/:id', deletePost);
 router.get('/post/:id', getPostById);
 router.put('/post/:id', updatePostController);
 router.get('/search', searchPosts);

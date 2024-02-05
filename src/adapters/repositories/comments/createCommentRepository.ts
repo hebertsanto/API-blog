@@ -8,7 +8,7 @@ export class CreateCommentRepository {
         comment: comment,
         post: {
           connect: {
-            id: postId /* ID do post ao qual o comentário está relacionado */,
+            id: postId,
           },
         },
       },

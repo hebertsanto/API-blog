@@ -13,7 +13,7 @@ export const updateComment = async (req: Request, res: Response) => {
     }
     const { comment, postId } = req.body;
 
-    const updatedComment = await update.execute(parseInt(id), {
+    const updatedComment = await update.execute(id, {
       comment,
       postId,
     });

@@ -12,7 +12,7 @@ export const deleteComment = async (req: Request, res: Response) => {
         msg: 'id is required',
       });
     }
-    await deleteCommentUseCase.execute(parseInt(id));
+    await deleteCommentUseCase.execute(id);
     return res.status(200).json({
       msg: 'Comment deleted successfully',
     });
