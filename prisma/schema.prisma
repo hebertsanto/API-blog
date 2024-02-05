@@ -9,7 +9,7 @@ generator client {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
+  id       String    @id @default(uuid())
   name     String
   email    String    @unique
   password String
@@ -18,28 +18,28 @@ model User {
 }
 
 model Post {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(uuid())
   title     String
   content   String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  userId    Int
+  userId    String
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   Comment   Comment[]
 }
 
 model Comment {
-  id      Int    @id @default(autoincrement())
+  id      String @id @default(uuid())
   comment String
-  postId  Int
+  postId  String
   post    Post   @relation(fields: [postId], references: [id])
 }
 
 model Profile {
-  id     Int      @id @default(autoincrement())
+  id     String   @id @default(uuid())
   name   String
   social String[]
   job    String
-  userId Int
+  userId String
   user   User     @relation(fields: [userId], references: [id])
 }
