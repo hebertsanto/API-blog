@@ -1,18 +1,18 @@
 import express from 'express';
-import { createPost } from '../controllers/post/create-controller';
-import { createUser } from '../controllers/user/create-controller';
-import { getUserById } from '../controllers/user/get-controller';
-import { deletePost } from '../controllers/post/delete-controller';
-import { updatePostController } from '../controllers/post/update-controller';
-import { getPostById } from '../controllers/post/get-controller';
-import { deleteUser } from '../controllers/user/delete-controller';
-import { searchPosts } from '../controllers/post/search-controller';
-import { loginController } from '../controllers/auth/loginController';
-import { createComment } from '../controllers/comment/create-controller';
-import { deleteComment } from '../controllers/comment/delete-controller';
-import { getCommentById } from '../controllers/comment/get-controller';
-import { updateComment } from '../controllers/comment/update-controller';
-import { listComments } from '../controllers/comment/list-controller';
+import { createPost } from '../http/controllers/post/create-controller';
+import { createUser } from '../http/controllers/user/create-controller';
+import { getUserById } from '../http/controllers/user/get-controller';
+import { deletePost } from '../http/controllers/post/delete-controller';
+import { updatePostController } from '../http/controllers/post/update-controller';
+import { getPostById } from '../http/controllers/post/get-controller';
+import { deleteUser } from '../http/controllers/user/delete-controller';
+import { searchPosts } from '../http/controllers/post/search-controller';
+import { loginController } from '../http/controllers/auth/loginController';
+import { createComment } from '../http/controllers/comment/create-controller';
+import { deleteComment } from '../http/controllers/comment/delete-controller';
+import { getCommentById } from '../http/controllers/comment/get-controller';
+import { updateComment } from '../http/controllers/comment/update-controller';
+import { listComments } from '../http/controllers/comment/list-controller';
 
 export const router = express.Router();
 

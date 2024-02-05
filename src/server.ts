@@ -1,5 +1,5 @@
 import main from './adapters/database/prismaConnect';
-import { ExpressApp } from './infra/http/express/express';
+import { ExpressApp } from './http/express/express';
 
 ExpressApp.start();
 main();

@@ -4,14 +4,16 @@ export class DeleteUserRepository {
   async execute(id: string) {
     const deleteUser = await prisma.user.delete({
       where: { id: id },
+      include:{
+        posts:{
+          where: {
+            userId: id,
+          }
+        },
+      }
     });
 
-    const deleteAllPosts = await prisma.post.deleteMany({
-      where: { userId: id },
-    });
-    return {
-      deleteUser,
-      deleteAllPosts,
-    };
+
+    return deleteUser;
   }
 }
