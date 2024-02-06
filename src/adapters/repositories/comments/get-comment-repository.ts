@@ -1,6 +1,6 @@
 import { prisma } from '../../database/prismaClient';
 
-export class GetCommentById {
+export class GetCommentByIdRepository {
   async execute(id: string) {
     const comment = await prisma.comment.findUnique({
       where: {

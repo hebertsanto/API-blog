@@ -1,26 +1,36 @@
 import { Request, Response } from 'express';
-import { GetCommentUseCase } from '../../../use-cases/comment/get-comment-use-case';
+import { makeGetCommentByIdUseCase } from '../../../use-cases/factories/comment/make-get-comment-use-case';
+import { prisma } from '../../../adapters/database/prismaClient';
+import { GenericsErros } from '../../../utils/errors/index.';
 
-const getCommentByIdUseCase = new GetCommentUseCase();
 
 export const getCommentById = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
 
-    if (!id) {
-      return res.status(400).json({
-        msg: 'id not found',
-      });
+  const { id } = req.params;
+  const makeGetCommentById = await makeGetCommentByIdUseCase();
+
+  try {
+
+    const commentExist = await prisma.comment.findUnique({
+      where: {
+        id: id
+      }
+    });
+
+    if (!commentExist) {
+      throw new GenericsErros('comment');
     }
-    const comment = await getCommentByIdUseCase.execute(id);
+    const comment = await makeGetCommentById.execute(id);
 
     return res.status(200).json({
       msg: 'comment here',
       comment,
     });
   } catch (error) {
-    return res.status(500).json({
-      msg: 'internal error server',
-    });
+    if (error instanceof GenericsErros) {
+      res.status(400).json({
+        msg: 'esse id não existe'
+      });
+    }
   }
 };
