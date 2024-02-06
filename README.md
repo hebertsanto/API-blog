@@ -44,7 +44,7 @@ aqui no meu perfil tem todas as minhas redes socias.
 
 ## rotas da aplicação
 
-### usuários
+### endpoints de usuários
 
 ### `/user`
 
@@ -54,6 +54,7 @@ aqui no meu perfil tem todas as minhas redes socias.
   - `body`: name ,email , password
 - **Exemplo de Resposta de Sucesso:**
 - `status code 201`
+  
   ```json
   {
     "msg": "user created successfully",
@@ -62,7 +63,6 @@ aqui no meu perfil tem todas as minhas redes socias.
       "email": "email usuário",
       "password": "hash da senha"
    }
-  }
   ```
 
 ### `/user/:id`
@@ -73,15 +73,155 @@ aqui no meu perfil tem todas as minhas redes socias.
   - `params`: id
 - **Exemplo de Resposta de Sucesso:**
 - `status code 200`
+  
   ```json
   {
     "user": {
       "name": "nome do usuário"
       "email": "email usuário",
-      "password": "hash da senha"
-   }
-  }
+   },
+  },
+   "posts": [
+   "id": "UUID",
+   "title": "tittulo do post",
+   "content": "conteudo do post",
+   "createdAt": "2024-02-05T22:52:05.093Z",
+   "updatedAt": "2024-02-05T22:52:05.093Z",
+   "userId": "a5e1052b-b83c-4b98-8740-6171cbb9fe77",
+  ]
 
+  ```
+
+## enpoints de post
+
+### `/post`
+
+- **Método:** POST
+- **Descrição:** cria um novo post no sistema
+- **Parâmetros da Solicitação:**
+  - `body`: title, content, userId
+- **Exemplo de Resposta de Sucesso:**
+- `status code 201`
+  
+  ```json
+  {
+    "msg": "post created successfully"
+    "post": {
+    "id": "UUID",
+    "title": "tittulo do post",
+    "content": "conteudo do post",
+    "createdAt": "2024-02-05T22:52:05.093Z",
+    "updatedAt": "2024-02-05T22:52:05.093Z",
+    "userId": "a5e1052b-b83c-4b98-8740-6171cbb9fe77",
+  },
+
+  ```
+  
+### `/post`
+
+- **Método:** PUT
+- **Descrição:** atualiza um post no sitema
+- **Parâmetros da Solicitação:**
+  - `body`: title, content, userId
+- **Exemplo de Resposta de Sucesso:**
+- `status code 201`
+  
+  ```json
+  {
+    "msg": "post has been updated successfully"
+    "post": {
+    "id": "UUID",
+    "title": "tittulo do post atualizado",
+    "content": "conteudo do post atualizado",
+    "createdAt": "2024-02-05T22:52:05.093Z",
+    "updatedAt": "2024-02-05T22:52:05.093Z",
+    "userId": "a5e1052b-b83c-4b98-8740-6171cbb9fe77",
+  },
+  
+### `/post/:id`
+
+- **Método:** GET
+- **Descrição:** pega um post pelo seu id
+- **Parâmetros da Solicitação:**
+  - `params`: id
+- **Exemplo de Resposta de Sucesso:**
+- `status code 200`
+  
+  ```json
+  {
+    "msg": "post found successfully"
+    "post": {
+    "id": "UUID",
+    "title": "tittulo do post",
+    "content": "conteudo do post",
+    "createdAt": "2024-02-05T22:52:05.093Z",
+    "updatedAt": "2024-02-05T22:52:05.093Z",
+    "userId": "a5e1052b-b83c-4b98-8740-6171cbb9fe77",
+  },
+
+### `/post/:id`
+
+- **Método:** DELETE
+- **Descrição:** pega um post pelo seu id
+- **Parâmetros da Solicitação:**
+  - `params`: id
+- **Exemplo de Resposta de Sucesso:**
+- `status code 200`
+  
+  ```json
+  {
+    "msg": "this post has been deleted"
+  },
+
+  
+## endpoints de comentários
+
+### `/comment`
+
+- **Método:** POST
+- **Descrição:** adiciona um comentário a um post
+- **Parâmetros da Solicitação:**
+  - `body`: comment, postId
+- **Exemplo de Resposta de Sucesso:**
+- `status code 201`
+  ```json
+  {
+    "user": {
+      "name": "nome do usuário"
+      "email": "email usuário",
+   },
+  },
+   "posts": [
+   "id": "UUID",
+   "title": "tittulo do post",
+   "content": "conteudo do post",
+   "createdAt": "2024-02-05T22:52:05.093Z",
+   "updatedAt": "2024-02-05T22:52:05.093Z",
+   "userId": "a5e1052b-b83c-4b98-8740-6171cbb9fe77",
+  ]
+
+  ```
+  
+## endpoint de login
+
+### `/login`
+
+- **Método:** POST
+- **Descrição:** autentica um usuário no sistema
+- **Parâmetros da Solicitação:**
+  - `body`: email, password
+- **Exemplo de Resposta de Sucesso:**
+- `status code 200`
+  ```json
+  {
+   "msg": "Authentication successful",
+    "user": {
+      "name": "nome do usuário"
+      "email": "email usuário",
+      "password": "hash da senha"
+   },
+   "token": "token jwt"
+  },
   ```
 
 ## modelagem dos dados (podem ocorrer alterações)
