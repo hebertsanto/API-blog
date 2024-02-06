@@ -1,6 +1,6 @@
 import { UpdateCommentRepository } from '../../adapters/repositories/comments/update-comment-repository';
 import { IComment } from '../../utils/@types';
-import { MissingParamError } from '../../utils/errors/missingParamError';
+import { MissingParamError } from '../../utils/errors/index.';
 
 export class UpdateCommentUseCase {
   private updateComment: UpdateCommentRepository;

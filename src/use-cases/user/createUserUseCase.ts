@@ -1,7 +1,7 @@
 import { CreateUserRepository } from '../../adapters/repositories/user/create-user-repository';
 import { IUser } from '../../utils/@types';
 import { hash } from 'bcrypt';
-import { MissingParamError } from '../../utils/errors/missingParamError';
+import { MissingParamError } from '../../utils/errors/index.';
 
 export class UserAlreadyExistError extends Error {
   constructor() {

@@ -1,5 +1,5 @@
 import { DeletePostRepository } from '../../adapters/repositories/post/delete-post-repository';
-import { MissingParamError } from '../../utils/errors/missingParamError';
+import { MissingParamError } from '../../utils/errors/index.';
 
 export class DeletePostUseCase {
   private delete: DeletePostRepository;

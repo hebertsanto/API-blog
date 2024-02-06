@@ -4,7 +4,6 @@ import { prisma } from '../../../adapters/database/prismaClient';
 import { PostIdDoesNotExist } from '../../../utils/errors/index.';
 
 export const createComment = async (req: Request, res: Response) => {
-
   const { comment, postId } = req.body;
   const createComment = await makeCreateComment();
 

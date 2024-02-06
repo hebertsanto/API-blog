@@ -47,6 +47,7 @@ aqui no meu perfil tem todas as minhas redes socias.
 ### usuários
 
 ### `/user`
+
 - **Método:** POST
 - **Descrição:** cria um novo usuário no sistema
 - **Parâmetros da Solicitação:**
@@ -62,8 +63,10 @@ aqui no meu perfil tem todas as minhas redes socias.
       "password": "hash da senha"
    }
   }
+  ```
 
 ### `/user/:id`
+
 - **Método:** GET
 - **Descrição:** pega um usuário pelo seu id
 - **Parâmetros da Solicitação:**
@@ -78,12 +81,12 @@ aqui no meu perfil tem todas as minhas redes socias.
       "password": "hash da senha"
    }
   }
-  
+
+  ```
+
 ## modelagem dos dados (podem ocorrer alterações)
 
 ![modelagem](https://i.ibb.co/Gkzpm75/Screenshot-from-2024-02-03-16-29-57.png)
-
-
 
 ## entre em contato comigo (ficarei extremamente feliz)
 

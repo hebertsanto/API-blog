@@ -1,6 +1,6 @@
 import { CreateCommentRepository } from '../../adapters/repositories/comments/create-comment-repository';
 import { IComment } from '../../utils/@types';
-import { MissingParamError } from '../../utils/errors/missingParamError';
+import { MissingParamError } from '../../utils/errors/index.';
 
 export class CreateCommentUseCase {
   constructor(private createCommentRepository: CreateCommentRepository) {}

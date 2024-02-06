@@ -1,5 +1,5 @@
 import { GetCommentById } from '../../adapters/repositories/comments/get-comment-repository';
-import { MissingParamError } from '../../utils/errors/missingParamError';
+import { MissingParamError } from '../../utils/errors/index.';
 
 export class GetCommentUseCase {
   comment: GetCommentById;

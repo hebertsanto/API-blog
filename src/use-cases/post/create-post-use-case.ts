@@ -1,11 +1,5 @@
 import { CreatePostRepository } from '../../adapters/repositories/post/create-post-repository';
 
-export class UserIdDoeNotExistError extends Error {
-  constructor() {
-    super('user id not found');
-  }
-}
-
 export class CreatePostUseCase {
   constructor(private createPostRepository: CreatePostRepository) {}
   async execute(title: string, content: string, userId: string) {
@@ -14,6 +8,7 @@ export class CreatePostUseCase {
       content,
       userId,
     });
+
     return createPost;
   }
 }

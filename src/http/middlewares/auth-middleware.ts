@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import {
   TokenIsNotValidError,
   TokenWasNoProviderError,
-} from '../../utils/errors/missingParamError';
+} from '../../utils/errors/index.';
 import jwt from 'jsonwebtoken';
 
 export const authMiddleware = async (

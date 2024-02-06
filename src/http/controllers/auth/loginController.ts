@@ -3,7 +3,7 @@ import { AuthUseCase } from '../../../use-cases/user/authUseCase';
 import {
   PasswordDoesNotMatch,
   UserDoesNotExists,
-} from '../../../utils/errors/missingParamError';
+} from '../../../utils/errors/index.';
 
 const makeAuthenticationUser = new AuthUseCase();
 export const loginController = async (req: Request, res: Response) => {

@@ -27,3 +27,14 @@ export class TokenIsNotValidError extends Error {
     super('token was no valid');
   }
 }
+export class UserIdNotFoundOnDatabaseError extends Error {
+  constructor() {
+    super('user not found on database');
+  }
+}
+
+export class PostIdDoesNotExist extends Error {
+  constructor() {
+    super('this post id does not exist');
+  }
+}

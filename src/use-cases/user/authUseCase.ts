@@ -1,9 +1,9 @@
 import { GetUserRepository } from '../../adapters/repositories/user/get-user-repository';
-import { MissingParamError } from '../../utils/errors/missingParamError';
+import { MissingParamError } from '../../utils/errors/index.';
 import { Encrypter } from '../../utils/helpers/encrypter';
 import { TokenGenerator } from '../../utils/helpers/tokenGenerator';
-import { UserDoesNotExists } from '../../utils/errors/missingParamError';
-import { PasswordDoesNotMatch } from '../../utils/errors/missingParamError';
+import { UserDoesNotExists } from '../../utils/errors/index.';
+import { PasswordDoesNotMatch } from '../../utils/errors/index.';
 
 export class AuthUseCase {
   private encrypter: Encrypter;
