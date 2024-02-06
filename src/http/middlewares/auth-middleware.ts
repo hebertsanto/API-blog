@@ -11,7 +11,7 @@ export const authMiddleware = async (
   next: NextFunction,
 ) => {
   const header = req.headers['authorization'];
-  const token = header?.split('')[1];
+  const token = header?.split(' ')[1];
   const secret = process.env.SECRET_JWT as string;
   try {
     if (!token) {
@@ -22,7 +22,7 @@ export const authMiddleware = async (
         throw new TokenIsNotValidError();
       }
       next();
-      return decoded?.toString();
+      return decoded;
     });
   } catch (error) {
     if (error instanceof TokenWasNoProviderError) {
