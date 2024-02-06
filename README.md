@@ -42,9 +42,48 @@ aqui no meu perfil tem todas as minhas redes socias.
 - git
 - github actions (estou focado em aprender)
 
+## rotas da aplicação
+
+### usuários
+
+### `/user`
+- **Método:** POST
+- **Descrição:** cria um novo usuário no sistema
+- **Parâmetros da Solicitação:**
+  - `body`: name ,email , password
+- **Exemplo de Resposta de Sucesso:**
+- `status code 201`
+  ```json
+  {
+    "msg": "user created successfully",
+    "user": {
+      "name": "nome do usuário"
+      "email": "email usuário",
+      "password": "hash da senha"
+   }
+  }
+
+### `/user/:id`
+- **Método:** GET
+- **Descrição:** pega um usuário pelo seu id
+- **Parâmetros da Solicitação:**
+  - `params`: id
+- **Exemplo de Resposta de Sucesso:**
+- `status code 200`
+  ```json
+  {
+    "user": {
+      "name": "nome do usuário"
+      "email": "email usuário",
+      "password": "hash da senha"
+   }
+  }
+  
 ## modelagem dos dados (podem ocorrer alterações)
 
 ![modelagem](https://i.ibb.co/Gkzpm75/Screenshot-from-2024-02-03-16-29-57.png)
+
+
 
 ## entre em contato comigo (ficarei extremamente feliz)
 
