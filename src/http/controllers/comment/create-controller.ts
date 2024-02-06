@@ -1,28 +1,33 @@
 import { Request, Response } from 'express';
-import { CreateCommentUseCase } from '../../../use-cases/comment/create-comment-use-case';
-
-const createCommentUseCase = new CreateCommentUseCase();
+import { makeCreateComment } from '../../../use-cases/factories/comment/make-create-comment-use-case';
+import { prisma } from '../../../adapters/database/prismaClient';
+import { PostIdDoesNotExist } from '../../../utils/errors/index.';
 
 export const createComment = async (req: Request, res: Response) => {
+
+  const { comment, postId } = req.body;
+  const createComment = await makeCreateComment();
+
   try {
-    const { comment, postId } = req.body;
-    if (!postId) {
-      return res.status(400).json({
-        msg: 'post id is required',
-      });
-    }
-    const comentWasCreated = await createCommentUseCase.execute({
-      comment,
-      postId,
+    const verifyPostExist = await prisma.post.findUnique({
+      where: {
+        id: postId,
+      },
     });
-    res.status(200).json({
-      msg: 'your comment was created successfully',
-      comentWasCreated,
+    if (!verifyPostExist) {
+      throw new PostIdDoesNotExist();
+    }
+    const commentCreated = await createComment.execute({ comment, postId });
+
+    return res.status(200).json({
+      msg: 'comment was created',
+      commentCreated,
     });
   } catch (error) {
-    return res.status(500).json({
-      msg: 'internal error',
-      error,
-    });
+    if (error instanceof PostIdDoesNotExist) {
+      return res.status(400).json({
+        msg: 'this id does not existe',
+      });
+    }
   }
 };
