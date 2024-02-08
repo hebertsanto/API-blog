@@ -17,6 +17,12 @@ export class UserAlreadyExistError extends Error {
   }
 }
 
+export class TokenIsNotValidError extends Error {
+  constructor() {
+    super('token is not valid');
+  }
+}
+
 export class TokenWasNoProviderError extends Error {
   constructor() {
     super('token was not provider on request');
