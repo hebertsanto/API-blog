@@ -7,34 +7,24 @@ export class MissingParamError extends Error {
 
 export class PasswordDoesNotMatch extends Error {
   constructor() {
-    super('password invalid');
+    super('password does not match');
   }
 }
-export class UserDoesNotExists extends Error {
+
+export class UserAlreadyExistError extends Error {
   constructor() {
-    super('user not found on database');
+    super('user already exists');
   }
 }
 
 export class TokenWasNoProviderError extends Error {
   constructor() {
-    super('token was not provider');
+    super('token was not provider on request');
   }
 }
 
-export class TokenIsNotValidError extends Error {
-  constructor() {
-    super('token was no valid');
-  }
-}
-export class UserIdNotFoundOnDatabaseError extends Error {
-  constructor() {
-    super('user not found on database');
-  }
-}
-
-export class PostIdDoesNotExist extends Error {
-  constructor() {
-    super('this post id does not exist');
+export class ParamDoesNotExist extends Error {
+  constructor(params: string) {
+    super(`this ${params} does not exist`);
   }
 }

@@ -1,13 +1,8 @@
 import { CreateUserRepository } from '../../adapters/repositories/user/create-user-repository';
 import { IUser } from '../../utils/@types';
 import { hash } from 'bcrypt';
-import { MissingParamError } from '../../utils/errors/index.';
+import { MissingParamError, UserAlreadyExistError} from '../../utils/errors/index.';
 
-export class UserAlreadyExistError extends Error {
-  constructor() {
-    super('user already exists');
-  }
-}
 export class CreateUserUseCase {
   constructor(private userRepository: CreateUserRepository) {}
 

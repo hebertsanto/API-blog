@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { makeCreatePostUseCase } from '../../../use-cases/factories/post/make-create-post-use-case';
 import { UserIdNotFound } from '../../../use-cases/user/getUserUseCase';
 import { prisma } from '../../../adapters/database/prismaClient';
-import { UserIdNotFoundOnDatabaseError } from '../../../utils/errors/index.';
+import { ParamDoesNotExist } from '../../../utils/errors/index.';
 
 export const createPost = async (req: Request, res: Response) => {
   const createPostUseCase = await makeCreatePostUseCase();
@@ -15,7 +15,7 @@ export const createPost = async (req: Request, res: Response) => {
       },
     });
     if (!user) {
-      throw new UserIdNotFoundOnDatabaseError();
+      throw new ParamDoesNotExist('user does not exist');
     }
     const makePost = await createPostUseCase.execute(title, content, userId);
 
@@ -29,7 +29,7 @@ export const createPost = async (req: Request, res: Response) => {
         msg: 'id not found',
       });
     }
-    if (error instanceof UserIdNotFoundOnDatabaseError) {
+    if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({
         msg: 'id not found on database',
       });
