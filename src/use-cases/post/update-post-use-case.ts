@@ -2,19 +2,9 @@ import { UpdatePostRepository } from '../../adapters/repositories/post/update-po
 import { IPost } from '../../utils/@types';
 
 export class UpdatePostUseCase {
-  private update: UpdatePostRepository;
-
-  constructor() {
-    this.update = new UpdatePostRepository();
-  }
-
+  constructor(private updateUseCase : UpdatePostRepository) {}
   async execute(id: string, data: IPost) {
-    const postid = await this.update.findPost(id);
-    if (!postid) {
-      throw new Error('id not found');
-    }
-    const updatePost = await this.update.execute(id, data);
-
+    const updatePost = await this.updateUseCase.execute(id, data);
     return updatePost;
   }
 }

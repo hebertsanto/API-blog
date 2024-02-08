@@ -2,7 +2,7 @@ import { GetCommentByIdRepository } from '../../adapters/repositories/comments/g
 import { MissingParamError } from '../../utils/errors/index.';
 
 export class GetCommentUseCase {
-  constructor(private comment : GetCommentByIdRepository) {}
+  constructor(private comment: GetCommentByIdRepository) {}
 
   async execute(id: string) {
     if (!id) {

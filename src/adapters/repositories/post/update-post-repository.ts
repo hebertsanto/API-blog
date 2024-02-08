@@ -13,12 +13,4 @@ export class UpdatePostRepository {
     });
     return updatePost;
   }
-  async findPost(id: string) {
-    const postFound = await prisma.post.findUnique({
-      where: {
-        id: id,
-      },
-    });
-    return postFound;
-  }
 }

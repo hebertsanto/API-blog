@@ -2,7 +2,7 @@ import { GetUserRepository } from '../../adapters/repositories/user/get-user-rep
 import { MissingParamError } from '../../utils/errors/index.';
 import { Encrypter } from '../../utils/helpers/encrypter';
 import { TokenGenerator } from '../../utils/helpers/tokenGenerator';
-import { UserDoesNotExists } from '../../utils/errors/index.';
+import { ParamDoesNotExist } from '../../utils/errors/index.';
 import { PasswordDoesNotMatch } from '../../utils/errors/index.';
 
 export class AuthUseCase {
@@ -25,7 +25,7 @@ export class AuthUseCase {
     const user = await this.user.findeUserByEmail(email);
 
     if (!user.email) {
-      throw new UserDoesNotExists();
+      throw new ParamDoesNotExist('user dot not exist');
     }
     const isValidPassword = await this.encrypter.compare(
       password,

@@ -1,18 +1,9 @@
 import { DeletePostRepository } from '../../adapters/repositories/post/delete-post-repository';
-import { MissingParamError } from '../../utils/errors/index.';
 
 export class DeletePostUseCase {
-  private delete: DeletePostRepository;
-
-  constructor() {
-    this.delete = new DeletePostRepository();
-  }
-
+  constructor(private deleteService: DeletePostRepository) {}
   async execute(id: string) {
-    const post = await this.delete.execute(id);
-    if (!id) {
-      throw new MissingParamError('id');
-    }
+    const post = await this.deleteService.execute(id);
     return post;
   }
 }

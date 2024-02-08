@@ -9,11 +9,6 @@ export class GetUserByIdUseCase {
   constructor(private getUserRepository: GetUserRepository) {}
   async execute(id: string) {
     const user = await this.getUserRepository.execute(id);
-
-    if (!user) {
-      throw new UserIdNotFound();
-    }
-
     return user;
   }
 }

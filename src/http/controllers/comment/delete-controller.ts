@@ -1,25 +1,26 @@
 import { Request, Response } from 'express';
-import { DeleteCommentUseCase } from '../../../use-cases/comment/delete-comment-use-case';
-
-const deleteCommentUseCase = new DeleteCommentUseCase();
+import { makeDeleteCommentUseCase } from '../../../use-cases/factories/comment/make-delete-comment-use-case';
+import { ParamDoesNotExist } from '../../../utils/errors/index.';
+import { makeGetCommentByIdUseCase } from '../../../use-cases/factories/comment/make-get-comment-use-case';
 
 export const deleteComment = async (req: Request, res: Response) => {
+  const makeDeleteComment = await makeDeleteCommentUseCase();
+  const makeGetComment = await makeGetCommentByIdUseCase();
   try {
     const { id } = req.params;
 
-    if (!id) {
-      return res.status(400).json({
-        msg: 'id is required',
-      });
+    if (!makeGetComment) {
+      throw new ParamDoesNotExist('id do comentário não existe');
     }
-    await deleteCommentUseCase.execute(id);
+    await makeDeleteComment.execute(id);
     return res.status(200).json({
       msg: 'Comment deleted successfully',
     });
   } catch (error) {
-    return res.status(400).json({
-      msg: 'erro internal server',
-      error,
-    });
+    if (error instanceof ParamDoesNotExist) {
+      return res.status(404).json({
+        msg: 'comment id does not exist',
+      });
+    }
   }
 };

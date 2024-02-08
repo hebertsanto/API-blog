@@ -1,4 +1,4 @@
-import { GetCommentByIdRepository  } from '../../../adapters/repositories/comments/get-comment-repository';
+import { GetCommentByIdRepository } from '../../../adapters/repositories/comments/get-comment-repository';
 import { GetCommentUseCase } from '../../comment/get-comment-use-case';
 
 export async function makeGetCommentByIdUseCase() {

@@ -4,9 +4,8 @@ import { prisma } from '../../../adapters/database/prismaClient';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 
 export const createComment = async (req: Request, res: Response) => {
-  const { comment, postId } = req.body;
   const createComment = await makeCreateComment();
-
+  const { comment, postId } = req.body;
   try {
     const verifyPostExist = await prisma.post.findUnique({
       where: {
@@ -16,6 +15,7 @@ export const createComment = async (req: Request, res: Response) => {
     if (!verifyPostExist) {
       throw new ParamDoesNotExist('post id not exit');
     }
+
     const commentCreated = await createComment.execute({ comment, postId });
 
     return res.status(200).json({

@@ -8,9 +8,7 @@ import { loginRoute } from './login-route';
 
 export const router = Router();
 
-router.use(authMiddleware);
-router.use('/', commentRoutes);
-router.use('/', postRoutes);
-router.use('/', userRoutes);
 router.use('/', loginRoute);
-
+router.use('/', authMiddleware, commentRoutes);
+router.use('/', authMiddleware, postRoutes);
+router.use('/', authMiddleware, userRoutes);

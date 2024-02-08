@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
-import { SearchPostUseCase } from '../../../use-cases/post/search-post-use-case';
-
-const searchPostUseCase = new SearchPostUseCase();
+import { makeSearchPostsUseCase } from '../../../use-cases/factories/post/make-search-post-use-case';
 
 export const searchPosts = async (req: Request, res: Response) => {
-  try {
-    const { query } = req.query;
 
-    const postsFound = await searchPostUseCase.execute(String(query));
+  const makeSearchPosts = await makeSearchPostsUseCase();
+  const { query } = req.query;
+
+  try {
+
+    const postsFound = await makeSearchPosts.execute(String(query));
 
     if (postsFound.length == 0) {
       return res.status(400).json({

@@ -1,26 +1,27 @@
 import { Request, Response } from 'express';
-import { DeletePostUseCase } from '../../../use-cases/post/delete-post-use-case';
-
-const post = new DeletePostUseCase();
+import { makeDeletePostUseCase } from '../../../use-cases/factories/post/make-delete-post-use-case';
+import { ParamDoesNotExist } from '../../../utils/errors/index.';
 
 export const deletePost = async (req: Request, res: Response) => {
+
+  const makeDeletePost = await makeDeletePostUseCase();
+  const { id } = req.params;
+
   try {
-    const { id } = req.params;
-
-    const deleted = await post.execute(id);
-
-    if (!deleted.id) {
-      return res.status(404).json({
-        msg: 'post not found',
-      });
+    const deleted = await makeDeletePost.execute(id);
+    if (!deleted) {
+      throw new ParamDoesNotExist('post does not exist');
     }
     return res.status(200).json({
       msg: 'this post has been deleted',
     });
+
   } catch (error) {
-    return res.status(400).json({
-      msg: 'some error occurred deliting this post',
-      error,
-    });
+    if (error instanceof ParamDoesNotExist) {
+      return res.status(400).json({
+        msg: 'post does not exist',
+      });
+    }
+
   }
 };

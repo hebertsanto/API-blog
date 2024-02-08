@@ -1,27 +1,39 @@
 import { Request, Response } from 'express';
-import { GetPostByIdUseCase } from '../../../use-cases/post/get-post-use-case';
+import { makeGetPostByIdUseCase } from '../../../use-cases/factories/post/make-get-user-use-case';
+import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
 
-const postUseCase = new GetPostByIdUseCase();
+
 
 export const getPostById = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
 
-    const post = await postUseCase.execute(id);
+  const makeGetPostById = await makeGetPostByIdUseCase();
+  const { id } = req.params;
+
+  try {
+
+    if (!id) {
+      throw new MissingParamError('id is required');
+    }
+
+    const post = await makeGetPostById.execute(id);
 
     if (!post) {
-      return res.status(400).json({
-        msg: 'post not found',
-      });
+      throw new ParamDoesNotExist('post id does not exist');
     }
     return res.status(200).json({
       msg: 'post found successfully',
       post,
     });
   } catch (error) {
-    return res.status(400).json({
-      msg: 'some error occurred controller',
-      error,
-    });
+    if (error instanceof ParamDoesNotExist) {
+      return res.status(400).json({
+        msg: 'post does not exist',
+      });
+    }
+    if (error instanceof MissingParamError) {
+      return res.status(400).json({
+        msg: 'id is required',
+      });
+    }
   }
 };
