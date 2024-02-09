@@ -2,18 +2,17 @@ import { Request, Response } from 'express';
 import { AuthUseCase } from '../../../use-cases/user/authUseCase';
 import {
   PasswordDoesNotMatch,
-  ParamDoesNotExist
+  ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 
 const makeAuthenticationUser = new AuthUseCase();
 export const loginController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
+
   try {
+
     const { user, token } = await makeAuthenticationUser.auth(email, password);
-    const userExist = user.email;
-    if (!userExist) {
-      throw new ParamDoesNotExist('user not exist, create account');
-    }
+
     return res.status(200).json({
       msg: 'Authentication successful',
       user,

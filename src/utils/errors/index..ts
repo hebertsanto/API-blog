@@ -31,6 +31,11 @@ export class TokenWasNoProviderError extends Error {
 
 export class ParamDoesNotExist extends Error {
   constructor(params: string) {
-    super(`this ${params} does not exist`);
+    super(`${params} does not exist`);
+  }
+}
+export class UserNotExist extends Error {
+  constructor() {
+    super('user not exit');
   }
 }

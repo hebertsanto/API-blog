@@ -7,5 +7,4 @@ export async function makeUpdatePostUseCase() {
   const updateUseCase = new UpdatePostUseCase(updateRepositpory);
 
   return updateUseCase;
-
 }

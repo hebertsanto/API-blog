@@ -7,10 +7,11 @@ export const createUser = async (req: Request, res: Response) => {
   const createUserUseCase = await makeCreateUserUseCase();
 
   try {
-    await createUserUseCase.create({ name, email, password });
+    const user = await createUserUseCase.create({ name, email, password });
 
     return res.status(201).json({
       msg: 'user created successfully',
+      user
     });
   } catch (error) {
     if (error instanceof UserAlreadyExistError) {
