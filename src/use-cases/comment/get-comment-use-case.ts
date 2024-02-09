@@ -1,5 +1,5 @@
 import { GetCommentByIdRepository } from '../../adapters/repositories/comments/get-comment-repository';
-import { MissingParamError } from '../../utils/errors/index.';
+import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
 
 export class GetCommentUseCase {
   constructor(private comment: GetCommentByIdRepository) {}
@@ -9,7 +9,9 @@ export class GetCommentUseCase {
       throw new MissingParamError('id comment not provided');
     }
     const commentFound = await this.comment.execute(id);
-
+    if (!commentFound) {
+      throw new ParamDoesNotExist('comment id does not exist');
+    }
     return commentFound;
   }
 }

@@ -5,7 +5,7 @@ import { makeGetCommentByIdUseCase } from '../../../use-cases/factories/comment/
 
 export const updateComment = async (req: Request, res: Response) => {
   const makeUpdateComment = await makeUpdateCommentUseCase();
-  const makeGetComment =  await makeGetCommentByIdUseCase();
+  const makeGetComment = await makeGetCommentByIdUseCase();
   try {
     const { id } = req.params;
     if (!id) {
@@ -16,7 +16,7 @@ export const updateComment = async (req: Request, res: Response) => {
     const commentId = await makeGetComment.execute(id);
 
     if (!commentId) {
-      throw new ParamDoesNotExist('id desse comentario nao existe');
+      throw new ParamDoesNotExist('comment id does not exist');
     }
     const { comment, postId } = req.body;
 
@@ -32,7 +32,7 @@ export const updateComment = async (req: Request, res: Response) => {
   } catch (error) {
     if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({
-        msg: 'this id do not exist'
+        msg: 'this id do not exist',
       });
     }
   }

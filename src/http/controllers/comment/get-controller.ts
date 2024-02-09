@@ -9,9 +9,6 @@ export const getCommentById = async (req: Request, res: Response) => {
   try {
     const comment = await makeGetCommentById.execute(id);
 
-    if (!comment) {
-      throw new ParamDoesNotExist('comment id does not exist');
-    }
     return res.status(200).json({
       msg: 'comment here',
       comment,
@@ -19,7 +16,7 @@ export const getCommentById = async (req: Request, res: Response) => {
   } catch (error) {
     if (error instanceof ParamDoesNotExist) {
       res.status(400).json({
-        msg: 'esse id não existe',
+        msg: 'comment id does not exist',
       });
     }
   }

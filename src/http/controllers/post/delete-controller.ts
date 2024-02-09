@@ -8,20 +8,16 @@ export const deletePost = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    const deleted = await makeDeletePost.execute(id);
-    if (!deleted) {
-      throw new ParamDoesNotExist('post does not exist');
-    }
+    await makeDeletePost.execute(id);
+
     return res.status(200).json({
       msg: 'this post has been deleted',
     });
-
   } catch (error) {
     if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({
         msg: 'post does not exist',
       });
     }
-
   }
 };

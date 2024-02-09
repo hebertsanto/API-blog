@@ -2,12 +2,10 @@ import { Request, Response } from 'express';
 import { makeSearchPostsUseCase } from '../../../use-cases/factories/post/make-search-post-use-case';
 
 export const searchPosts = async (req: Request, res: Response) => {
-
   const makeSearchPosts = await makeSearchPostsUseCase();
   const { query } = req.query;
 
   try {
-
     const postsFound = await makeSearchPosts.execute(String(query));
 
     if (postsFound.length == 0) {

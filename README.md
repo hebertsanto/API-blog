@@ -54,7 +54,7 @@ aqui no meu perfil tem todas as minhas redes socias.
   - `body`: name ,email , password
 - **Exemplo de Resposta de Sucesso:**
 - `status code 201`
-  
+
   ```json
   {
     "msg": "user created successfully",
@@ -73,7 +73,7 @@ aqui no meu perfil tem todas as minhas redes socias.
   - `params`: id
 - **Exemplo de Resposta de Sucesso:**
 - `status code 200`
-  
+
   ```json
   {
     "user": {
@@ -102,7 +102,7 @@ aqui no meu perfil tem todas as minhas redes socias.
   - `body`: title, content, userId
 - **Exemplo de Resposta de Sucesso:**
 - `status code 201`
-  
+
   ```json
   {
     "msg": "post created successfully"
@@ -116,7 +116,7 @@ aqui no meu perfil tem todas as minhas redes socias.
   },
 
   ```
-  
+
 ### `/post`
 
 - **Método:** PUT
@@ -125,7 +125,7 @@ aqui no meu perfil tem todas as minhas redes socias.
   - `body`: title, content, userId
 - **Exemplo de Resposta de Sucesso:**
 - `status code 201`
-  
+
   ```json
   {
     "msg": "post has been updated successfully"
@@ -137,7 +137,9 @@ aqui no meu perfil tem todas as minhas redes socias.
     "updatedAt": "2024-02-05T22:52:05.093Z",
     "userId": "a5e1052b-b83c-4b98-8740-6171cbb9fe77",
   },
-  
+
+  ```
+
 ### `/post/:id`
 
 - **Método:** GET
@@ -146,7 +148,7 @@ aqui no meu perfil tem todas as minhas redes socias.
   - `params`: id
 - **Exemplo de Resposta de Sucesso:**
 - `status code 200`
-  
+
   ```json
   {
     "msg": "post found successfully"
@@ -158,6 +160,7 @@ aqui no meu perfil tem todas as minhas redes socias.
     "updatedAt": "2024-02-05T22:52:05.093Z",
     "userId": "a5e1052b-b83c-4b98-8740-6171cbb9fe77",
   },
+  ```
 
 ### `/post/:id`
 
@@ -167,13 +170,15 @@ aqui no meu perfil tem todas as minhas redes socias.
   - `params`: id
 - **Exemplo de Resposta de Sucesso:**
 - `status code 200`
-  
+
   ```json
   {
     "msg": "this post has been deleted"
   },
 
-  
+
+  ```
+
 ## endpoints de comentários
 
 ### `/comment`
@@ -184,6 +189,7 @@ aqui no meu perfil tem todas as minhas redes socias.
   - `body`: comment, postId
 - **Exemplo de Resposta de Sucesso:**
 - `status code 201`
+
   ```json
   {
     "user": {
@@ -201,7 +207,7 @@ aqui no meu perfil tem todas as minhas redes socias.
   ]
 
   ```
-  
+
 ## endpoint de login
 
 ### `/login`

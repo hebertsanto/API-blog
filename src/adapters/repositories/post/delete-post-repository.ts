@@ -1,18 +1,15 @@
 import { prisma } from '../../database/prismaClient';
 
 export class DeletePostRepository {
-
   async execute(id: string) {
-
     await prisma.comment.deleteMany({
-      where:{
-        postId: id
-      }
+      where: {
+        postId: id,
+      },
     });
 
-    return  await prisma.post.delete({
+    return await prisma.post.delete({
       where: { id: id },
     });
   }
-
 }

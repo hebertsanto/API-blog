@@ -3,7 +3,7 @@ import { IComment } from '../../utils/@types';
 import { MissingParamError } from '../../utils/errors/index.';
 
 export class UpdateCommentUseCase {
-  constructor(private updateComment: UpdateCommentRepository) { }
+  constructor(private updateComment: UpdateCommentRepository) {}
   async execute(id: string, data: IComment) {
     if (!id) {
       throw new MissingParamError('id');
