@@ -13,8 +13,8 @@ export class DeleteCommentUseCase {
     }
     await prisma.comment.delete({
       where: {
-        id: id
-      }
+        id: id,
+      },
     });
   }
 }

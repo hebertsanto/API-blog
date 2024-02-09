@@ -5,7 +5,7 @@ import { makeGetUserUseCase } from '../factories/user/make-get-user-use-case';
 
 export class CreatePostUseCase {
   constructor(private createPostRepository: CreatePostRepository) {}
-  async execute({ title, content, userId } : IPost) {
+  async execute({ title, content, userId }: IPost) {
     const makeUser = await makeGetUserUseCase();
     const user = await makeUser.execute(userId);
     if (!user) {
@@ -16,7 +16,6 @@ export class CreatePostUseCase {
       content,
       userId,
     });
-
 
     return createPost;
   }

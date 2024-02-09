@@ -11,7 +11,7 @@ export const createUser = async (req: Request, res: Response) => {
 
     return res.status(201).json({
       msg: 'user created successfully',
-      user
+      user,
     });
   } catch (error) {
     if (error instanceof UserAlreadyExistError) {

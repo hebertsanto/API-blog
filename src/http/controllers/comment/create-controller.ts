@@ -6,7 +6,6 @@ export const createComment = async (req: Request, res: Response) => {
   const createComment = await makeCreateComment();
   const { comment, postId } = req.body;
   try {
-
     const commentCreated = await createComment.execute({ comment, postId });
 
     return res.status(200).json({

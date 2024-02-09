@@ -10,7 +10,6 @@ export const loginController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
-
     const { user, token } = await makeAuthenticationUser.auth(email, password);
 
     return res.status(200).json({

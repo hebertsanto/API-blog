@@ -1,9 +1,6 @@
 import { Request, Response } from 'express';
 import { makeUpdatePostUseCase } from '../../../use-cases/factories/post/make-update-post-use-case';
-import {
-  ParamDoesNotExist,
-  UserNotExist,
-} from '../../../utils/errors/index.';
+import { ParamDoesNotExist, UserNotExist } from '../../../utils/errors/index.';
 import { makeGetPostByIdUseCase } from '../../../use-cases/factories/post/make-get-user-use-case';
 import { makeGetUserUseCase } from '../../../use-cases/factories/user/make-get-user-use-case';
 

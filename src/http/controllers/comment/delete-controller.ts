@@ -11,7 +11,6 @@ export const deleteComment = async (req: Request, res: Response) => {
     return res.status(200).json({
       msg: 'Comment deleted successfully',
     });
-
   } catch (error) {
     if (error instanceof ParamDoesNotExist) {
       return res.status(404).json({

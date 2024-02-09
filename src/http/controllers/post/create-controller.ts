@@ -3,13 +3,11 @@ import { makeCreatePostUseCase } from '../../../use-cases/factories/post/make-cr
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 
 export const createPost = async (req: Request, res: Response) => {
-
   const createPostUseCase = await makeCreatePostUseCase();
   const { title, content, userId } = req.body;
 
   try {
-
-    const makePost = await createPostUseCase.execute({ title, content, userId});
+    const makePost = await createPostUseCase.execute({ title, content, userId });
 
     return res.status(200).json({
       msg: 'post created successfully',

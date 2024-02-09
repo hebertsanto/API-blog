@@ -3,7 +3,6 @@ import { makeDeletePostUseCase } from '../../../use-cases/factories/post/make-de
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 
 export const deletePost = async (req: Request, res: Response) => {
-
   const makeDeletePost = await makeDeletePostUseCase();
   const { id } = req.params;
 
