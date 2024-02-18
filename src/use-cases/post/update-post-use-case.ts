@@ -6,10 +6,10 @@ import { ParamDoesNotExist, UserNotExist } from '../../utils/errors/index.';
 export class UpdatePostUseCase {
   constructor(
     private updateUseCase: PrismaPostRespository,
-    private userUseCase: PrismaUserRepository
+    private userUseCase: PrismaUserRepository,
   ) {}
-  async execute(id: string, data: IPost, userId : string) {
-    const user =  await this.userUseCase.findById(userId);
+  async execute(id: string, data: IPost, userId: string) {
+    const user = await this.userUseCase.findById(userId);
     if (!user) {
       throw new UserNotExist();
     }

@@ -4,12 +4,9 @@ import { UpdatePostUseCase } from '../../post/update-post-use-case';
 
 export async function makeUpdatePostUseCase() {
   const updateRepositpory = new PrismaPostRespository();
-  const userUseCase = new PrismaUserRepository;
+  const userUseCase = new PrismaUserRepository();
 
-  const updateUseCase = new UpdatePostUseCase(
-    updateRepositpory,
-    userUseCase
-  );
+  const updateUseCase = new UpdatePostUseCase(updateRepositpory, userUseCase);
 
   return updateUseCase;
 }

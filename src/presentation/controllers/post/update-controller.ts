@@ -8,12 +8,15 @@ export const updatePostController = async (req: Request, res: Response) => {
   const makeUpdate = await makeUpdatePostUseCase();
 
   try {
-
-    const updatedPost = await makeUpdate.execute(id, {
-      title,
-      content,
+    const updatedPost = await makeUpdate.execute(
+      id,
+      {
+        title,
+        content,
+        userId,
+      },
       userId,
-    }, userId);
+    );
 
     return res.status(200).json({
       msg: 'post has been updated successfully',
