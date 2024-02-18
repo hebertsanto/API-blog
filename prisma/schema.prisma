@@ -13,7 +13,7 @@ model User {
   name     String
   email    String    @unique
   password String
-  posts    Post[] 
+  posts    Post[]
   Profile  Profile[]
 }
 
@@ -21,18 +21,23 @@ model Post {
   id        String    @id @default(uuid())
   title     String
   content   String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
   userId    String
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   Comment   Comment[]
+  tag       Tag[]
+  profileId String?   @unique
+  profile   Profile?  @relation(fields: [profileId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Comment {
-  id      String @id @default(uuid())
-  comment String
-  postId  String
-  post    Post   @relation(fields: [postId], references: [id])
+  id       String   @id @default(uuid())
+  comment  String
+  postId   String
+  post     Post     @relation(fields: [postId], references: [id])
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
 }
 
 model Profile {
@@ -42,4 +47,12 @@ model Profile {
   job    String
   userId String
   user   User     @relation(fields: [userId], references: [id])
+  Post   Post[]
+}
+
+model Tag {
+  id     String @unique @default(uuid())
+  name   String
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
 }
