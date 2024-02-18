@@ -1,8 +1,8 @@
-import { UpdatePostRepository } from '../../../adapters/repositories/post/update-post-repository';
+import { PrismaPostRespository } from '../../../adapters/repositories/prisma/prisma-post-repository';
 import { UpdatePostUseCase } from '../../post/update-post-use-case';
 
 export async function makeUpdatePostUseCase() {
-  const updateRepositpory = new UpdatePostRepository();
+  const updateRepositpory = new PrismaPostRespository();
 
   const updateUseCase = new UpdatePostUseCase(updateRepositpory);
 

@@ -1,8 +1,8 @@
-import { SearchPostRepository } from '../../../adapters/repositories/post/search-post-repository';
+import { PrismaPostRespository } from '../../../adapters/repositories/prisma/prisma-post-repository';
 import { SearchPostUseCase } from '../../post/search-post-use-case';
 
 export async function makeSearchPostsUseCase() {
-  const postRepositoy = new SearchPostRepository();
+  const postRepositoy = new PrismaPostRespository();
   const searPostUseCase = new SearchPostUseCase(postRepositoy);
 
   return searPostUseCase;

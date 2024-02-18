@@ -1,10 +1,10 @@
-import { DeletePostRepository } from '../../adapters/repositories/post/delete-post-repository';
+import { PrismaPostRespository } from '../../adapters/repositories/prisma/prisma-post-repository';
 import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
 
 export class DeletePostUseCase {
-  constructor(private deleteService: DeletePostRepository) {}
+  constructor(private deleteService: PrismaPostRespository) {}
   async execute(id: string) {
-    const post = await this.deleteService.execute(id);
+    const post = await this.deleteService.findByIdAndDelete(id);
     if (!id) {
       throw new MissingParamError('postId');
     }
