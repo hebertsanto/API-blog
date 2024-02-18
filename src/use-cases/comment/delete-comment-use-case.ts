@@ -1,9 +1,8 @@
-import { prisma } from '../../adapters/database/prismaClient';
-import { DeleteCommentRepository } from '../../adapters/repositories/comments/delete-comment-repository';
+import { PrimaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
 import { ParamDoesNotExist } from '../../utils/errors/index.';
 import { makeGetCommentByIdUseCase } from '../factories/comment/make-get-comment-use-case';
 export class DeleteCommentUseCase {
-  constructor(private deleteComment: DeleteCommentRepository) {}
+  constructor(private deleteComment: PrimaCommentRepository) {}
 
   async execute(id: string) {
     const makeGetComment = await makeGetCommentByIdUseCase();
@@ -11,10 +10,6 @@ export class DeleteCommentUseCase {
     if (!comment) {
       throw new ParamDoesNotExist('id do comentário não existe');
     }
-    await prisma.comment.delete({
-      where: {
-        id: id,
-      },
-    });
+    await this.deleteComment.findByIdAndDelete(id);
   }
 }

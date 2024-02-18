@@ -1,9 +1,9 @@
-import { UpdateCommentRepository } from '../../adapters/repositories/comments/update-comment-repository';
+import { PrimaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
 import { IComment } from '../../utils/@types';
 import { MissingParamError } from '../../utils/errors/index.';
 
 export class UpdateCommentUseCase {
-  constructor(private updateComment: UpdateCommentRepository) {}
+  constructor(private updateComment: PrimaCommentRepository) {}
   async execute(id: string, data: IComment) {
     if (!id) {
       throw new MissingParamError('id');
@@ -12,7 +12,7 @@ export class UpdateCommentUseCase {
       throw new MissingParamError('data');
     }
 
-    const updatedComment = await this.updateComment.execute(id, data);
+    const updatedComment = await this.updateComment.findByIdAndUpdate(id, data);
 
     return updatedComment;
   }

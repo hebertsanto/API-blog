@@ -1,10 +1,10 @@
-import { CreateCommentRepository } from '../../adapters/repositories/comments/create-comment-repository';
 import { IComment } from '../../utils/@types';
 import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
 import { prisma } from '../../adapters/database/prismaClient';
+import { PrimaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
 
 export class CreateCommentUseCase {
-  constructor(private createCommentRepository: CreateCommentRepository) {}
+  constructor(private createCommentRepository: PrimaCommentRepository) {}
   async execute({ comment, postId }: IComment) {
     if (!comment) {
       throw new MissingParamError('comment');
@@ -18,7 +18,7 @@ export class CreateCommentUseCase {
       throw new ParamDoesNotExist('post id not exit');
     }
 
-    const createComment = await this.createCommentRepository.execute({
+    const createComment = await this.createCommentRepository.create({
       comment,
       postId,
     });
