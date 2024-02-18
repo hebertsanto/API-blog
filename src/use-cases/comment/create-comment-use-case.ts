@@ -1,10 +1,10 @@
 import { IComment } from '../../utils/@types';
 import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
 import { prisma } from '../../adapters/database/prismaClient';
-import { PrimaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
+import { PrismaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
 
 export class CreateCommentUseCase {
-  constructor(private createCommentRepository: PrimaCommentRepository) {}
+  constructor(private createCommentRepository: PrismaCommentRepository) {}
   async execute({ comment, postId }: IComment) {
     if (!comment) {
       throw new MissingParamError('comment');

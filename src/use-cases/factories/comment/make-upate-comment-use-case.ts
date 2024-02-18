@@ -1,8 +1,8 @@
 import { UpdateCommentUseCase } from '../../comment/update-comment-use-case';
-import { UpdateCommentRepository } from '../../../adapters/repositories/comments/update-comment-repository';
+import { PrismaCommentRepository } from '../../../adapters/repositories/prisma/prisma-comment-repository';
 
 export async function makeUpdateCommentUseCase() {
-  const updateReposository = new UpdateCommentRepository();
+  const updateReposository = new PrismaCommentRepository();
   const updateCommentUseCase = new UpdateCommentUseCase(updateReposository);
 
   return updateCommentUseCase;

@@ -1,8 +1,8 @@
-import { PrimaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
+import { PrismaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
 import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
 
 export class GetCommentUseCase {
-  constructor(private comment: PrimaCommentRepository) {}
+  constructor(private comment: PrismaCommentRepository) {}
 
   async execute(id: string) {
     if (!id) {
