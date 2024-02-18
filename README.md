@@ -28,19 +28,20 @@ aqui no meu perfil tem todas as minhas redes socias.
 
 ## tecnologias ultilizadas neste projeto
 
-- node js
-- typescript
-- express
-- eslint
-- prettier
-- commitlint
-- husky
-- prisma
-- postgres
-- postman
-- jest
-- git
-- github actions (estou focado em aprender)
+- **node js**
+- **typescript**
+- **express**
+- **eslint**
+- **prettier**
+- **commitlint**
+- **husky**
+- **prisma**
+- **postgres**
+- **postman**
+- **jest**
+- **git**
+- **nginx**
+- **github actions** (estou focado em aprender)
 
 ## rotas da aplicação
 
