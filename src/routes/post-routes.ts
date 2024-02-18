@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { createPost } from '../http/controllers/post/create-controller';
-import { deletePost } from '../http/controllers/post/delete-controller';
-import { getPostById } from '../http/controllers/post/get-controller';
-import { updatePostController } from '../http/controllers/post/update-controller';
+import { createPost } from '../presentation/controllers/post/create-controller';
+import { deletePost } from '../presentation/controllers/post/delete-controller';
+import { getPostById } from '../presentation/controllers/post/get-controller';
+import { updatePostController } from '../presentation/controllers/post/update-controller';
 
 export const postRoutes = Router();
 

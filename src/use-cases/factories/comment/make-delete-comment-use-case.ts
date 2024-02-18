@@ -1,4 +1,4 @@
-import { PrismaCommentRepository } from '../../../adapters/repositories/prisma/prisma-comment-repository';
+import { PrismaCommentRepository } from '../../../infra/adapters/repositories/prisma/prisma-comment-repository';
 import { DeleteCommentUseCase } from '../../comment/delete-comment-use-case';
 
 export async function makeDeleteCommentUseCase() {

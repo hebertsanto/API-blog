@@ -1,4 +1,4 @@
-import { PrismaPostRespository } from '../../../adapters/repositories/prisma/prisma-post-repository';
+import { PrismaPostRespository } from '../../../infra/adapters/repositories/prisma/prisma-post-repository';
 import { DeletePostUseCase } from '../../post/delete-post-use-case';
 
 export async function makeDeletePostUseCase() {

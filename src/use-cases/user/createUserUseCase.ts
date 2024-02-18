@@ -1,4 +1,4 @@
-import { PrismaUserRepository } from '../../adapters/repositories/prisma/prisma-user-repository';
+import { PrismaUserRepository } from '../../infra/adapters/repositories/prisma/prisma-user-repository';
 import { IUser } from '../../utils/@types';
 import { hash } from 'bcrypt';
 import {

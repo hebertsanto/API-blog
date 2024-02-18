@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { createComment } from '../http/controllers/comment/create-controller';
-import { deleteComment } from '../http/controllers/comment/delete-controller';
-import { updateComment } from '../http/controllers/comment/update-controller';
-import { getCommentById } from '../http/controllers/comment/get-controller';
+import { createComment } from '../presentation/controllers/comment/create-controller';
+import { deleteComment } from '../presentation/controllers/comment/delete-controller';
+import { updateComment } from '../presentation/controllers/comment/update-controller';
+import { getCommentById } from '../presentation/controllers/comment/get-controller';
 
 export const commentRoutes = Router();
 

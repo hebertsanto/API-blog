@@ -1,4 +1,4 @@
-import { PrismaCommentRepository } from '../../../adapters/repositories/prisma/prisma-comment-repository';
+import { PrismaCommentRepository } from '../../../infra/adapters/repositories/prisma/prisma-comment-repository';
 import { GetCommentUseCase } from '../../comment/get-comment-use-case';
 
 export async function makeGetCommentByIdUseCase() {

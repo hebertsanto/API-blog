@@ -1,4 +1,4 @@
-import { PrismaPostRespository } from '../../adapters/repositories/prisma/prisma-post-repository';
+import { PrismaPostRespository } from '../../infra/adapters/repositories/prisma/prisma-post-repository';
 import { ParamDoesNotExist } from '../../utils/errors/index.';
 import { IPost } from '../../utils/@types';
 import { makeGetUserUseCase } from '../factories/user/make-get-user-use-case';

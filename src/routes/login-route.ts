@@ -1,4 +1,4 @@
-import { loginController } from '../http/controllers/auth/loginController';
+import { loginController } from '../presentation/controllers/auth/loginController';
 
 import { Router } from 'express';
 
