@@ -1,4 +1,4 @@
-import { CreateUserRepository } from '../../adapters/repositories/user/create-user-repository';
+import { PrismaUserRepository } from '../../adapters/repositories/prisma/prisma-user-repository';
 import { IUser } from '../../utils/@types';
 import { hash } from 'bcrypt';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../../utils/errors/index.';
 
 export class CreateUserUseCase {
-  constructor(private userRepository: CreateUserRepository) {}
+  constructor(private userRepository: PrismaUserRepository) {}
 
   async create({ name, password, email }: IUser) {
     if (!name) {
@@ -20,13 +20,13 @@ export class CreateUserUseCase {
       throw new MissingParamError('name');
     }
     const passwordhash = await hash(password, 6);
-    const verifyUserExists = await this.userRepository.findEmail(email);
+    const verifyUserExists = await this.userRepository.findByEmail(email);
 
     if (verifyUserExists?.email) {
       throw new UserAlreadyExistError();
     }
 
-    const user = await this.userRepository.execute({
+    const user = await this.userRepository.create({
       name,
       email,
       password: passwordhash,

@@ -1,4 +1,4 @@
-import { GetUserRepository } from '../../adapters/repositories/user/get-user-repository';
+import { PrismaUserRepository } from '../../adapters/repositories/prisma/prisma-user-repository';
 import { MissingParamError } from '../../utils/errors/index.';
 import { Encrypter } from '../../utils/helpers/encrypter';
 import { TokenGenerator } from '../../utils/helpers/tokenGenerator';
@@ -7,12 +7,12 @@ import { PasswordDoesNotMatch } from '../../utils/errors/index.';
 
 export class AuthUseCase {
   private encrypter: Encrypter;
-  private user: GetUserRepository;
+  private user: PrismaUserRepository;
   private acesstoken: TokenGenerator;
 
   constructor() {
     this.encrypter = new Encrypter();
-    this.user = new GetUserRepository();
+    this.user = new PrismaUserRepository();
     this.acesstoken = new TokenGenerator();
   }
   async auth(email: string, password: string) {
@@ -22,9 +22,9 @@ export class AuthUseCase {
     if (!password) {
       throw new MissingParamError('pasword');
     }
-    const user = await this.user.findeUserByEmail(email);
+    const user = await this.user.findByEmail(email);
 
-    if (!user.email) {
+    if (!user?.email) {
       throw new ParamDoesNotExist('user dot not exist');
     }
     const isValidPassword = await this.encrypter.compare(

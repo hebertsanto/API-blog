@@ -1,8 +1,8 @@
 import { CreateUserUseCase } from '../../user/createUserUseCase';
-import { CreateUserRepository } from '../../../adapters/repositories/user/create-user-repository';
+import { PrismaUserRepository } from '../../../adapters/repositories/prisma/prisma-user-repository';
 
 export async function makeCreateUserUseCase() {
-  const userRepository = new CreateUserRepository();
+  const userRepository = new PrismaUserRepository();
   const useCase = new CreateUserUseCase(userRepository);
 
   return useCase;
