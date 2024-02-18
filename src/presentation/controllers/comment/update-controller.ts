@@ -1,14 +1,26 @@
 import { Request, Response } from 'express';
 import { makeUpdateCommentUseCase } from '../../../use-cases/factories/comment/make-upate-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
+import { z } from 'zod';
 
 export const updateComment = async (req: Request, res: Response) => {
+
   const makeUpdateComment = await makeUpdateCommentUseCase();
 
-  try {
-    const { id } = req.params;
+  const updateCommentZodValidationSchema = z.object({
+    comment: z.string(),
+    postId: z.string().uuid()
+  });
 
-    const { comment, postId } = req.body;
+  const paramsZodValidationSchema = z.object({
+    id: z.string().uuid()
+  });
+
+  try {
+
+    const { id } = paramsZodValidationSchema.parse(req.params);
+
+    const { comment, postId } = updateCommentZodValidationSchema.parse(req.body);
 
     const updatedComment = await makeUpdateComment.update(id, {
       comment,

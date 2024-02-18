@@ -1,10 +1,18 @@
 import { Request, Response } from 'express';
 import { makeCreateComment } from '../../../use-cases/factories/comment/make-create-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
+import { z } from 'zod';
 
 export const createComment = async (req: Request, res: Response) => {
   const createComment = await makeCreateComment();
-  const { comment, postId } = req.body;
+
+  const commentValidationSchema = z.object({
+    comment: z.string(),
+    postId: z.string().uuid()
+  });
+
+  const { comment, postId } = commentValidationSchema.parse(req.body);
+
   try {
     const commentCreated = await createComment.create({ comment, postId });
 

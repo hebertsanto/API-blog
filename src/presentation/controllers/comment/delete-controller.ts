@@ -1,10 +1,17 @@
 import { Request, Response } from 'express';
 import { makeDeleteCommentUseCase } from '../../../use-cases/factories/comment/make-delete-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
+import { z } from 'zod';
 
 export const deleteComment = async (req: Request, res: Response) => {
+
   const makeDeleteComment = await makeDeleteCommentUseCase();
-  const { id } = req.params;
+
+  const paramsZodSchema = z.object({
+    id: z.string().uuid()
+  });
+
+  const { id } = paramsZodSchema.parse(req.params);
 
   try {
     await makeDeleteComment.findByIdAndDelete(id);

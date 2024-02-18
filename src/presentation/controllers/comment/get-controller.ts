@@ -1,9 +1,16 @@
 import { Request, Response } from 'express';
 import { makeGetCommentByIdUseCase } from '../../../use-cases/factories/comment/make-get-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
+import { z } from 'zod';
 
 export const getCommentById = async (req: Request, res: Response) => {
-  const { id } = req.params;
+
+  const paramsZodSchema = z.object({
+    id: z.string().uuid()
+  });
+
+  const { id } = paramsZodSchema.parse(req.params);
+
   const makeGetCommentById = await makeGetCommentByIdUseCase();
 
   try {
