@@ -1,15 +1,18 @@
-import { PrimaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
+import { PrismaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
+import { DeleteComment } from '../../domain/use-cases/comment/delete-comment-use-case';
+import { IComment } from '../../utils/@types';
 import { ParamDoesNotExist } from '../../utils/errors/index.';
-import { makeGetCommentByIdUseCase } from '../factories/comment/make-get-comment-use-case';
-export class DeleteCommentUseCase {
-  constructor(private deleteComment: PrimaCommentRepository) {}
+import { makeDeleteCommentUseCase } from '../factories/comment/make-delete-comment-use-case';
 
-  async execute(id: string) {
-    const makeGetComment = await makeGetCommentByIdUseCase();
-    const comment = await makeGetComment.execute(id);
+export class DeleteCommentUseCase  implements DeleteComment {
+  constructor(private deleteComment: PrismaCommentRepository) {}
+
+  async findByIdAndDelete(id: string): Promise<IComment | null> {
+    const makeGetComment = await makeDeleteCommentUseCase();
+    const comment = await makeGetComment.findByIdAndDelete(id);
     if (!comment) {
       throw new ParamDoesNotExist('id do comentário não existe');
     }
-    await this.deleteComment.findByIdAndDelete(id);
+    return await this.deleteComment.findByIdAndDelete(id);
   }
 }

@@ -7,7 +7,7 @@ export const deleteComment = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    await makeDeleteComment.execute(id);
+    await makeDeleteComment.findByIdAndDelete(id);
     return res.status(200).json({
       msg: 'Comment deleted successfully',
     });

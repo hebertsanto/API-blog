@@ -3,7 +3,7 @@ import { prisma } from './prismaClient';
 async function main() {}
 main()
   .then(async () => {
-    console.log('tudo certo com o prisma');
+    console.log('prisma is running');
     await prisma.$disconnect();
   })
   .catch(async (e) => {

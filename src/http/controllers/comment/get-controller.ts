@@ -7,7 +7,7 @@ export const getCommentById = async (req: Request, res: Response) => {
   const makeGetCommentById = await makeGetCommentByIdUseCase();
 
   try {
-    const comment = await makeGetCommentById.execute(id);
+    const comment = await makeGetCommentById.findById(id);
 
     return res.status(200).json({
       msg: 'comment here',

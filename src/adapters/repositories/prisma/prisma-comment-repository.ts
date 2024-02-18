@@ -35,7 +35,9 @@ export class PrismaCommentRepository implements CommentRepository {
       where: {
         id,
       },
-      data,
+      data:{
+        ...data
+      },
     });
 
     return updateComment;

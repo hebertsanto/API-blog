@@ -1,26 +1,16 @@
 import { Request, Response } from 'express';
 import { makeUpdateCommentUseCase } from '../../../use-cases/factories/comment/make-upate-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
-import { makeGetCommentByIdUseCase } from '../../../use-cases/factories/comment/make-get-comment-use-case';
 
 export const updateComment = async (req: Request, res: Response) => {
   const makeUpdateComment = await makeUpdateCommentUseCase();
-  const makeGetComment = await makeGetCommentByIdUseCase();
+
   try {
     const { id } = req.params;
-    if (!id) {
-      return res.status(400).json({
-        msg: 'id not provided',
-      });
-    }
-    const commentId = await makeGetComment.execute(id);
 
-    if (!commentId) {
-      throw new ParamDoesNotExist('comment id does not exist');
-    }
     const { comment, postId } = req.body;
 
-    const updatedComment = await makeUpdateComment.execute(id, {
+    const updatedComment = await makeUpdateComment.update(id, {
       comment,
       postId,
     });

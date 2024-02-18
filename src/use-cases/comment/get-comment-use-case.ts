@@ -1,10 +1,12 @@
 import { PrismaCommentRepository } from '../../adapters/repositories/prisma/prisma-comment-repository';
+import { FindCommentById } from '../../domain/use-cases/comment/find-comment-use-case';
+import { IComment } from '../../utils/@types';
 import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
 
-export class GetCommentUseCase {
+export class GetCommentUseCase implements FindCommentById {
   constructor(private comment: PrismaCommentRepository) {}
 
-  async execute(id: string) {
+  async findById(id: string) : Promise<IComment | null> {
     if (!id) {
       throw new MissingParamError('id comment not provided');
     }
