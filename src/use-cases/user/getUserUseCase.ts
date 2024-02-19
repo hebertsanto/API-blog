@@ -1,5 +1,8 @@
 import { PrismaUserRepository } from '../../infra/adapters/repositories/prisma/prisma-user-repository';
-import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
+import {
+  MissingParamError,
+  ParamDoesNotExist,
+} from '../../utils/errors/index.';
 
 export class GetUserByIdUseCase {
   constructor(private getUserRepository: PrismaUserRepository) {}

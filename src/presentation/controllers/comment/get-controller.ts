@@ -4,9 +4,8 @@ import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 
 export const getCommentById = async (req: Request, res: Response) => {
-
   const paramsZodSchema = z.object({
-    id: z.string().uuid()
+    id: z.string().uuid(),
   });
 
   const { id } = paramsZodSchema.parse(req.params);

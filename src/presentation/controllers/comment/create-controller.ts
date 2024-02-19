@@ -8,7 +8,7 @@ export const createComment = async (req: Request, res: Response) => {
 
   const commentValidationSchema = z.object({
     comment: z.string(),
-    postId: z.string().uuid()
+    postId: z.string().uuid(),
   });
 
   const { comment, postId } = commentValidationSchema.parse(req.body);

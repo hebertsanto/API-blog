@@ -4,23 +4,23 @@ import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 
 export const updateComment = async (req: Request, res: Response) => {
-
   const makeUpdateComment = await makeUpdateCommentUseCase();
 
   const updateCommentZodValidationSchema = z.object({
     comment: z.string(),
-    postId: z.string().uuid()
+    postId: z.string().uuid(),
   });
 
   const paramsZodValidationSchema = z.object({
-    id: z.string().uuid()
+    id: z.string().uuid(),
   });
 
   try {
-
     const { id } = paramsZodValidationSchema.parse(req.params);
 
-    const { comment, postId } = updateCommentZodValidationSchema.parse(req.body);
+    const { comment, postId } = updateCommentZodValidationSchema.parse(
+      req.body,
+    );
 
     const updatedComment = await makeUpdateComment.update(id, {
       comment,

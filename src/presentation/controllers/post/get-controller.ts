@@ -10,7 +10,7 @@ export const getPostById = async (req: Request, res: Response) => {
   const makeGetPostById = await makeGetPostByIdUseCase();
 
   const paramsZodValidationSchema = z.object({
-    id: z.string().uuid()
+    id: z.string().uuid(),
   });
 
   const { id } = paramsZodValidationSchema.parse(req.params);

@@ -4,21 +4,22 @@ import { ParamDoesNotExist, UserNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 
 export const updatePostController = async (req: Request, res: Response) => {
-
   const paramsZodValidationSchema = z.object({
-    id: z.string().uuid()
+    id: z.string().uuid(),
   });
 
   const updatePostZodValidationSchema = z.object({
     id: z.string().uuid(),
     title: z.string(),
     content: z.string(),
-    userId: z.string().uuid()
+    userId: z.string().uuid(),
   });
 
   const { id } = paramsZodValidationSchema.parse(req.params);
 
-  const { title, content, userId } = updatePostZodValidationSchema.parse(req.body);
+  const { title, content, userId } = updatePostZodValidationSchema.parse(
+    req.body,
+  );
 
   const makeUpdate = await makeUpdatePostUseCase();
 

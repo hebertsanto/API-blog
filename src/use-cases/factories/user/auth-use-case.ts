@@ -8,11 +8,7 @@ export async function makeAuthUseCase() {
   const user = new PrismaUserRepository();
   const encrypter = new Encrypter();
 
-  const auth = new AuthUseCase(
-    encrypter,
-    user,
-    token
-  );
+  const auth = new AuthUseCase(encrypter, user, token);
 
   return auth;
 }

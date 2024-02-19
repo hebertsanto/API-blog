@@ -5,14 +5,11 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 
-
 export const loginController = async (req: Request, res: Response) => {
-
   const { email, password } = req.body;
   const authUseCase = await makeAuthUseCase();
 
   try {
-
     const { user, token } = await authUseCase.auth(email, password);
 
     return res.status(200).json({

@@ -1,5 +1,8 @@
 import { IComment } from '../../utils/@types';
-import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
+import {
+  MissingParamError,
+  ParamDoesNotExist,
+} from '../../utils/errors/index.';
 import { prisma } from '../../infra/adapters/database/prismaClient';
 import { PrismaCommentRepository } from '../../infra/adapters/repositories/prisma/prisma-comment-repository';
 import { CreateComment } from '../../domain/use-cases/comment/create-comment-use-case';

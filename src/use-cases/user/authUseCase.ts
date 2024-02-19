@@ -6,12 +6,10 @@ import { ParamDoesNotExist } from '../../utils/errors/index.';
 import { PasswordDoesNotMatch } from '../../utils/errors/index.';
 
 export class AuthUseCase {
-
-
   constructor(
     private encrypter: Encrypter,
-    private user : PrismaUserRepository,
-    private acesstoken: TokenGenerator
+    private user: PrismaUserRepository,
+    private acesstoken: TokenGenerator,
   ) {}
 
   async auth(email: string, password: string) {
