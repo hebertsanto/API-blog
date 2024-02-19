@@ -4,9 +4,16 @@ import {
   MissingParamError,
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
+import { z } from 'zod';
 
 export const getUserById = async (req: Request, res: Response) => {
-  const { id } = req.params;
+
+  const paramsZodValidationSchema = z.object({
+    id: z.string().uuid()
+  });
+
+  const { id } = paramsZodValidationSchema.parse(req.params);
+
   const makeGetUser = await makeGetUserUseCase();
 
   try {
