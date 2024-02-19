@@ -1,10 +1,17 @@
 import { Request, Response } from 'express';
 import { makeDeletePostUseCase } from '../../../use-cases/factories/post/make-delete-post-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
+import { z } from 'zod';
 
 export const deletePost = async (req: Request, res: Response) => {
+
   const makeDeletePost = await makeDeletePostUseCase();
-  const { id } = req.params;
+
+  const paramsZodValidationSchema = z.object({
+    id: z.string().uuid()
+  });
+
+  const { id } = paramsZodValidationSchema.parse(req.params);
 
   try {
     await makeDeletePost.execute(id);
