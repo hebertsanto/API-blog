@@ -17,7 +17,7 @@ export const createPost = async (req: Request, res: Response) => {
   );
 
   try {
-    const makePost = await createPostUseCase.execute({
+    const makePost = await createPostUseCase.create({
       title,
       content,
       userId,

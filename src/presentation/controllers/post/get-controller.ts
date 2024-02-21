@@ -16,7 +16,7 @@ export const getPostById = async (req: Request, res: Response) => {
   const { id } = paramsZodValidationSchema.parse(req.params);
 
   try {
-    const post = await makeGetPostById.execute(id);
+    const post = await makeGetPostById.findById(id);
 
     return res.status(200).json({
       msg: 'post found successfully',

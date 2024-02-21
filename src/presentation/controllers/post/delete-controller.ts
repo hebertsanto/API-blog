@@ -13,7 +13,7 @@ export const deletePost = async (req: Request, res: Response) => {
   const { id } = paramsZodValidationSchema.parse(req.params);
 
   try {
-    await makeDeletePost.execute(id);
+    await makeDeletePost.delete(id);
 
     return res.status(200).json({
       msg: 'this post has been deleted',

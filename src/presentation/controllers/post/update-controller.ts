@@ -24,7 +24,7 @@ export const updatePostController = async (req: Request, res: Response) => {
   const makeUpdate = await makeUpdatePostUseCase();
 
   try {
-    const updatedPost = await makeUpdate.execute(
+    const updatedPost = await makeUpdate.update(
       id,
       {
         title,
