@@ -2,10 +2,11 @@ import { PrismaPostRespository } from '../../infra/adapters/repositories/prisma/
 import { ParamDoesNotExist } from '../../utils/errors/index.';
 import { IPost } from '../../utils/@types';
 import { makeGetUserUseCase } from '../factories/user/make-get-user-use-case';
+import { CreatePost } from '../../domain/use-cases/post/create-post-use-case';
 
-export class CreatePostUseCase {
+export class CreatePostUseCase implements CreatePost {
   constructor(private createPostRepository: PrismaPostRespository) {}
-  async execute({ title, content, userId }: IPost) {
+  async create({ title, content, userId }: IPost) {
     const makeUser = await makeGetUserUseCase();
     const user = await makeUser.execute(userId);
     if (!user) {
