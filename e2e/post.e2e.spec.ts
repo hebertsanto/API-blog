@@ -18,8 +18,7 @@ test('/GET should return if token is not valid', async () => {
 });
 
 test('/GET should return error if id does not exist', async () => {
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1ODVmZmJmLWUwZGQtNDk4Zi1hNDE4LWI3OGQ2ZGMwODY0MyIsImlhdCI6MTcwODUyNTcwMSwiZXhwIjoxNzA4NjEyMTAxfQ.6GfYz_sB7vLOtNIyuizHTPiTdrg-bkEMwnLAHfUS1-k';
+  const token = process.env.TOKEN;
   const sut = 'e13ac2ac-69b6-41a4-b263-b56c183f951c';
   const response = await supertest(app)
     .get(`/post/${sut}`)
@@ -36,8 +35,7 @@ test('/GET should return msg missing token is not present', async () => {
 });
 
 test('/GET should return post if everything is ok', async () => {
-  const access_token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1ODVmZmJmLWUwZGQtNDk4Zi1hNDE4LWI3OGQ2ZGMwODY0MyIsImlhdCI6MTcwODUyNTcwMSwiZXhwIjoxNzA4NjEyMTAxfQ.6GfYz_sB7vLOtNIyuizHTPiTdrg-bkEMwnLAHfUS1-k';
+  const access_token = process.env.TOKEN;
   const post_id = '760e6baa-d0d3-4aa3-85d3-ad9d10f9a35b';
   const response = await supertest(app)
     .get(`/post/${post_id}`)
@@ -49,8 +47,7 @@ test('/GET should return post if everything is ok', async () => {
 });
 
 test('/POST should create post if everything is ok', async () => {
-  const access_token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1ODVmZmJmLWUwZGQtNDk4Zi1hNDE4LWI3OGQ2ZGMwODY0MyIsImlhdCI6MTcwODUyNTcwMSwiZXhwIjoxNzA4NjEyMTAxfQ.6GfYz_sB7vLOtNIyuizHTPiTdrg-bkEMwnLAHfUS1-k';
+  const access_token = process.env.TOKEN;
   const response = await supertest(app)
     .post('/post')
     .set('authorization', `Bearer ${access_token}`)
@@ -62,8 +59,7 @@ test('/POST should create post if everything is ok', async () => {
 });
 
 test('/POST should return a error if userId does not exist', async () => {
-  const access_token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1ODVmZmJmLWUwZGQtNDk4Zi1hNDE4LWI3OGQ2ZGMwODY0MyIsImlhdCI6MTcwODUyNTcwMSwiZXhwIjoxNzA4NjEyMTAxfQ.6GfYz_sB7vLOtNIyuizHTPiTdrg-bkEMwnLAHfUS1-k';
+  const access_token = process.env.TOKEN;
   const data = {
     title: 'title post',
     content: 'this post has been created',
