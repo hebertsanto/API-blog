@@ -2,14 +2,14 @@ version: '3'
 
 services:
   blog-api:
-    image:
+    image: bitnami/postgresql:latest
     volumes:
-     - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     ports:
       - 8080:5432
     environment:
-     - POSTGRESQL_USERNAME=docker
-     - POSTGRESQL_PASSWORD=docker
-     - POSTGRESQL_DATABASE=apiBlog
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=apiBlog
 volumes:
- pgdata:
+  pgdata:
