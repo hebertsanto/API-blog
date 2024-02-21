@@ -1,12 +1,12 @@
 import { PrismaCommentRepository } from '../../infra/adapters/repositories/prisma/prisma-comment-repository';
 import { UpdateComment } from '../../domain/use-cases/comment/update-comment-use-case';
-import { IComment } from '../../utils/@types';
+import { IComment } from '../../utils/@interfaces';
 import { MissingParamError } from '../../utils/errors/index.';
 
 export class UpdateCommentUseCase implements UpdateComment {
   constructor(private updateComment: PrismaCommentRepository) {}
 
-  async update(id: string, data: IComment) {
+  async update(id: string, data: IComment) : Promise<IComment | null> {
     if (!id) {
       throw new MissingParamError('id');
     }

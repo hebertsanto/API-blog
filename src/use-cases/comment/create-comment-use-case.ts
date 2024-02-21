@@ -1,4 +1,4 @@
-import { IComment } from '../../utils/@types';
+import { IComment } from '../../utils/@interfaces';
 import {
   MissingParamError,
   ParamDoesNotExist,
@@ -9,7 +9,7 @@ import { CreateComment } from '../../domain/use-cases/comment/create-comment-use
 
 export class CreateCommentUseCase implements CreateComment {
   constructor(private createCommentRepository: PrismaCommentRepository) {}
-  async create({ comment, postId, userId }: IComment) {
+  async create({ comment, postId, userId }: IComment): Promise<IComment> {
     if (!comment) {
       throw new MissingParamError('comment');
     }

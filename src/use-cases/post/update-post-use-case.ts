@@ -2,7 +2,7 @@ import { Post } from '@prisma/client';
 import { UpdatePost } from '../../domain/use-cases/post/update-post-use-case';
 import { PrismaPostRespository } from '../../infra/adapters/repositories/prisma/prisma-post-repository';
 import { PrismaUserRepository } from '../../infra/adapters/repositories/prisma/prisma-user-repository';
-import { IPost } from '../../utils/@types';
+import { IPost } from '../../utils/@interfaces';
 import { ParamDoesNotExist, UserNotExist } from '../../utils/errors/index.';
 
 export class UpdatePostUseCase implements UpdatePost {

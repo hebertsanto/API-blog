@@ -1,6 +1,6 @@
 import { PrismaCommentRepository } from '../../infra/adapters/repositories/prisma/prisma-comment-repository';
 import { FindCommentById } from '../../domain/use-cases/comment/find-comment-use-case';
-import { IComment } from '../../utils/@types';
+import { IComment } from '../../utils/@interfaces';
 import {
   MissingParamError,
   ParamDoesNotExist,
