@@ -7,7 +7,7 @@ export const createPost = async (req: Request, res: Response) => {
   const createPostUseCase = await makeCreatePostUseCase();
 
   const createPostZodValidationSchema = z.object({
-    title: z.string().uuid(),
+    title: z.string(),
     content: z.string(),
     userId: z.string().uuid(),
   });
@@ -23,7 +23,7 @@ export const createPost = async (req: Request, res: Response) => {
       userId,
     });
 
-    return res.status(200).json({
+    return res.status(201).json({
       msg: 'post created successfully',
       post: makePost,
     });

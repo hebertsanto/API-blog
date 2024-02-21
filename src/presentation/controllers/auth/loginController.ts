@@ -7,18 +7,16 @@ import {
 import { z } from 'zod';
 
 export const loginController = async (req: Request, res: Response) => {
-
   const authUseCase = await makeAuthUseCase();
 
   const authZodValidationSchema = z.object({
     email: z.string().email(),
-    password: z.string().min(6)
+    password: z.string().min(6),
   });
 
   const { email, password } = authZodValidationSchema.parse(req.body);
 
   try {
-
     const { user, token } = await authUseCase.auth(email, password);
 
     return res.status(200).json({
@@ -26,7 +24,6 @@ export const loginController = async (req: Request, res: Response) => {
       user,
       token,
     });
-
   } catch (error) {
     if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({

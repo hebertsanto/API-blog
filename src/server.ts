@@ -1,5 +1,8 @@
 import main from './infra/adapters/database/prismaConnect';
-import { ExpressApp } from './infra/express/express';
+import { app } from './infra/express/express';
 
-ExpressApp.start();
+app.listen(2000, () => {
+  console.log('server is running');
+});
+
 main();

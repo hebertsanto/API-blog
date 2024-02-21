@@ -7,9 +7,8 @@ import {
 import { z } from 'zod';
 
 export const getUserById = async (req: Request, res: Response) => {
-
   const paramsZodValidationSchema = z.object({
-    id: z.string().uuid()
+    id: z.string().uuid(),
   });
 
   const { id } = paramsZodValidationSchema.parse(req.params);

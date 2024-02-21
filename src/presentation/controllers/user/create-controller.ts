@@ -4,19 +4,19 @@ import { UserAlreadyExistError } from '../../../utils/errors/index.';
 import { z } from 'zod';
 
 export const createUser = async (req: Request, res: Response) => {
-
   const createUserUseCase = await makeCreateUserUseCase();
 
   const createUserZodValidationSchema = z.object({
     name: z.string(),
     email: z.string().email(),
-    password: z.string().min(6)
+    password: z.string().min(6),
   });
 
-  const { name, email, password } = createUserZodValidationSchema.parse(req.body);
+  const { name, email, password } = createUserZodValidationSchema.parse(
+    req.body,
+  );
 
   try {
-
     const user = await createUserUseCase.create({ name, email, password });
 
     return res.status(201).json({

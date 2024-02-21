@@ -9,6 +9,7 @@ export const updateComment = async (req: Request, res: Response) => {
   const updateCommentZodValidationSchema = z.object({
     comment: z.string(),
     postId: z.string().uuid(),
+    userId: z.string().uuid(),
   });
 
   const paramsZodValidationSchema = z.object({
@@ -18,13 +19,14 @@ export const updateComment = async (req: Request, res: Response) => {
   try {
     const { id } = paramsZodValidationSchema.parse(req.params);
 
-    const { comment, postId } = updateCommentZodValidationSchema.parse(
+    const { comment, postId, userId } = updateCommentZodValidationSchema.parse(
       req.body,
     );
 
     const updatedComment = await makeUpdateComment.update(id, {
       comment,
       postId,
+      userId,
     });
 
     return res.status(200).json({

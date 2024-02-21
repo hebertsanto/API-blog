@@ -19,4 +19,5 @@ export interface IProfile {
 export interface IComment {
   comment: string;
   postId: string;
+  userId: string;
 }

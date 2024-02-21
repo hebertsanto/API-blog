@@ -9,7 +9,7 @@ import { CreateComment } from '../../domain/use-cases/comment/create-comment-use
 
 export class CreateCommentUseCase implements CreateComment {
   constructor(private createCommentRepository: PrismaCommentRepository) {}
-  async create({ comment, postId }: IComment) {
+  async create({ comment, postId, userId }: IComment) {
     if (!comment) {
       throw new MissingParamError('comment');
     }
@@ -25,6 +25,7 @@ export class CreateCommentUseCase implements CreateComment {
     const createComment = await this.createCommentRepository.create({
       comment,
       postId,
+      userId,
     });
 
     return createComment;

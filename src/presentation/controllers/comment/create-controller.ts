@@ -9,12 +9,17 @@ export const createComment = async (req: Request, res: Response) => {
   const commentValidationSchema = z.object({
     comment: z.string(),
     postId: z.string().uuid(),
+    userId: z.string().uuid(),
   });
 
-  const { comment, postId } = commentValidationSchema.parse(req.body);
+  const { comment, postId, userId } = commentValidationSchema.parse(req.body);
 
   try {
-    const commentCreated = await createComment.create({ comment, postId });
+    const commentCreated = await createComment.create({
+      comment,
+      postId,
+      userId,
+    });
 
     return res.status(200).json({
       msg: 'comment was created',
