@@ -1,3 +1,5 @@
+import { Comment } from '@prisma/client';
+
 export interface IPost {
   title: string;
   content: string;
@@ -16,8 +18,11 @@ export interface IProfile {
   social?: string[];
   job: string;
 }
-export interface IComment {
+export interface CommentRequest {
   comment: string;
   postId: string;
   userId: string;
+}
+export interface CommentResponse {
+  commentResponse: Comment;
 }

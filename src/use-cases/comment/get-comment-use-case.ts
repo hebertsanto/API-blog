@@ -18,7 +18,7 @@ export class GetCommentUseCase {
       throw new ParamDoesNotExist('comment id does not exist');
     }
     return {
-      commentResponse
+      commentResponse,
     };
   }
 }
