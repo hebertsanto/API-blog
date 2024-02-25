@@ -1,23 +1,21 @@
-import { DeletePost } from '../../domain/use-cases/post/delete-post-use-case';
 import { PrismaPostRespository } from '../../infra/adapters/repositories/prisma/prisma-post-repository';
-import { IPost } from '../../utils/@interfaces';
+import { PostResponse } from '../../utils/@interfaces';
 import {
   MissingParamError,
   ParamDoesNotExist,
 } from '../../utils/errors/index.';
 
-export class DeletePostUseCase implements DeletePost {
-
+export class DeletePostUseCase {
   constructor(private deleteService: PrismaPostRespository) {}
 
-  async delete(id: string) : Promise<IPost | null> {
+  async delete(id: string): Promise<PostResponse| void> {
     const post = await this.deleteService.findByIdAndDelete(id);
     if (!id) {
-      throw new MissingParamError('postId');
+      throw new MissingParamError('post id');
     }
     if (!post) {
-      throw new ParamDoesNotExist('postId');
+      throw new ParamDoesNotExist('post id');
     }
-    return post;
+
   }
 }

@@ -1,5 +1,5 @@
 import { PrismaUserRepository } from '../../infra/adapters/repositories/prisma/prisma-user-repository';
-import { IUser } from '../../utils/@interfaces';
+import { UserRequest, UserResponse } from '../../utils/@interfaces';
 import { hash } from 'bcrypt';
 import {
   MissingParamError,
@@ -9,7 +9,7 @@ import {
 export class CreateUserUseCase {
   constructor(private userRepository: PrismaUserRepository) {}
 
-  async create({ name, password, email }: IUser) : Promise<IUser> {
+  async create({ name, password, email }: UserRequest): Promise<UserResponse> {
     if (!name) {
       throw new MissingParamError('name');
     }
@@ -31,6 +31,9 @@ export class CreateUserUseCase {
       email,
       password: passwordhash,
     });
-    return user;
+
+    return {
+      user
+    };
   }
 }

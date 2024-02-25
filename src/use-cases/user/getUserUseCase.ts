@@ -1,5 +1,5 @@
 import { PrismaUserRepository } from '../../infra/adapters/repositories/prisma/prisma-user-repository';
-import { IUser } from '../../utils/@interfaces';
+import { UserResponse } from '../../utils/@interfaces';
 import {
   MissingParamError,
   ParamDoesNotExist,
@@ -8,7 +8,7 @@ import {
 export class GetUserByIdUseCase {
   constructor(private getUserRepository: PrismaUserRepository) {}
 
-  async findUserById(id: string): Promise<IUser | null> {
+  async findUserById(id: string): Promise<UserResponse | null> {
     if (!id) {
       throw new MissingParamError('id is required');
     }
@@ -18,6 +18,8 @@ export class GetUserByIdUseCase {
     if (!user) {
       throw new ParamDoesNotExist('this user not exist');
     }
-    return user;
+    return {
+      user
+    };
   }
 }
