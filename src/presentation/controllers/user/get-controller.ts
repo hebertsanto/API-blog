@@ -16,7 +16,7 @@ export const getUserById = async (req: Request, res: Response) => {
   const makeGetUser = await makeGetUserUseCase();
 
   try {
-    const user = await makeGetUser.execute(id);
+    const user = await makeGetUser.findUserById(id);
 
     return res.status(200).json({
       msg: 'user found',

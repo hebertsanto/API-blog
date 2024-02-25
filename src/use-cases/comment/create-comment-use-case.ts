@@ -1,15 +1,18 @@
-import { IComment } from '../../utils/@interfaces';
-import {
-  MissingParamError,
-  ParamDoesNotExist,
-} from '../../utils/errors/index.';
+
+import {  MissingParamError, ParamDoesNotExist} from '../../utils/errors/index.';
 import { prisma } from '../../infra/adapters/database/prismaClient';
 import { PrismaCommentRepository } from '../../infra/adapters/repositories/prisma/prisma-comment-repository';
-import { CreateComment } from '../../domain/use-cases/comment/create-comment-use-case';
+import { GetUserByIdUseCase } from '../user/getUserUseCase';
+import { CommentRequest, CommentResponse} from '../../utils/@interfaces';
 
-export class CreateCommentUseCase implements CreateComment {
-  constructor(private createCommentRepository: PrismaCommentRepository) {}
-  async create({ comment, postId, userId }: IComment): Promise<IComment> {
+export class CreateCommentUseCase  {
+  constructor(
+    private createCommentRepository: PrismaCommentRepository,
+    private userService : GetUserByIdUseCase
+  ) {}
+
+  async create({ comment, postId, userId }: CommentRequest): Promise<CommentResponse> {
+    await this.userService.findUserById(userId);
     if (!comment) {
       throw new MissingParamError('comment');
     }
@@ -22,12 +25,14 @@ export class CreateCommentUseCase implements CreateComment {
       throw new ParamDoesNotExist('post id not exit');
     }
 
-    const createComment = await this.createCommentRepository.create({
+    const commentResponse = await this.createCommentRepository.create({
       comment,
       postId,
       userId,
     });
 
-    return createComment;
+    return {
+      commentResponse
+    };
   }
 }

@@ -6,9 +6,9 @@ import { CreatePost } from '../../domain/use-cases/post/create-post-use-case';
 
 export class CreatePostUseCase implements CreatePost {
   constructor(private createPostRepository: PrismaPostRespository) {}
-  async create({ title, content, userId }: IPost) : Promise<IPost> {
+  async create({ title, content, userId }: IPost): Promise<IPost> {
     const makeUser = await makeGetUserUseCase();
-    const user = await makeUser.execute(userId);
+    const user = await makeUser.findUserById(userId);
     if (!user) {
       throw new ParamDoesNotExist('userId');
     }
