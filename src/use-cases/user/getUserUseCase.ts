@@ -19,7 +19,7 @@ export class GetUserByIdUseCase {
       throw new ParamDoesNotExist('this user not exist');
     }
     return {
-      user
+      user,
     };
   }
 }

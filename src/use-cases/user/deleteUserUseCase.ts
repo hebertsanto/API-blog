@@ -1,12 +1,15 @@
 import { PrismaUserRepository } from '../../infra/adapters/repositories/prisma/prisma-user-repository';
 import { UserResponse } from '../../utils/@interfaces';
-import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
+import {
+  MissingParamError,
+  ParamDoesNotExist,
+} from '../../utils/errors/index.';
 import { GetUserByIdUseCase } from './getUserUseCase';
 
 export class DeleteUserUseCase {
   constructor(
     private deleteUser: PrismaUserRepository,
-    private userService : GetUserByIdUseCase
+    private userService: GetUserByIdUseCase,
   ) {}
 
   async execute(id: string): Promise<UserResponse | void> {

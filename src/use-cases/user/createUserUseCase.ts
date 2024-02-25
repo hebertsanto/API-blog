@@ -33,7 +33,7 @@ export class CreateUserUseCase {
     });
 
     return {
-      user
+      user,
     };
   }
 }

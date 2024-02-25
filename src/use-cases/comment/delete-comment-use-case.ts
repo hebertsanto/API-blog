@@ -5,7 +5,7 @@ import { GetCommentUseCase } from './get-comment-use-case';
 export class DeleteCommentUseCase {
   constructor(
     private deleteComment: PrismaCommentRepository,
-    private getCommentService: GetCommentUseCase
+    private getCommentService: GetCommentUseCase,
   ) {}
 
   async findByIdAndDelete(id: string): Promise<CommentResponse | void> {

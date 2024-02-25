@@ -8,10 +8,7 @@ export async function makeUpdatePostUseCase() {
   const userRepository = new PrismaUserRepository();
   const userService = new GetUserByIdUseCase(userRepository);
 
-  const updateUseCase = new UpdatePostUseCase(
-    updateRepositpory,
-    userService
-  );
+  const updateUseCase = new UpdatePostUseCase(updateRepositpory, userService);
 
   return updateUseCase;
 }

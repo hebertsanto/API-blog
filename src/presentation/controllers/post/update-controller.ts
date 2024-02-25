@@ -24,15 +24,11 @@ export const updatePostController = async (req: Request, res: Response) => {
   const makeUpdate = await makeUpdatePostUseCase();
 
   try {
-    const updatedPost = await makeUpdate.update(
-      id,
-      {
-        title,
-        content,
-        userId,
-      },
+    const updatedPost = await makeUpdate.update(id, {
+      title,
+      content,
       userId,
-    );
+    });
 
     return res.status(200).json({
       msg: 'post has been updated successfully',

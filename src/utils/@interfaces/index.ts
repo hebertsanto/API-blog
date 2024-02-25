@@ -1,4 +1,4 @@
-import { Comment, Post } from '@prisma/client';
+import { Comment, Post, User } from '@prisma/client';
 
 export interface IPost {
   title: string;
@@ -8,11 +8,16 @@ export interface IPost {
   userId: string;
 }
 
-export interface IUser {
+export interface UserRequest {
   name: string;
   email: string;
   password: string;
 }
+
+export interface UserResponse {
+  user: User;
+}
+
 export interface IProfile {
   name: string;
   social?: string[];
@@ -26,7 +31,6 @@ export interface CommentRequest {
 export interface CommentResponse {
   commentResponse: Comment;
 }
-
 
 export interface PostRequest {
   title: string;

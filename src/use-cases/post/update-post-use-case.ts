@@ -20,7 +20,7 @@ export class UpdatePostUseCase {
     const post = await this.updateUseCase.findByIdAndUpdate(id, data);
 
     return {
-      post
+      post,
     };
   }
 }

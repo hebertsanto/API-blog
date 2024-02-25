@@ -2,8 +2,7 @@ import { PrismaPostRespository } from '../../infra/adapters/repositories/prisma/
 import { PostResponse } from '../../utils/@interfaces';
 import { ParamDoesNotExist } from '../../utils/errors/index.';
 
-export class GetPostByIdUseCase  {
-
+export class GetPostByIdUseCase {
   constructor(private post: PrismaPostRespository) {}
   async findById(id: string): Promise<PostResponse | null> {
     const post = await this.post.findById(id);
@@ -12,7 +11,7 @@ export class GetPostByIdUseCase  {
       throw new ParamDoesNotExist('post id does not exist');
     }
     return {
-      post
+      post,
     };
   }
 }

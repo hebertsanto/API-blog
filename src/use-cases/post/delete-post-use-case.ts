@@ -8,7 +8,7 @@ import {
 export class DeletePostUseCase {
   constructor(private deleteService: PrismaPostRespository) {}
 
-  async delete(id: string): Promise<PostResponse| void> {
+  async delete(id: string): Promise<PostResponse | void> {
     const post = await this.deleteService.findByIdAndDelete(id);
     if (!id) {
       throw new MissingParamError('post id');
@@ -16,6 +16,5 @@ export class DeletePostUseCase {
     if (!post) {
       throw new ParamDoesNotExist('post id');
     }
-
   }
 }

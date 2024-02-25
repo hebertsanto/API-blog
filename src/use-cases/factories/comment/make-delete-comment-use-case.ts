@@ -8,7 +8,7 @@ export async function makeDeleteCommentUseCase() {
 
   const deleteCommentUseCase = new DeleteCommentUseCase(
     deleteCommentRepository,
-    getCommentByIdService
+    getCommentByIdService,
   );
 
   return deleteCommentUseCase;
