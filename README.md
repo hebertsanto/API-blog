@@ -19,7 +19,6 @@ esta api foi feita para aprimorar meu conhecimento de clean architecture e obtiv
 - [x] pegar um comentário
 - [x] editar um comemtário
 - [x] listar todos os comentários de um post, se houver
-- [ ] criar um perfil com informações
 
 tentei manter uma arquitetura legal e bem organizada, pretendo ir melhorando este projeto
 pois foi algo que gostei de fazer, foquei bastante na estrutura de diretorios desta aplicação, foi a primeira vez que
