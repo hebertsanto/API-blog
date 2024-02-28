@@ -9,7 +9,7 @@ generator client {
 }
 
 model User {
-  id       String    @id @default(uuid())
+  id       String    @id @unique @default(uuid())
   name     String
   email    String    @unique
   password String
@@ -19,21 +19,20 @@ model User {
 }
 
 model Post {
-  id        String    @id @default(uuid())
+  id        String     @id @unique @default(uuid())
   title     String
   content   String
   userId    String
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   Comment   Comment[]
   tag       Tag[]
-  profileId String?   @unique
-  profile   Profile?  @relation(fields: [profileId], references: [id])
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  category  Category[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 }
 
 model Comment {
-  id       String   @id @default(uuid())
+  id       String   @id @unique @default(uuid())
   comment  String
   userId   String
   user     User     @relation(fields: [userId], references: [id])
@@ -44,13 +43,19 @@ model Comment {
 }
 
 model Profile {
-  id     String   @id @default(uuid())
+  id       String   @id @unique @default(uuid())
+  name     String
+  social   String[]
+  position String
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
+}
+
+model Category {
+  id     String @id @unique @default(uuid())
   name   String
-  social String[]
-  job    String
-  userId String
-  user   User     @relation(fields: [userId], references: [id])
-  Post   Post[]
+  postId String
+  post   Post   @relation(fields: [postId], references: [id])
 }
 
 model Tag {
