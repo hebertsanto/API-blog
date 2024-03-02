@@ -24,6 +24,5 @@ export class DeleteUserUseCase {
     }
 
     await this.userRepositoy.findByIdAndDelete(id);
-
   }
 }

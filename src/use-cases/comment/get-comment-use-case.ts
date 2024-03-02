@@ -10,7 +10,6 @@ export class GetCommentUseCase {
   constructor(private commentRepository: PrismaCommentRepository) {}
 
   async findById(id: string): Promise<CommentResponse | null> {
-
     if (!id) {
       throw new MissingParamError('comment_id');
     }

@@ -12,24 +12,34 @@ export class CreateCommentUseCase {
     private createCommentRepository: PrismaCommentRepository,
     private userService: GetUserByIdUseCase,
   ) {}
-
   async create({
     comment,
     postId,
     userId,
   }: CommentRequest): Promise<CommentResponse> {
-    await this.userService.findUserById(userId);
     if (!comment) {
       throw new MissingParamError('comment');
     }
+
+    if (!postId) {
+      throw new MissingParamError('post_id');
+    }
+
+    if (!userId) {
+      throw new MissingParamError('user_id');
+    }
+
     const verifyPostExist = await prisma.post.findUnique({
       where: {
         id: postId,
       },
     });
+
     if (!verifyPostExist) {
-      throw new ParamDoesNotExist('post id not exit');
+      throw new ParamDoesNotExist('post_id');
     }
+
+    await this.userService.findUserById(userId);
 
     const commentResponse = await this.createCommentRepository.create({
       comment,

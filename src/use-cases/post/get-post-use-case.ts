@@ -1,11 +1,13 @@
 import { PrismaPostRespository } from '../../infra/adapters/repositories/prisma/prisma-post-repository';
 import { PostResponse } from '../../utils/@interfaces';
-import { MissingParamError, ParamDoesNotExist } from '../../utils/errors/index.';
+import {
+  MissingParamError,
+  ParamDoesNotExist,
+} from '../../utils/errors/index.';
 
 export class GetPostByIdUseCase {
   constructor(private post: PrismaPostRespository) {}
   async findById(id: string): Promise<PostResponse | null> {
-
     if (!id) {
       throw new MissingParamError('post_id');
     }

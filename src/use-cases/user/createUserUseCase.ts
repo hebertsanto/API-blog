@@ -11,7 +11,6 @@ export class CreateUserUseCase {
   constructor(private userRepository: PrismaUserRepository) {}
 
   async create({ name, password, email }: UserRequest): Promise<UserResponse> {
-
     if (!name) {
       throw new MissingParamError('name');
     }

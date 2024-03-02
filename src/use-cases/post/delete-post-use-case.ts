@@ -9,7 +9,6 @@ export class DeletePostUseCase {
   constructor(private postRepository: PrismaPostRespository) {}
 
   async delete(id: string): Promise<PostResponse | void> {
-
     const post = await this.postRepository.findByIdAndDelete(id);
 
     if (!id) {

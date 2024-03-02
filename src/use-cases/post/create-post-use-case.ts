@@ -9,7 +9,6 @@ export class CreatePostUseCase {
     private userService: GetUserByIdUseCase,
   ) {}
   async create({ title, content, userId }: PostRequest): Promise<PostResponse> {
-
     if (!title) {
       throw new MissingParamError('title');
     }
