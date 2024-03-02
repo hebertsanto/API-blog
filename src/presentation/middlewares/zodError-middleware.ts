@@ -8,7 +8,7 @@ export const zodErrorMiddleware = (
 ) => {
   if (error instanceof ZodError) {
     return res.status(400).json({
-      msg: 'error validation data',
+      msg: 'error validating data',
       error,
     });
   }

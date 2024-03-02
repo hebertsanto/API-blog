@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { makeCreateComment } from '../../../use-cases/factories/comment/make-create-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
-import { ZodError, z } from 'zod';
+import { z } from 'zod';
+import { logger } from '../../../utils/logger';
 
 export const createComment = async (req: Request, res: Response) => {
   const createComment = await makeCreateComment();
@@ -28,15 +29,10 @@ export const createComment = async (req: Request, res: Response) => {
   } catch (error) {
     if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({
-        msg: 'post id not found',
+        msg: 'post id does not exist',
         error,
       });
     }
-    if (error instanceof ZodError) {
-      return res.status(400).json({
-        msg: 'error validation data',
-        error,
-      });
-    }
+    logger.error(`some error ocurred  in create comment controller : ${error}`);
   }
 };

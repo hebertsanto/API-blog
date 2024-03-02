@@ -5,6 +5,7 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 import { z } from 'zod';
+import { logger } from '../../../utils/logger';
 
 export const loginController = async (req: Request, res: Response) => {
   const authUseCase = await makeAuthUseCase();
@@ -27,13 +28,15 @@ export const loginController = async (req: Request, res: Response) => {
   } catch (error) {
     if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({
-        msg: 'user not found on database, create account',
+        msg: 'user does not exist, create an account please',
       });
     }
     if (error instanceof PasswordDoesNotMatch) {
       return res.status(400).json({
-        msg: 'passwod incorrect',
+        msg: 'password/email invalid',
       });
     }
+    logger.error(`some error ocurred in login controller ${error}`);
+    throw error;
   }
 };

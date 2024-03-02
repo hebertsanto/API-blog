@@ -12,9 +12,6 @@ export class UpdateCommentUseCase {
     if (!id) {
       throw new MissingParamError('id');
     }
-    if (!id) {
-      throw new MissingParamError('data');
-    }
 
     const commentResponse = await this.updateComment.findByIdAndUpdate(
       id,

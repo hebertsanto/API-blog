@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { makeDeletePostUseCase } from '../../../use-cases/factories/post/make-delete-post-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
+import { logger } from '../../../utils/logger';
 
 export const deletePost = async (req: Request, res: Response) => {
   const makeDeletePost = await makeDeletePostUseCase();
@@ -24,5 +25,7 @@ export const deletePost = async (req: Request, res: Response) => {
         msg: 'post does not exist',
       });
     }
+    logger.error(`some error ocurred in delete post controller ${error}`);
+    throw error;
   }
 };

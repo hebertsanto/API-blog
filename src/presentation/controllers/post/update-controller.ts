@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { makeUpdatePostUseCase } from '../../../use-cases/factories/post/make-update-post-use-case';
 import { ParamDoesNotExist, UserNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
+import { logger } from '../../../utils/logger';
 
 export const updatePostController = async (req: Request, res: Response) => {
   const paramsZodValidationSchema = z.object({
@@ -37,13 +38,15 @@ export const updatePostController = async (req: Request, res: Response) => {
   } catch (error) {
     if (error instanceof UserNotExist) {
       return res.status(404).json({
-        msg: 'user do not exit',
+        msg: 'user not found',
       });
     }
     if (error instanceof ParamDoesNotExist) {
       return res.status(404).json({
-        msg: 'post id does not exist',
+        msg: 'user does not exist',
       });
     }
+    logger.error(`some error ocurred in update post controller ${error}`);
+    throw error;
   }
 };

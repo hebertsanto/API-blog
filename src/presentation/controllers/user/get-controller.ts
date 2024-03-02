@@ -5,6 +5,7 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 import { z } from 'zod';
+import { logger } from '../../../utils/logger';
 
 export const getUserById = async (req: Request, res: Response) => {
   const paramsZodValidationSchema = z.object({
@@ -33,5 +34,8 @@ export const getUserById = async (req: Request, res: Response) => {
         msg: 'user does not exist',
       });
     }
+
+    logger.error(`some error ocurred in get user by id controller ${error}`);
+    throw error;
   }
 };

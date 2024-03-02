@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { makeDeleteCommentUseCase } from '../../../use-cases/factories/comment/make-delete-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
+import { logger } from '../../../utils/logger';
 
 export const deleteComment = async (req: Request, res: Response) => {
   const makeDeleteComment = await makeDeleteCommentUseCase();
@@ -23,5 +24,6 @@ export const deleteComment = async (req: Request, res: Response) => {
         msg: 'comment id does not exist',
       });
     }
+    logger.error(`some error ocurred in delete comment controller : ${error}`);
   }
 };

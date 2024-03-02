@@ -5,6 +5,7 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 import { z } from 'zod';
+import { logger } from '../../../utils/logger';
 
 export const getPostById = async (req: Request, res: Response) => {
   const makeGetPostById = await makeGetPostByIdUseCase();
@@ -25,13 +26,15 @@ export const getPostById = async (req: Request, res: Response) => {
   } catch (error) {
     if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({
-        msg: 'post id does not exist',
+        msg: 'this post does not exist',
       });
     }
     if (error instanceof MissingParamError) {
       return res.status(400).json({
-        msg: 'id is required',
+        msg: 'post id is required',
       });
     }
+    logger.error(`some error ocurred in get post controller ${error}`);
+    throw error;
   }
 };
