@@ -5,7 +5,7 @@ import {
   MissingParamError,
   UserAlreadyExistError,
 } from '../../utils/errors/index.';
-import { logger } from '../../utils/logger';
+import { Logger } from '../../utils/logger';
 
 export class CreateUserUseCase {
   constructor(private userRepository: PrismaUserRepository) {}
@@ -30,7 +30,7 @@ export class CreateUserUseCase {
       throw new UserAlreadyExistError();
     }
 
-    logger.info('user log in and generate payload');
+    Logger.info('user log in and generate payload');
     const user = await this.userRepository.create({
       name,
       email,

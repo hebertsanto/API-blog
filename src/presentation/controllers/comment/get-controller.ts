@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { makeGetCommentByIdUseCase } from '../../../use-cases/factories/comment/make-get-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { logger } from '../../../utils/logger';
+import { Logger } from '../../../utils/logger';
 
 export const getCommentById = async (req: Request, res: Response) => {
   const paramsZodSchema = z.object({
@@ -26,6 +26,6 @@ export const getCommentById = async (req: Request, res: Response) => {
         msg: 'comment id does not exist',
       });
     }
-    logger.error(`some error ocurred in get comment controller: ${error}`);
+    Logger.error(`some error ocurred in get comment controller: ${error}`);
   }
 };

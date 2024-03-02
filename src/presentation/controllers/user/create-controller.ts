@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { makeCreateUserUseCase } from '../../../use-cases/factories/user/make-user-use-case';
 import { UserAlreadyExistError } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { logger } from '../../../utils/logger';
+import { Logger } from '../../../utils/logger';
 
 export const createUser = async (req: Request, res: Response) => {
   const createUserUseCase = await makeCreateUserUseCase();
@@ -30,7 +30,7 @@ export const createUser = async (req: Request, res: Response) => {
         msg: 'this user already exists',
       });
     }
-    logger.error(`some error ocurred in create user controller ${error}`);
+    Logger.error(`some error ocurred in create user controller ${error}`);
     throw error;
   }
 };

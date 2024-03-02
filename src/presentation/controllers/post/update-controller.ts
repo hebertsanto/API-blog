@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { makeUpdatePostUseCase } from '../../../use-cases/factories/post/make-update-post-use-case';
 import { ParamDoesNotExist, UserNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { logger } from '../../../utils/logger';
+import { Logger } from '../../../utils/logger';
 
 export const updatePostController = async (req: Request, res: Response) => {
   const paramsZodValidationSchema = z.object({
@@ -46,7 +46,7 @@ export const updatePostController = async (req: Request, res: Response) => {
         msg: 'user does not exist',
       });
     }
-    logger.error(`some error ocurred in update post controller ${error}`);
+    Logger.error(`some error ocurred in update post controller ${error}`);
     throw error;
   }
 };

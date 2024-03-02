@@ -5,7 +5,7 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { logger } from '../../../utils/logger';
+import { Logger } from '../../../utils/logger';
 
 export const loginController = async (req: Request, res: Response) => {
   const authUseCase = await makeAuthUseCase();
@@ -36,7 +36,7 @@ export const loginController = async (req: Request, res: Response) => {
         msg: 'password/email invalid',
       });
     }
-    logger.error(`some error ocurred in login controller ${error}`);
+    Logger.error(`some error ocurred in login controller ${error}`);
     throw error;
   }
 };

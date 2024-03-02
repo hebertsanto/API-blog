@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { makeCreateComment } from '../../../use-cases/factories/comment/make-create-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { logger } from '../../../utils/logger';
+import { Logger } from '../../../utils/logger';
 
 export const createComment = async (req: Request, res: Response) => {
   const createComment = await makeCreateComment();
@@ -33,6 +33,6 @@ export const createComment = async (req: Request, res: Response) => {
         error,
       });
     }
-    logger.error(`some error ocurred  in create comment controller : ${error}`);
+    Logger.error(`some error ocurred  in create comment controller : ${error}`);
   }
 };

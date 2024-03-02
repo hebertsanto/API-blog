@@ -5,7 +5,7 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { logger } from '../../../utils/logger';
+import { Logger } from '../../../utils/logger';
 
 export const getPostById = async (req: Request, res: Response) => {
   const makeGetPostById = await makeGetPostByIdUseCase();
@@ -34,7 +34,7 @@ export const getPostById = async (req: Request, res: Response) => {
         msg: 'post id is required',
       });
     }
-    logger.error(`some error ocurred in get post controller ${error}`);
+    Logger.error(`some error ocurred in get post controller ${error}`);
     throw error;
   }
 };
