@@ -1,13 +1,14 @@
+import { logger } from '../../../utils/logger';
 import { prisma } from './prismaClient';
 
 async function main() {}
 main()
   .then(async () => {
-    console.log('prisma is running');
+    logger.info('prisma is running');
     await prisma.$disconnect();
   })
-  .catch(async (e) => {
-    console.error(e);
+  .catch(async (error) => {
+    logger.error(`some error ocurred conecting in prisma ${error}`);
     await prisma.$disconnect();
     process.exit(1);
   });
