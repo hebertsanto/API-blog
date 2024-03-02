@@ -9,6 +9,7 @@ export class UpdateCommentUseCase {
     id: string,
     data: CommentRequest,
   ): Promise<CommentResponse | null> {
+
     if (!id) {
       throw new MissingParamError('id');
     }

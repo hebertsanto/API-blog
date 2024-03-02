@@ -10,13 +10,13 @@ export class GetUserByIdUseCase {
 
   async findUserById(id: string): Promise<UserResponse | null> {
     if (!id) {
-      throw new MissingParamError('id is required');
+      throw new MissingParamError('user_id');
     }
 
     const user = await this.getUserRepository.findById(id);
 
     if (!user) {
-      throw new ParamDoesNotExist('this user not exist');
+      throw new ParamDoesNotExist('user_id');
     }
     return {
       user,

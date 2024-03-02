@@ -6,15 +6,18 @@ import {
 } from '../../utils/errors/index.';
 
 export class DeletePostUseCase {
-  constructor(private deleteService: PrismaPostRespository) {}
+  constructor(private postRepository: PrismaPostRespository) {}
 
   async delete(id: string): Promise<PostResponse | void> {
-    const post = await this.deleteService.findByIdAndDelete(id);
+
+    const post = await this.postRepository.findByIdAndDelete(id);
+
     if (!id) {
-      throw new MissingParamError('post id');
+      throw new MissingParamError('post_id');
     }
+
     if (!post) {
-      throw new ParamDoesNotExist('post id');
+      throw new ParamDoesNotExist('post_id');
     }
   }
 }

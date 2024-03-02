@@ -4,12 +4,12 @@ import { GetCommentUseCase } from './get-comment-use-case';
 
 export class DeleteCommentUseCase {
   constructor(
-    private deleteComment: PrismaCommentRepository,
+    private deleteCommentRepository: PrismaCommentRepository,
     private getCommentService: GetCommentUseCase,
   ) {}
 
   async findByIdAndDelete(id: string): Promise<CommentResponse | void> {
     await this.getCommentService.findById(id);
-    await this.deleteComment.findByIdAndDelete(id);
+    await this.deleteCommentRepository.findByIdAndDelete(id);
   }
 }

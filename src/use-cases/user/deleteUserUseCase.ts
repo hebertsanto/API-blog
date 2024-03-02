@@ -8,7 +8,7 @@ import { GetUserByIdUseCase } from './getUserUseCase';
 
 export class DeleteUserUseCase {
   constructor(
-    private deleteUser: PrismaUserRepository,
+    private userRepositoy: PrismaUserRepository,
     private userService: GetUserByIdUseCase,
   ) {}
 
@@ -16,13 +16,14 @@ export class DeleteUserUseCase {
     const user = await this.userService.findUserById(id);
 
     if (!id) {
-      throw new MissingParamError('user id not found on request');
+      throw new MissingParamError('user_id');
     }
 
     if (!user) {
-      throw new ParamDoesNotExist(`this user id ${id} does not exist`);
+      throw new ParamDoesNotExist('user_id');
     }
 
-    await this.deleteUser.findByIdAndDelete(id);
+    await this.userRepositoy.findByIdAndDelete(id);
+
   }
 }

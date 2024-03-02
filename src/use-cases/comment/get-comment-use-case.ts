@@ -7,15 +7,18 @@ import {
 } from '../../utils/errors/index.';
 
 export class GetCommentUseCase {
-  constructor(private comment: PrismaCommentRepository) {}
+  constructor(private commentRepository: PrismaCommentRepository) {}
 
   async findById(id: string): Promise<CommentResponse | null> {
+
     if (!id) {
-      throw new MissingParamError('id comment not provided');
+      throw new MissingParamError('comment_id');
     }
-    const commentResponse = await this.comment.findById(id);
+
+    const commentResponse = await this.commentRepository.findById(id);
+
     if (!commentResponse) {
-      throw new ParamDoesNotExist('comment id does not exist');
+      throw new ParamDoesNotExist('comment_id');
     }
     return {
       commentResponse,
