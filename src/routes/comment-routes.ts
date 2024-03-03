@@ -6,7 +6,7 @@ import { getCommentById } from '../presentation/controllers/comment/get-controll
 
 export const commentRoutes = Router();
 
-commentRoutes.get('/comment/:id', getCommentById);
-commentRoutes.post('/comment', createComment);
-commentRoutes.put('/comment/:id', updateComment);
-commentRoutes.delete('/comment/:id', deleteComment);
+commentRoutes.get(':id', getCommentById);
+commentRoutes.post('/', createComment);
+commentRoutes.put('/:id', updateComment);
+commentRoutes.delete('/:id', deleteComment);

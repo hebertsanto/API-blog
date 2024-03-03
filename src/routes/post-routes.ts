@@ -6,7 +6,7 @@ import { updatePostController } from '../presentation/controllers/post/update-co
 
 export const postRoutes = Router();
 
-postRoutes.get('/post/:id', getPostById);
-postRoutes.post('/post', createPost);
-postRoutes.put('/post/:id', updatePostController);
-postRoutes.delete('/post/:id', deletePost);
+postRoutes.get('/:id', getPostById);
+postRoutes.post('/', createPost);
+postRoutes.put('/:id', updatePostController);
+postRoutes.delete('/:id', deletePost);

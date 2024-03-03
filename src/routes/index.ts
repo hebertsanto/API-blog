@@ -8,7 +8,10 @@ import { loginRoute } from './login-route';
 
 export const router = Router();
 
-router.use('/', loginRoute);
-router.use('/', authMiddleware, commentRoutes);
-router.use('/', authMiddleware, postRoutes);
-router.use('/', authMiddleware, userRoutes);
+const prefix = process.env.API_PREFIX;
+
+router.use(`${prefix}/login`, loginRoute);
+router.use(`${prefix}/users`, authMiddleware, userRoutes);
+router.use(`${prefix}/comments`, authMiddleware, commentRoutes);
+router.use(`${prefix}/posts`, authMiddleware, postRoutes);
+

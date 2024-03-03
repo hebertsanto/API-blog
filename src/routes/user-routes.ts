@@ -4,5 +4,5 @@ import { getUserById } from '../presentation/controllers/user/get-controller';
 
 export const userRoutes = Router();
 
-userRoutes.get('/user/:id', getUserById);
-userRoutes.post('/user', createUser);
+userRoutes.get('/:id', getUserById);
+userRoutes.post('/', createUser);

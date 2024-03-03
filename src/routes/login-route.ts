@@ -4,4 +4,4 @@ import { Router } from 'express';
 
 export const loginRoute = Router();
 
-loginRoute.post('/login', loginController);
+loginRoute.post('/', loginController);
