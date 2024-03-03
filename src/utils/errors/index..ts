@@ -7,7 +7,7 @@ export class MissingParamError extends Error {
 
 export class PasswordDoesNotMatch extends Error {
   constructor() {
-    super('password does not match');
+    super('password/email invalid');
   }
 }
 

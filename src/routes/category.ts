@@ -4,7 +4,6 @@ import { deleteCategory } from '../presentation/controllers/category/delete-cate
 import { updateCategory } from '../presentation/controllers/category/update-category';
 import { findCategory } from '../presentation/controllers/category/find-category';
 
-
 export const categoryRoutes = Router();
 
 categoryRoutes.get(':id', findCategory);

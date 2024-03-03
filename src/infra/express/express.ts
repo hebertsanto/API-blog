@@ -28,7 +28,6 @@ export default async function ExpressServer() {
 
   app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-
   const port = config.port;
 
   app.listen(port, () => {
