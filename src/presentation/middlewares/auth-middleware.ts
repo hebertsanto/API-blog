@@ -4,6 +4,7 @@ import {
   TokenWasNoProviderError,
 } from '../../utils/errors/index.';
 import jwt from 'jsonwebtoken';
+import config from '../../config/config';
 
 export const authMiddleware = async (
   req: Request,
@@ -12,7 +13,8 @@ export const authMiddleware = async (
 ) => {
   const header = req.headers['authorization'];
   const token = header?.split(' ')[1];
-  const secret = process.env.SECRET_JWT as string;
+  const secret = config.jwtSecret;
+
   try {
     if (!token) {
       throw new TokenWasNoProviderError();

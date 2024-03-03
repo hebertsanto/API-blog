@@ -3,13 +3,14 @@ import { loggerMiddleware } from '../../presentation/middlewares/logger-middlewa
 import { zodErrorMiddleware } from '../../presentation/middlewares/zodError-middleware';
 import { Logger } from '../../utils/logger';
 import { router } from '../../routes';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 import main from '../database/connection/prismaConnect';
 import express from 'express';
 import helmet from 'helmet';
+import config from '../../config/config';
 
 export default async function ExpressServer() {
-  config();
+  dotenv.config();
   const app = express();
 
   await main();
@@ -27,7 +28,8 @@ export default async function ExpressServer() {
 
   app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-  const port = process.env.PORT;
+
+  const port = config.port;
 
   app.listen(port, () => {
     Logger.info(`server is running on : ${port}`);

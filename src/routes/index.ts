@@ -5,10 +5,11 @@ import { commentRoutes } from './comment-routes';
 import { postRoutes } from './post-routes';
 import { userRoutes } from './user-routes';
 import { loginRoute } from './login-route';
+import config from '../config/config';
 
 export const router = Router();
 
-const prefix = process.env.API_PREFIX;
+const prefix = config.prefixUrl;
 
 router.use(`${prefix}/login`, loginRoute);
 router.use(`${prefix}/users`, authMiddleware, userRoutes);
