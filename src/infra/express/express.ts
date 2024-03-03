@@ -4,8 +4,10 @@ import { zodErrorMiddleware } from '../../presentation/middlewares/zodError-midd
 import { Logger } from '../../utils/logger';
 import { router } from '../../routes';
 import { config } from 'dotenv';
-import express from 'express';
 import main from '../database/connection/prismaConnect';
+import express from 'express';
+import helmet from 'helmet';
+
 
 export default async function ExpressServer() {
   config();
@@ -13,6 +15,7 @@ export default async function ExpressServer() {
 
   await main();
 
+  app.use(helmet());
   app.use(loggerMiddleware);
 
   app.use(setHeaderMiddleware);
