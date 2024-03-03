@@ -1,15 +1,18 @@
 import { Logger } from '../../../utils/logger';
-import { prisma } from '../prisma/client/prismaClient';
+import { PrismaClient } from '@prisma/client';
 
-async function main() {}
-main()
-  .then(async () => {
+const prisma = new PrismaClient();
+
+async function main() {
+  try {
     await prisma.$connect();
-    Logger.info('conneted in prisma');
-  })
-  .catch(async (error) => {
+    Logger.info('Connected to Prisma');
+  } catch (error) {
+    Logger.error(`An error occurred while connecting to Prisma: ${error}`);
+  } finally {
     await prisma.$disconnect();
-    Logger.error(`some error ocurred conecting in prisma ${error}`);
-  });
+  }
+}
 
+main();
 export default main;

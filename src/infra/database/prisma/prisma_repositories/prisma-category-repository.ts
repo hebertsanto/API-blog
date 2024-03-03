@@ -1,49 +1,69 @@
 import { Prisma, Category } from '@prisma/client';
 import { prisma } from '../client/prismaClient';
 import { CategoryRepository } from '../../../../aplication/repositories/category-repository';
+import { Logger } from '../../../../utils/logger';
 
 export class PrismaCategoryRepository implements CategoryRepository {
   public async create(
     data: Prisma.CategoryUncheckedCreateInput,
   ): Promise<Category> {
-    const category = await prisma.category.create({
-      data,
-    });
+    try {
+      const category = await prisma.category.create({
+        data,
+      });
 
-    return category;
+      return category;
+    } catch (error) {
+      Logger.error(`some error ocurred: ${error}`);
+      throw new Error('Failed to create category');
+    }
   }
 
   public async findById(id: string): Promise<Category | null> {
-    const category = await prisma.category.findUnique({
-      where: {
-        id,
-      },
-    });
-    return category;
+    try {
+      const category = await prisma.category.findUnique({
+        where: {
+          id,
+        },
+      });
+      return category;
+    } catch (error) {
+      Logger.error(`some error ocurred: ${error}`);
+      throw new Error('Failed to find category');
+    }
   }
 
   public async findByIdAndDelete(id: string): Promise<Category | null> {
-    return await prisma.category.delete({
-      where: {
-        id,
-      },
-    });
+    try {
+      return await prisma.category.delete({
+        where: {
+          id,
+        },
+      });
+    } catch (error) {
+      Logger.error(`some error ocurred: ${error}`);
+      throw new Error('Failed to delete category');
+    }
   }
 
   public async findByIdAndUpdate(
     id: string,
     data: Prisma.CategoryUncheckedUpdateInput,
   ): Promise<Category> {
-    const updateCategory = await prisma.category.update({
-      where: {
-        id,
-      },
-      data: {
-        ...data,
-      },
-    });
+    try {
+      const updateCategory = await prisma.category.update({
+        where: {
+          id,
+        },
+        data: {
+          ...data,
+        },
+      });
 
-
-    return updateCategory;
+      return updateCategory;
+    } catch (error) {
+      Logger.error(`some error ocurred: ${error}`);
+      throw new Error('Failed to update category');
+    }
   }
 }
