@@ -5,7 +5,7 @@ import { Logger } from '../../utils/logger';
 import { router } from '../../routes';
 import { config } from 'dotenv';
 import express from 'express';
-import main from '../database/prismaConnect';
+import main from '../database/connection/prismaConnect';
 
 export default async function ExpressServer() {
   config();

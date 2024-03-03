@@ -1,4 +1,4 @@
-import { PrismaUserRepository } from '../../../infra/database/prisma/prisma-user-repository';
+import { PrismaUserRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-user-repository';
 import { MissingParamError } from '../../../utils/errors/index.';
 import { Encrypter } from '../../../utils/helpers/encrypter';
 import { TokenGenerator } from '../../../utils/helpers/tokenGenerator';

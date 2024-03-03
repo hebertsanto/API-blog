@@ -1,4 +1,4 @@
-import { PrismaPostRespository } from '../../../../infra/database/prisma/prisma-post-repository';
+import { PrismaPostRespository } from '../../../../infra/database/prisma/prisma_repositories/prisma-post-repository';
 import { SearchPostUseCase } from '../../post/search-post-use-case';
 
 export async function makeSearchPostsUseCase() {

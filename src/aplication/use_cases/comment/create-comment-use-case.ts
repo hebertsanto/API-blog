@@ -2,8 +2,8 @@ import {
   MissingParamError,
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
-import { prisma } from '../../../infra/database/prismaClient';
-import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma-comment-repository';
+import { prisma } from '../../../infra/database/prisma/client/prismaClient';
+import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-comment-repository';
 import { GetUserByIdUseCase } from '../user/getUserUseCase';
 import { CommentRequest, CommentResponse } from '../../../utils/@interfaces';
 

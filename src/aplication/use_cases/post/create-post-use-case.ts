@@ -1,4 +1,4 @@
-import { PrismaPostRespository } from '../../../infra/database/prisma/prisma-post-repository';
+import { PrismaPostRespository } from '../../../infra/database/prisma/prisma_repositories/prisma-post-repository';
 import { PostRequest, PostResponse } from '../../../utils/@interfaces';
 import { MissingParamError } from '../../../utils/errors/index.';
 import { GetUserByIdUseCase } from '../user/getUserUseCase';

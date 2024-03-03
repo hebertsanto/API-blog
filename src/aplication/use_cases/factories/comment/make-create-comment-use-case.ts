@@ -1,5 +1,5 @@
-import { PrismaCommentRepository } from '../../../../infra/database/prisma/prisma-comment-repository';
-import { PrismaUserRepository } from '../../../../infra/database/prisma/prisma-user-repository';
+import { PrismaCommentRepository } from '../../../../infra/database/prisma/prisma_repositories/prisma-comment-repository';
+import { PrismaUserRepository } from '../../../../infra/database/prisma/prisma_repositories/prisma-user-repository';
 import { CreateCommentUseCase } from '../../comment/create-comment-use-case';
 import { GetUserByIdUseCase } from '../../user/getUserUseCase';
 

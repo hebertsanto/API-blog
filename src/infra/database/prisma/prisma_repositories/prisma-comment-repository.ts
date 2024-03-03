@@ -1,6 +1,6 @@
 import { Prisma, Comment } from '@prisma/client';
-import { CommentRepository } from '../../../aplication/repositories/comment-repository';
-import { prisma } from '../../../infra/database/prismaClient';
+import { CommentRepository } from '../../../../aplication/repositories/comment-repository';
+import { prisma } from '../client/prismaClient';
 
 export class PrismaCommentRepository implements CommentRepository {
   public async create(

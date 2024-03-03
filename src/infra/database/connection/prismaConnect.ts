@@ -1,5 +1,5 @@
-import { Logger } from '../../utils/logger';
-import { prisma } from './prismaClient';
+import { Logger } from '../../../utils/logger';
+import { prisma } from '../prisma/client/prismaClient';
 
 async function main() {}
 main()

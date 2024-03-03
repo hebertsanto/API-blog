@@ -14,4 +14,3 @@ router.use(`${prefix}/login`, loginRoute);
 router.use(`${prefix}/users`, authMiddleware, userRoutes);
 router.use(`${prefix}/comments`, authMiddleware, commentRoutes);
 router.use(`${prefix}/posts`, authMiddleware, postRoutes);
-

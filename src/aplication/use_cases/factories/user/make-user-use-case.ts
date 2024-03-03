@@ -1,4 +1,4 @@
-import { PrismaUserRepository } from '../../../../infra/database/prisma/prisma-user-repository';
+import { PrismaUserRepository } from '../../../../infra/database/prisma/prisma_repositories/prisma-user-repository';
 import { CreateUserUseCase } from '../../user/createUserUseCase';
 
 export async function makeCreateUserUseCase() {

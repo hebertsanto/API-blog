@@ -1,4 +1,4 @@
-import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma-comment-repository';
+import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-comment-repository';
 import { CommentResponse } from '../../../utils/@interfaces';
 
 import {

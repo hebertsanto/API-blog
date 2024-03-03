@@ -1,5 +1,5 @@
 import { Encrypter } from '../../../../utils/helpers/encrypter';
-import { PrismaUserRepository } from '../../../../infra/database/prisma/prisma-user-repository';
+import { PrismaUserRepository } from '../../../../infra/database/prisma/prisma_repositories/prisma-user-repository';
 import { TokenGenerator } from '../../../../utils/helpers/tokenGenerator';
 import { AuthUseCase } from '../../user/authUseCase';
 
