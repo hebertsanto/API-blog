@@ -4,13 +4,12 @@ import { prisma } from './prismaClient';
 async function main() {}
 main()
   .then(async () => {
-    Logger.info('prisma is running');
-    await prisma.$disconnect();
+    await prisma.$connect();
+    Logger.info('conneted in prisma');
   })
   .catch(async (error) => {
-    Logger.error(`some error ocurred conecting in prisma ${error}`);
     await prisma.$disconnect();
-    process.exit(1);
+    Logger.error(`some error ocurred conecting in prisma ${error}`);
   });
 
 export default main;
