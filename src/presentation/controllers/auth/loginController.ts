@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeAuthUseCase } from '../../../use-cases/factories/user/auth-use-case';
+import { makeAuthUseCase } from '../../../aplication/use_cases/factories/user/auth-use-case';
 import {
   PasswordDoesNotMatch,
   ParamDoesNotExist,

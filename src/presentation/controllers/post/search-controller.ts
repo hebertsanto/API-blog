@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeSearchPostsUseCase } from '../../../use-cases/factories/post/make-search-post-use-case';
+import { makeSearchPostsUseCase } from '../../../aplication/use_cases/factories/post/make-search-post-use-case';
 
 export const searchPosts = async (req: Request, res: Response) => {
   const makeSearchPosts = await makeSearchPostsUseCase();

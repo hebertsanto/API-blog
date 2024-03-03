@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeGetPostByIdUseCase } from '../../../use-cases/factories/post/make-get-user-use-case';
+import { makeGetPostByIdUseCase } from '../../../aplication/use_cases/factories/post/make-get-user-use-case';
 import {
   MissingParamError,
   ParamDoesNotExist,

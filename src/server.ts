@@ -1,4 +1,4 @@
-import main from './infra/adapters/database/prismaConnect';
+import main from './infra/database/prismaConnect';
 import { app } from './infra/express/express';
 import { Logger } from './utils/logger';
 

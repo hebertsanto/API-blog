@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeGetCommentByIdUseCase } from '../../../use-cases/factories/comment/make-get-comment-use-case';
+import { makeGetCommentByIdUseCase } from '../../../aplication/use_cases/factories/comment/make-get-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 import { Logger } from '../../../utils/logger';
