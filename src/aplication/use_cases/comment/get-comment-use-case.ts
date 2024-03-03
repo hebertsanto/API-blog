@@ -12,15 +12,12 @@ export class GetCommentUseCase {
 
   async findById(id: string): Promise<CommentResponse | null> {
     try {
-      if (!id) {
-        throw new MissingParamError('comment_id');
-      }
+      if (!id) throw new MissingParamError('comment_id');
 
       const commentResponse = await this.commentRepository.findById(id);
 
-      if (!commentResponse) {
-        throw new ParamDoesNotExist('comment_id');
-      }
+      if (!commentResponse) throw new ParamDoesNotExist('comment_id');
+
       return {
         commentResponse,
       };
@@ -28,6 +25,5 @@ export class GetCommentUseCase {
       Logger.error(`some error ocurred : ${error}`);
       throw error;
     }
-
   }
 }

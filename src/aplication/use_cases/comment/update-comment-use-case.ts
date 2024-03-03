@@ -11,9 +11,7 @@ export class UpdateCommentUseCase {
     data: CommentRequest,
   ): Promise<CommentResponse | null> {
     try {
-      if (!id) {
-        throw new MissingParamError('id');
-      }
+      if (!id) throw new MissingParamError('id');
 
       const commentResponse = await this.updateComment.findByIdAndUpdate(
         id,
@@ -27,6 +25,5 @@ export class UpdateCommentUseCase {
       Logger.error(`some error ocurred : ${error}`);
       throw error;
     }
-
   }
 }
