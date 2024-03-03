@@ -1,11 +1,4 @@
-import main from './infra/database/prismaConnect';
-import { app } from './infra/express/express';
-import { Logger } from './utils/logger';
+import ExpressServer from './infra/express/express';
 
-main();
+ExpressServer();
 
-const port = process.env.PORT;
-
-app.listen(port, () => {
-  Logger.info(`server is running on : ${port}`);
-});
