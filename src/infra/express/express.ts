@@ -8,7 +8,6 @@ import main from '../database/connection/prismaConnect';
 import express from 'express';
 import helmet from 'helmet';
 
-
 export default async function ExpressServer() {
   config();
   const app = express();
