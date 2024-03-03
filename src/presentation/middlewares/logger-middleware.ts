@@ -16,7 +16,7 @@ export const loggerMiddleware = (
     const ip = req.ip;
     const timestamp = new Date().toISOString();
 
-    Logger.info(
+    Logger.logs(
       `[${timestamp}] - ${ip} - ${method} - ${originalUrl} - ${status} - ${ms}ms`,
     );
   });

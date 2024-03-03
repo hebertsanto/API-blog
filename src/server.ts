@@ -2,7 +2,6 @@ import main from './infra/adapters/database/prismaConnect';
 import { app } from './infra/express/express';
 import { Logger } from './utils/logger';
 
-
 main();
 
 const port = process.env.PORT;
