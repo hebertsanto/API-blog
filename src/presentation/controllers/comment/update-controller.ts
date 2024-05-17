@@ -1,45 +1,41 @@
 import { Request, Response } from 'express';
 import { makeUpdateCommentUseCase } from '../../../application/use_cases/factories/comment/make-upate-comment-use-case';
-import { ParamDoesNotExist } from '../../../utils/errors/index.';
+import { handleRequestController } from '../../request-controller';
 import { z } from 'zod';
-import { logger } from '../../../utils/logger';
 
-export const updateComment = async (req: Request, res: Response) => {
-  const makeUpdateComment = await makeUpdateCommentUseCase();
+export class UpdateCommentController implements handleRequestController {
+  public async handle(req: Request, res : Response): Promise<Response> {
+    const updateCommentService = await makeUpdateCommentUseCase();
 
-  const updateCommentZodValidationSchema = z.object({
-    comment: z.string(),
-    postId: z.string().uuid(),
-    userId: z.string().uuid(),
-  });
-
-  const paramsZodValidationSchema = z.object({
-    id: z.string().uuid(),
-  });
-
-  try {
-    const { id } = paramsZodValidationSchema.parse(req.params);
-
-    const { comment, postId, userId } = updateCommentZodValidationSchema.parse(
-      req.body,
-    );
-
-    const updatedComment = await makeUpdateComment.execute(id, {
-      comment,
-      postId,
-      userId,
+    const updateCommentZodValidationSchema = z.object({
+      comment: z.string(),
+      postId: z.string().uuid(),
+      userId: z.string().uuid(),
     });
 
-    return res.status(200).json({
-      msg: 'comment was updated successfully',
-      updatedComment,
+    const paramsZodValidationSchema = z.object({
+      id: z.string().uuid(),
     });
-  } catch (error) {
-    if (error instanceof ParamDoesNotExist) {
-      return res.status(400).json({
-        msg: 'this id do not exist',
+
+    try {
+      const { id } = paramsZodValidationSchema.parse(req.params);
+
+      const { comment, postId, userId } = updateCommentZodValidationSchema.parse(
+        req.body,
+      );
+
+      const updatedComment = await updateCommentService.execute(id, {
+        comment,
+        postId,
+        userId,
       });
+
+      return res.status(200).json({
+        msg: 'comment was updated successfully',
+        updatedComment,
+      });
+    } catch (error) {
+      return res.status(500).json(error);
     }
-    logger.error(`some error ocurred in update comment controller ${error}`);
   }
-};
+}

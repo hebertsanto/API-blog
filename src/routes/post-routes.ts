@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { createPost } from '../presentation/controllers/post/create-controller';
-import { deletePost } from '../presentation/controllers/post/delete-controller';
-import { getPostById } from '../presentation/controllers/post/get-controller';
-import { updatePostController } from '../presentation/controllers/post/update-controller';
+import { AddPostController } from '../presentation/controllers/post/create-controller';
+import { RemovePostController } from '../presentation/controllers/post/delete-controller';
+import { GetPostController } from '../presentation/controllers/post/get-controller';
+import { UpdatePostController } from '../presentation/controllers/post/update-controller';
 
 export const postRoutes = Router();
 
-postRoutes.get('/:id', getPostById);
-postRoutes.post('/', createPost);
-postRoutes.put('/:id', updatePostController);
-postRoutes.delete('/:id', deletePost);
+postRoutes.get('/:id', new GetPostController().handle);
+postRoutes.post('/', new AddPostController().handle);
+postRoutes.put('/:id', new UpdatePostController().handle);
+postRoutes.delete('/:id', new RemovePostController().handle);

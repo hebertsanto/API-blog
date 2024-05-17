@@ -3,7 +3,7 @@ import makeUpdateCategoryUseCase from '../../../application/use_cases/factories/
 import { handleRequestController } from '../../request-controller';
 import { z } from 'zod';
 
-export class AddCategoryController implements handleRequestController {
+export class UpdateCategoryController implements handleRequestController {
   public async handle(req: Request, res: Response): Promise<Response> {
     const updateCategoryUseCase = await makeUpdateCategoryUseCase();
 

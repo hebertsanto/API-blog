@@ -1,36 +1,30 @@
 import { Request, Response } from 'express';
 import { makeCreateUserUseCase } from '../../../application/use_cases/factories/user/make-user-use-case';
-import { UserAlreadyExistError } from '../../../utils/errors/index.';
+import { handleRequestController } from '../../request-controller';
 import { z } from 'zod';
-import { logger } from '../../../utils/logger';
 
-export const createUser = async (req: Request, res: Response) => {
-  const createUserUseCase = await makeCreateUserUseCase();
+export class CreateUserController implements handleRequestController {
+  public async handle(req: Request, res: Response): Promise<Response> {
+    const createUserUseCase = await makeCreateUserUseCase();
 
-  const createUserZodValidationSchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    password: z.string().min(6),
-  });
-
-  const { name, email, password } = createUserZodValidationSchema.parse(
-    req.body,
-  );
-
-  try {
-    const user = await createUserUseCase.execute({ name, email, password });
-
-    return res.status(201).json({
-      msg: 'user created successfully',
-      user,
+    const createUserZodValidationSchema = z.object({
+      name: z.string(),
+      email: z.string().email(),
+      password: z.string().min(6),
     });
-  } catch (error) {
-    if (error instanceof UserAlreadyExistError) {
-      return res.status(404).json({
-        msg: 'this user already exists',
+
+    const { name, email, password } = createUserZodValidationSchema.parse(
+      req.body,
+    );
+    try {
+      const user = await createUserUseCase.execute({ name, email, password });
+
+      return res.status(201).json({
+        msg: 'user created successfully',
+        user,
       });
+    } catch (error) {
+      return res.status(500);
     }
-    logger.error(`some error ocurred in create user controller ${error}`);
-    throw error;
   }
-};
+}

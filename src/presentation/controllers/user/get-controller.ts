@@ -1,41 +1,26 @@
 import { Request, Response } from 'express';
 import { makeGetUserUseCase } from '../../../application/use_cases/factories/user/make-get-user-use-case';
-import {
-  MissingParamError,
-  ParamDoesNotExist,
-} from '../../../utils/errors/index.';
+import { handleRequestController } from '../../request-controller';
 import { z } from 'zod';
-import { logger } from '../../../utils/logger';
-
-export const getUserById = async (req: Request, res: Response) => {
-  const paramsZodValidationSchema = z.object({
-    id: z.string().uuid(),
-  });
-
-  const { id } = paramsZodValidationSchema.parse(req.params);
-
-  const makeGetUser = await makeGetUserUseCase();
-
-  try {
-    const user = await makeGetUser.execute(id);
-
-    return res.status(200).json({
-      msg: 'user found',
-      user,
+export class GetUserController implements handleRequestController {
+  public async handle(req: Request, res: Response) : Promise<Response> {
+    const paramsZodValidationSchema = z.object({
+      id: z.string().uuid(),
     });
-  } catch (error) {
-    if (error instanceof MissingParamError) {
-      return res.status(400).json({
-        msg: 'id not found on request',
-      });
-    }
-    if (error instanceof ParamDoesNotExist) {
-      return res.status(404).json({
-        msg: 'user does not exist',
-      });
-    }
 
-    logger.error(`some error ocurred in get user by id controller ${error}`);
-    throw error;
+    const { id } = paramsZodValidationSchema.parse(req.params);
+
+    const makeGetUser = await makeGetUserUseCase();
+
+    try {
+      const user = await makeGetUser.execute(id);
+
+      return res.status(200).json({
+        msg: 'User found',
+        user,
+      });
+    } catch (error) {
+      return res.status(500).json(error);
+    }
   }
-};
+}

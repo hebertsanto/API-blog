@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { createUser } from '../presentation/controllers/user/create-controller';
-import { getUserById } from '../presentation/controllers/user/get-controller';
+import { CreateUserController } from '../presentation/controllers/user/create-controller';
+import { GetUserController } from '../presentation/controllers/user/get-controller';
 
 export const userRoutes = Router();
 
-userRoutes.get('/:id', getUserById);
-userRoutes.post('/', createUser);
+userRoutes.get('/:id', new GetUserController().handle);
+userRoutes.post('/', new CreateUserController().handle);
