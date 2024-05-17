@@ -1,7 +1,7 @@
 import { setHeaderMiddleware } from '../../presentation/middlewares/set-header-midlleware';
 import { loggerMiddleware } from '../../presentation/middlewares/logger-middleware';
 import { zodErrorMiddleware } from '../../presentation/middlewares/zodError-middleware';
-import { Logger } from '../../utils/logger';
+import { logger } from '../../utils/logger';
 import { router } from '../../routes';
 import dotenv from 'dotenv';
 import main from '../database/connection/prismaConnect';
@@ -31,6 +31,6 @@ export default async function ExpressServer() {
   const port = config.port;
 
   app.listen(port, () => {
-    Logger.info(`server is running on : ${port}`);
+    logger.info(`server is running on : ${port}`);
   });
 }

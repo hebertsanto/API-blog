@@ -1,38 +1,29 @@
 import { Request, Response } from 'express';
-import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { Logger } from '../../../utils/logger';
-import makeCreateCategoryUseCase from '../../../aplication/use_cases/factories/category/make-create-category';
+import makeCreateCategoryUseCase from '../../../application/use_cases/factories/category/make-create-category';
+import { handleRequestController } from '../../request-controller';
 
-export const createCategory = async (req: Request, res: Response) => {
-  const createCategory = await makeCreateCategoryUseCase();
+export class AddCategoryController implements handleRequestController {
+  public async handle(req: Request, res: Response): Promise<Response> {
+    const addCategoryService = await makeCreateCategoryUseCase();
 
-  const categoryValidationSchema = z.object({
-    id: z.string().uuid(),
-    name: z.string(),
-    postId: z.string().uuid(),
-  });
-
-  const { id, name, postId } = categoryValidationSchema.parse(req.body);
-
-  try {
-    const categoryCreated = await createCategory.execute({
-      id,
-      name,
-      postId,
+    const categoryValidationSchema = z.object({
+      id: z.string().uuid(),
+      name: z.string(),
+      postId: z.string().uuid(),
     });
 
-    return res.status(200).json({
-      msg: 'Category was created',
-      categoryCreated,
-    });
-  } catch (error) {
-    if (error instanceof ParamDoesNotExist) {
-      return res.status(400).json({
-        msg: 'Post id does not exist',
-        error,
+    const { id, name, postId } = categoryValidationSchema.parse(req.body);
+    try {
+      const addCategory = await addCategoryService.execute({
+        id,
+        name,
+        postId,
       });
+
+      return res.status(200).json({ message: 'Category add', addCategory });
+    } catch (error) {
+      return res.status(200).json();
     }
-    Logger.error(`Some error occurred in create category controller: ${error}`);
   }
-};
+}

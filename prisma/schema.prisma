@@ -52,7 +52,7 @@ model Profile {
 }
 
 model Category {
-  id     String @id @unique @default(uuid())
+  id     String @unique @default(uuid())
   name   String
   postId String
   post   Post   @relation(fields: [postId], references: [id])

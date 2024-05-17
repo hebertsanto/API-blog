@@ -1,7 +1,7 @@
 import { PrismaPostRespository } from '../../../infra/database/prisma/prisma_repositories/prisma-post-repository';
 import { PostRequest, PostResponse } from '../../../utils/@interfaces';
 import { MissingParamError } from '../../../utils/errors/index.';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 import { GetUserByIdUseCase } from '../user/getUserUseCase';
 
 export class CreatePostUseCase {
@@ -9,15 +9,17 @@ export class CreatePostUseCase {
     private postRepository: PrismaPostRespository,
     private userService: GetUserByIdUseCase,
   ) {}
-  async create({ title, content, userId }: PostRequest): Promise<PostResponse> {
+  public async execute({
+    title,
+    content,
+    userId,
+  }: PostRequest): Promise<PostResponse> {
     try {
       if (!title) throw new MissingParamError('title');
-
-      if (!content) throw new  MissingParamError('content');
-
+      if (!content) throw new MissingParamError('content');
       if (!userId) throw new MissingParamError('user_id');
 
-      await this.userService.findUserById(userId);
+      await this.userService.execute(userId);
 
       const post = await this.postRepository.create({
         title,
@@ -29,9 +31,8 @@ export class CreatePostUseCase {
         post,
       };
     } catch (error) {
-      Logger.error(`some error ocurred ${error}`);
+      logger.error(`some error ocurred ${error}`);
       throw error;
     }
-
   }
 }

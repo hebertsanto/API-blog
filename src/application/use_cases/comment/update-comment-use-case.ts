@@ -1,12 +1,12 @@
 import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-comment-repository';
 import { MissingParamError } from '../../../utils/errors/index.';
 import { CommentRequest, CommentResponse } from '../../../utils/@interfaces';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export class UpdateCommentUseCase {
   constructor(private updateComment: PrismaCommentRepository) {}
 
-  async update(
+  public async execute(
     id: string,
     data: CommentRequest,
   ): Promise<CommentResponse | null> {
@@ -22,7 +22,7 @@ export class UpdateCommentUseCase {
         commentResponse,
       };
     } catch (error) {
-      Logger.error(`some error ocurred : ${error}`);
+      logger.error(`some error ocurred : ${error}`);
       throw error;
     }
   }

@@ -1,22 +1,21 @@
 import { PrismaUserRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-user-repository';
 import { MissingParamError } from '../../../utils/errors/index.';
 import { Encrypter } from '../../../utils/helpers/encrypter';
-import { TokenGenerator } from '../../../utils/helpers/tokenGenerator';
+import { JwtService } from '../../../utils/helpers/tokenGenerator';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { PasswordDoesNotMatch } from '../../../utils/errors/index.';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export class AuthUseCase {
   constructor(
     private encrypter: Encrypter,
     private user: PrismaUserRepository,
-    private acesstoken: TokenGenerator,
+    private acesstoken: JwtService,
   ) {}
 
-  async auth(email: string, password: string) {
+  public async execute(email: string, password: string) {
     try {
       if (!email) throw new MissingParamError('email');
-
       if (!password) throw new MissingParamError('pasword');
 
       const user = await this.user.findByEmail(email);
@@ -36,9 +35,8 @@ export class AuthUseCase {
         user,
         token,
       };
-
     } catch (error) {
-      Logger.error(`some error ocurred : ${error}`);
+      logger.error(`some error ocurred : ${error}`);
       throw error;
     }
   }

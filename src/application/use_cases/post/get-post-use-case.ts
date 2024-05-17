@@ -4,11 +4,11 @@ import {
   MissingParamError,
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export class GetPostByIdUseCase {
   constructor(private post: PrismaPostRespository) {}
-  async findById(id: string): Promise<PostResponse | null> {
+  public async execute(id: string): Promise<PostResponse | null> {
     try {
       if (!id) throw new MissingParamError('post_id');
 
@@ -19,9 +19,8 @@ export class GetPostByIdUseCase {
         post,
       };
     } catch (error) {
-      Logger.error(`some error ocurred : ${error}`);
+      logger.error(`some error ocurred : ${error}`);
       throw error;
     }
-
   }
 }

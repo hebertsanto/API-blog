@@ -1,6 +1,6 @@
 import { Prisma, Category } from '@prisma/client';
 import { prisma } from '../client/prismaClient';
-import { CategoryRepository } from '../../../../aplication/repositories/category-repository';
+import { CategoryRepository } from '../../../../application/repositories/category-repository';
 import { Logger } from '../../../../utils/logger';
 
 export class PrismaCategoryRepository implements CategoryRepository {

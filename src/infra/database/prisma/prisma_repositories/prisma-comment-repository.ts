@@ -1,7 +1,7 @@
 import { Comment, Prisma } from '@prisma/client';
-import { CommentRepository } from '../../../../aplication/repositories/comment-repository';
+import { CommentRepository } from '../../../../application/repositories/comment-repository';
 import { prisma } from '../client/prismaClient';
-import { Logger } from '../../../../utils/logger';
+import { logger } from '../../../../utils/logger';
 
 export class PrismaCommentRepository implements CommentRepository {
   public async create(
@@ -14,7 +14,7 @@ export class PrismaCommentRepository implements CommentRepository {
 
       return comment;
     } catch (error) {
-      Logger.error(`some error ocurred: ${error}`);
+      logger.error(`some error ocurred: ${error}`);
       throw error;
     }
   }
@@ -28,7 +28,7 @@ export class PrismaCommentRepository implements CommentRepository {
       });
       return comment;
     } catch (error) {
-      Logger.error(`Error finding comment by ID: ${error}`);
+      logger.error(`Error finding comment by ID: ${error}`);
       throw error;
     }
   }
@@ -41,7 +41,7 @@ export class PrismaCommentRepository implements CommentRepository {
         },
       });
     } catch (error) {
-      Logger.error(`Error deleting comment: ${error}`);
+      logger.error(`Error deleting comment: ${error}`);
       throw error;
     }
   }
@@ -62,7 +62,7 @@ export class PrismaCommentRepository implements CommentRepository {
 
       return updateComment;
     } catch (error) {
-      Logger.error(`Error updating comment: ${error}`);
+      logger.error(`Error updating comment: ${error}`);
       throw error;
     }
   }

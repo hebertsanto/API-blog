@@ -4,12 +4,12 @@ import {
   MissingParamError,
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export class GetUserByIdUseCase {
   constructor(private getUserRepository: PrismaUserRepository) {}
 
-  async findUserById(id: string): Promise<UserResponse | null> {
+  public async execute(id: string): Promise<UserResponse | null> {
     try {
       if (!id) throw new MissingParamError('user_id');
 
@@ -20,9 +20,8 @@ export class GetUserByIdUseCase {
       return {
         user,
       };
-
     } catch (error) {
-      Logger.error(`some error ocurred : ${error}`);
+      logger.error(`some error ocurred : ${error}`);
       throw error;
     }
   }
