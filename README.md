@@ -19,6 +19,15 @@ esta api foi feita para aprimorar meu conhecimento de clean architecture e obtiv
 - [x] pegar um comentário
 - [x] editar um comemtário
 - [x] listar todos os comentários de um post, se houver
+- [] usuário pode adicionar tags aos posts
+- [] usuário pode adicionar fotos em seus posts
+- [] é possível ordenar posts por tags
+- [] usuário pode adicionar categorias nos posts
+- [] usuário pode ter um perfil
+- [] usuário pode editar seu perfil
+- [] usuário pode desativar sua conta
+- [] usuário pode apagar sua conta
+- [] usuário pode redefinir sua senha
 
 tentei manter uma arquitetura legal e bem organizada, pretendo ir melhorando este projeto
 pois foi algo que gostei de fazer, foquei bastante na estrutura de diretorios desta aplicação, foi a primeira vez que
