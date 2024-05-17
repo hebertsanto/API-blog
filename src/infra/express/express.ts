@@ -12,6 +12,7 @@ import config from '../../config/config';
 export default async function ExpressServer() {
   dotenv.config();
   const app = express();
+  const prefix = config.prefixUrl as string;
 
   await main();
 
@@ -20,7 +21,7 @@ export default async function ExpressServer() {
 
   app.use(setHeaderMiddleware);
 
-  app.use(router);
+  app.use(prefix, router);
 
   app.use(express.json());
 
