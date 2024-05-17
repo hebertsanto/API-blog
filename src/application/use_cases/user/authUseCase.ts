@@ -4,7 +4,7 @@ import { Encrypter } from '../../../utils/helpers/encrypter';
 import { TokenGenerator } from '../../../utils/helpers/tokenGenerator';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { PasswordDoesNotMatch } from '../../../utils/errors/index.';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export class AuthUseCase {
   constructor(
@@ -13,10 +13,9 @@ export class AuthUseCase {
     private acesstoken: TokenGenerator,
   ) {}
 
-  async auth(email: string, password: string) {
+  public async auth(email: string, password: string) {
     try {
       if (!email) throw new MissingParamError('email');
-
       if (!password) throw new MissingParamError('pasword');
 
       const user = await this.user.findByEmail(email);
@@ -37,7 +36,7 @@ export class AuthUseCase {
         token,
       };
     } catch (error) {
-      Logger.error(`some error ocurred : ${error}`);
+      logger.error(`some error ocurred : ${error}`);
       throw error;
     }
   }

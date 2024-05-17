@@ -4,12 +4,12 @@ import {
   MissingParamError,
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export class DeletePostUseCase {
   constructor(private postRepository: PrismaPostRespository) {}
 
-  async delete(id: string): Promise<PostResponse | void> {
+  public async delete(id: string): Promise<PostResponse | void> {
     try {
       const post = await this.postRepository.findByIdAndDelete(id);
 
@@ -17,7 +17,7 @@ export class DeletePostUseCase {
 
       if (!post) throw new ParamDoesNotExist('post_id');
     } catch (error) {
-      Logger.error(`some error ocurred ${error}`);
+      logger.error(`some error ocurred ${error}`);
       throw error;
     }
   }

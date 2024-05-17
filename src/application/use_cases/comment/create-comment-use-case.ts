@@ -6,7 +6,7 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 import { prisma } from '../../../infra/database/prisma/client/prismaClient';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export class CreateCommentUseCase {
   constructor(
@@ -14,25 +14,23 @@ export class CreateCommentUseCase {
     private userService: GetUserByIdUseCase,
   ) {}
 
-  async create({
+  public async create({
     comment,
     postId,
     userId,
   }: CommentRequest): Promise<CommentResponse> {
     try {
       if (!comment) throw new MissingParamError('comment');
-
       if (!postId) throw new MissingParamError('post_id');
-
       if (!userId) throw new MissingParamError('user_id');
 
-      const verifyPostExist = await prisma.post.findUnique({
+      const post = await prisma.post.findUnique({
         where: {
           id: postId,
         },
       });
 
-      if (!verifyPostExist) throw new ParamDoesNotExist('post_id');
+      if (!post) throw new ParamDoesNotExist('post_id');
 
       await this.userService.findUserById(userId);
 
@@ -46,7 +44,7 @@ export class CreateCommentUseCase {
         commentResponse,
       };
     } catch (error) {
-      Logger.error(`some error ocurred ${error}`);
+      logger.error(`some error ocurred ${error}`);
       throw error;
     }
   }

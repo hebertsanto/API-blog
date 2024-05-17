@@ -4,7 +4,7 @@ import {
   MissingParamError,
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 import { GetUserByIdUseCase } from '../user/getUserUseCase';
 
 export class UpdatePostUseCase {
@@ -13,7 +13,7 @@ export class UpdatePostUseCase {
     private userService: GetUserByIdUseCase,
   ) {}
 
-  async update(id: string, data: PostRequest): Promise<PostResponse | null> {
+  public async update(id: string, data: PostRequest): Promise<PostResponse | null> {
     try {
       if (!id) throw new MissingParamError('post_id');
       await this.userService.findUserById(data.userId);
@@ -28,7 +28,7 @@ export class UpdatePostUseCase {
         post,
       };
     } catch (error) {
-      Logger.error(`some error ocurred : ${error}`);
+      logger.error(`some error ocurred : ${error}`);
       throw error;
     }
   }

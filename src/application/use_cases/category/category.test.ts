@@ -4,18 +4,17 @@ const mockCategoryRepository = {
   create: jest.fn(),
   findById: jest.fn(),
   findByIdAndDelete: jest.fn(),
-  findByIdAndUpdate:jest.fn()
+  findByIdAndUpdate: jest.fn(),
 };
 
 describe('Create category use case', () => {
   it('should create a new category', async () => {
-
     const addCategory = new CreateCategoryUseCase(mockCategoryRepository);
 
     const categoryData = {
       id: 'postId',
       name: 'Technology',
-      postId: '123'
+      postId: '123',
     };
 
     mockCategoryRepository.create.mockResolvedValue(categoryData);
@@ -27,20 +26,17 @@ describe('Create category use case', () => {
     expect(newCategory).toHaveProperty('id');
     expect(newCategory).toHaveProperty('name');
     expect(newCategory).toHaveProperty('postId');
-
   });
 
   it('should throw error if postId is missing', async () => {
-
     const addCategory = new CreateCategoryUseCase(mockCategoryRepository);
 
     const categoryData = {
-      id:'postId',
+      id: 'postId',
       name: 'Technology',
-      postId: ''
+      postId: '',
     };
 
     await expect(addCategory.execute(categoryData)).rejects.toThrow();
   });
-
 });
