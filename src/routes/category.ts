@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { AddCategoryController } from '../presentation/controllers/category/create-category';
 import { RemoveCategoryController } from '../presentation/controllers/category/delete-category';
 import { UpdateCategoryController } from '../presentation/controllers/category/update-category';
-import {  FindCategoryController  } from '../presentation/controllers/category/find-category';
+import { FindCategoryController } from '../presentation/controllers/category/find-category';
 
 export const categoryRoutes = Router();
 

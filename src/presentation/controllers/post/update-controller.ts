@@ -3,7 +3,6 @@ import { makeUpdatePostUseCase } from '../../../application/use_cases/factories/
 import { z } from 'zod';
 import { handleRequestController } from '../../request-controller';
 
-
 export class UpdatePostController implements handleRequestController {
   public async handle(req: Request, res: Response): Promise<Response> {
     const paramsZodValidationSchema = z.object({
@@ -19,9 +18,7 @@ export class UpdatePostController implements handleRequestController {
 
     const { id } = paramsZodValidationSchema.parse(req.params);
 
-    const { title, content, userId } = updatePostZodValidationSchema.parse(
-      req.body,
-    );
+    const { title, content, userId } = updatePostZodValidationSchema.parse(req.body);
 
     const makeUpdate = await makeUpdatePostUseCase();
 

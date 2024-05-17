@@ -1,20 +1,13 @@
 import { PrismaUserRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-user-repository';
 import { UserRequest, UserResponse } from '../../../utils/@interfaces';
 import { hash } from 'bcrypt';
-import {
-  MissingParamError,
-  UserAlreadyExistError,
-} from '../../../utils/errors/index.';
+import { MissingParamError, UserAlreadyExistError } from '../../../utils/errors/index.';
 import { logger } from '../../../utils/logger';
 
 export class CreateUserUseCase {
   constructor(private userRepository: PrismaUserRepository) {}
 
-  public async execute({
-    name,
-    password,
-    email,
-  }: UserRequest): Promise<UserResponse> {
+  public async execute({ name, password, email }: UserRequest): Promise<UserResponse> {
     try {
       if (!name) throw new MissingParamError('name');
       if (!password) throw new MissingParamError('password');

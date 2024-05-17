@@ -4,7 +4,7 @@ import { handleRequestController } from '../../request-controller';
 import { z } from 'zod';
 
 export class UpdateCommentController implements handleRequestController {
-  public async handle(req: Request, res : Response): Promise<Response> {
+  public async handle(req: Request, res: Response): Promise<Response> {
     const updateCommentService = await makeUpdateCommentUseCase();
 
     const updateCommentZodValidationSchema = z.object({

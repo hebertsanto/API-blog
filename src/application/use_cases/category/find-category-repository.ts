@@ -1,9 +1,6 @@
 import { Category } from '@prisma/client';
 import { PrismaCategoryRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-category-repository';
-import {
-  MissingParamError,
-  ParamDoesNotExist,
-} from '../../../utils/errors/index.';
+import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
 import { logger } from '../../../utils/logger';
 
 export class FindCategoryUseCase {

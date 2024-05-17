@@ -4,9 +4,7 @@ import { CategoryRepository } from '../../../../application/repositories/categor
 import { Logger } from '../../../../utils/logger';
 
 export class PrismaCategoryRepository implements CategoryRepository {
-  public async create(
-    data: Prisma.CategoryUncheckedCreateInput,
-  ): Promise<Category> {
+  public async create(data: Prisma.CategoryUncheckedCreateInput): Promise<Category> {
     try {
       const category = await prisma.category.create({
         data,

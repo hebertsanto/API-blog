@@ -1,9 +1,6 @@
 import { PrismaPostRespository } from '../../../infra/database/prisma/prisma_repositories/prisma-post-repository';
 import { PostResponse } from '../../../utils/@interfaces';
-import {
-  MissingParamError,
-  ParamDoesNotExist,
-} from '../../../utils/errors/index.';
+import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
 import { logger } from '../../../utils/logger';
 
 export class DeletePostUseCase {

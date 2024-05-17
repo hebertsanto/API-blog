@@ -9,10 +9,7 @@ export class UpdateCategoryUseCase {
   public async execute(id: string, data: Category) {
     try {
       if (!id) throw new MissingParamError('category_id');
-      const category = await this.categoryRepository.findByIdAndUpdate(
-        id,
-        data,
-      );
+      const category = await this.categoryRepository.findByIdAndUpdate(id, data);
 
       return category;
     } catch (error) {

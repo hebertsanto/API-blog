@@ -1,9 +1,6 @@
 import { PrismaPostRespository } from '../../../infra/database/prisma/prisma_repositories/prisma-post-repository';
 import { PostRequest, PostResponse } from '../../../utils/@interfaces';
-import {
-  MissingParamError,
-  ParamDoesNotExist,
-} from '../../../utils/errors/index.';
+import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
 import { logger } from '../../../utils/logger';
 import { GetUserByIdUseCase } from '../user/getUserUseCase';
 
@@ -13,10 +10,7 @@ export class UpdatePostUseCase {
     private userService: GetUserByIdUseCase,
   ) {}
 
-  public async execute(
-    id: string,
-    data: PostRequest,
-  ): Promise<PostResponse | null> {
+  public async execute(id: string, data: PostRequest): Promise<PostResponse | null> {
     try {
       if (!id) throw new MissingParamError('post_id');
       await this.userService.execute(data.userId);

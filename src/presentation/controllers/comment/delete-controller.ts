@@ -23,4 +23,3 @@ export class RemoveCommentController implements handleRequestController {
     }
   }
 }
-

@@ -1,7 +1,7 @@
 import { Post, Prisma } from '@prisma/client';
 import { PostRepository } from '../../../../application/repositories/post-repository';
 import { prisma } from '../client/prismaClient';
-import { Logger } from '../../../../utils/logger';
+import { logger } from '../../../../utils/logger';
 
 export class PrismaPostRespository implements PostRepository {
   public async create(data: Prisma.PostUncheckedCreateInput): Promise<Post> {
@@ -11,7 +11,7 @@ export class PrismaPostRespository implements PostRepository {
       });
       return createPost;
     } catch (error) {
-      Logger.error(`Error creating post: ${error}`);
+      logger.error(`Error creating post: ${error}`);
       throw error;
     }
   }
@@ -25,7 +25,7 @@ export class PrismaPostRespository implements PostRepository {
       });
       return post;
     } catch (error) {
-      Logger.error(`Error finding post by ID: ${error}`);
+      logger.error(`Error finding post by ID: ${error}`);
       throw error;
     }
   }
@@ -38,7 +38,7 @@ export class PrismaPostRespository implements PostRepository {
         },
       });
     } catch (error) {
-      Logger.error(`Error updating post by ID: ${error}`);
+      logger.error(`Error updating post by ID: ${error}`);
       throw error;
     }
   }
@@ -56,7 +56,7 @@ export class PrismaPostRespository implements PostRepository {
       });
       return updatePost;
     } catch (error) {
-      Logger.error(`Error deleting post by ID: ${error}`);
+      logger.error(`Error deleting post by ID: ${error}`);
       throw error;
     }
   }

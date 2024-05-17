@@ -13,9 +13,7 @@ export class CreateUserController implements handleRequestController {
       password: z.string().min(6),
     });
 
-    const { name, email, password } = createUserZodValidationSchema.parse(
-      req.body,
-    );
+    const { name, email, password } = createUserZodValidationSchema.parse(req.body);
     try {
       const user = await createUserUseCase.execute({ name, email, password });
 

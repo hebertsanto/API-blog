@@ -1,9 +1,6 @@
 import { PrismaUserRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-user-repository';
 import { UserResponse } from '../../../utils/@interfaces';
-import {
-  MissingParamError,
-  ParamDoesNotExist,
-} from '../../../utils/errors/index.';
+import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
 import { logger } from '../../../utils/logger';
 import { GetUserByIdUseCase } from './getUserUseCase';
 

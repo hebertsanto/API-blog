@@ -8,10 +8,7 @@ export async function makeCreatePostUseCase() {
   const userRepository = new PrismaUserRepository();
   const userService = new GetUserByIdUseCase(userRepository);
 
-  const createPostUseCase = new CreatePostUseCase(
-    createPostRepository,
-    userService,
-  );
+  const createPostUseCase = new CreatePostUseCase(createPostRepository, userService);
 
   return createPostUseCase;
 }

@@ -4,9 +4,7 @@ import { prisma } from '../client/prismaClient';
 import { logger } from '../../../../utils/logger';
 
 export class PrismaCommentRepository implements CommentRepository {
-  public async create(
-    data: Prisma.CommentUncheckedCreateInput,
-  ): Promise<Comment> {
+  public async create(data: Prisma.CommentUncheckedCreateInput): Promise<Comment> {
     try {
       const comment = await prisma.comment.create({
         data,
