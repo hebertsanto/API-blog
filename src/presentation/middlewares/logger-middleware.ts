@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { Logger } from '../../utils/logger';
+import { logger } from '../../utils/logger';
 
 export const loggerMiddleware = (
   req: Request,
@@ -16,7 +16,7 @@ export const loggerMiddleware = (
     const ip = req.ip;
     const timestamp = new Date().toISOString();
 
-    Logger.logs(
+    logger.info(
       `[${timestamp}] - ${ip} - ${method} - ${originalUrl} - ${status} - ${ms}ms`,
     );
   });

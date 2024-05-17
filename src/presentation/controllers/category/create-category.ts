@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 import makeCreateCategoryUseCase from '../../../application/use_cases/factories/category/make-create-category';
 
 export const createCategory = async (req: Request, res: Response) => {
@@ -33,6 +33,6 @@ export const createCategory = async (req: Request, res: Response) => {
         error,
       });
     }
-    Logger.error(`Some error occurred in create category controller: ${error}`);
+    logger.error(`Some error occurred in create category controller: ${error}`);
   }
 };

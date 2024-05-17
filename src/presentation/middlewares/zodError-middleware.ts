@@ -3,7 +3,7 @@ import { ZodError } from 'zod';
 
 export const zodErrorMiddleware = (
   error: ZodError,
-  req: Request,
+  _req: Request,
   res: Response,
 ) => {
   if (error instanceof ZodError) {
