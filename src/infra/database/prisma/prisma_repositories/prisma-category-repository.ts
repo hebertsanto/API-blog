@@ -1,7 +1,7 @@
 import { Prisma, Category } from '@prisma/client';
 import { prisma } from '../client/prismaClient';
 import { CategoryRepository } from '../../../../application/repositories/category-repository';
-import { Logger } from '../../../../utils/logger';
+import { logger } from '../../../../utils/logger';
 
 export class PrismaCategoryRepository implements CategoryRepository {
   public async create(data: Prisma.CategoryUncheckedCreateInput): Promise<Category> {
@@ -12,7 +12,7 @@ export class PrismaCategoryRepository implements CategoryRepository {
 
       return category;
     } catch (error) {
-      Logger.error(`some error ocurred: ${error}`);
+      logger.error(`some error ocurred: ${error}`);
       throw new Error('Failed to create category');
     }
   }
@@ -26,7 +26,7 @@ export class PrismaCategoryRepository implements CategoryRepository {
       });
       return category;
     } catch (error) {
-      Logger.error(`some error ocurred: ${error}`);
+      logger.error(`some error ocurred: ${error}`);
       throw new Error('Failed to find category');
     }
   }
@@ -39,7 +39,7 @@ export class PrismaCategoryRepository implements CategoryRepository {
         },
       });
     } catch (error) {
-      Logger.error(`some error ocurred: ${error}`);
+      logger.error(`some error ocurred: ${error}`);
       throw new Error('Failed to delete category');
     }
   }
@@ -60,7 +60,7 @@ export class PrismaCategoryRepository implements CategoryRepository {
 
       return updateCategory;
     } catch (error) {
-      Logger.error(`some error ocurred: ${error}`);
+      logger.error(`some error ocurred: ${error}`);
       throw new Error('Failed to update category');
     }
   }

@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { CreateUserUseCase } from './createUserUseCase';
+import { CreateUserUseCase } from './create-user-use-case';
 
 const mockeUserRepository = {
   create: jest.fn(),

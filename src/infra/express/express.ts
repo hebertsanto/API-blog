@@ -2,7 +2,7 @@ import { setHeaderMiddleware } from '../../presentation/middlewares/set-header-m
 import { loggerMiddleware } from '../../presentation/middlewares/logger-middleware';
 import { zodErrorMiddleware } from '../../presentation/middlewares/zodError-middleware';
 import { logger } from '../../utils/logger';
-import { router } from '../../routes';
+import { v1Router } from '../../routes';
 import dotenv from 'dotenv';
 import main from '../database/connection/prismaConnect';
 import express from 'express';
@@ -21,7 +21,7 @@ export default async function ExpressServer() {
 
   app.use(setHeaderMiddleware);
 
-  app.use(prefix, router);
+  app.use(prefix, v1Router);
 
   app.use(express.json());
 

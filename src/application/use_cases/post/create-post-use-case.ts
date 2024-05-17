@@ -2,7 +2,7 @@ import { PrismaPostRespository } from '../../../infra/database/prisma/prisma_rep
 import { PostRequest, PostResponse } from '../../../utils/@interfaces';
 import { MissingParamError } from '../../../utils/errors/index.';
 import { logger } from '../../../utils/logger';
-import { GetUserByIdUseCase } from '../user/getUserUseCase';
+import { GetUserByIdUseCase } from '../user/get-user-use-case';
 
 export class CreatePostUseCase {
   constructor(
@@ -11,9 +11,7 @@ export class CreatePostUseCase {
   ) {}
   public async execute({ title, content, userId }: PostRequest): Promise<PostResponse> {
     if (!title) throw new MissingParamError('title');
-
     if (!content) throw new MissingParamError('content');
-
     if (!userId) throw new MissingParamError('user_id');
 
     try {

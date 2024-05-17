@@ -2,7 +2,7 @@ import { PrismaPostRespository } from '../../../infra/database/prisma/prisma_rep
 import { PostRequest, PostResponse } from '../../../utils/@interfaces';
 import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
 import { logger } from '../../../utils/logger';
-import { GetUserByIdUseCase } from '../user/getUserUseCase';
+import { GetUserByIdUseCase } from '../user/get-user-use-case';
 
 export class UpdatePostUseCase {
   constructor(
