@@ -9,7 +9,7 @@ import { logger } from '../../../utils/logger';
 export class GetUserByIdUseCase {
   constructor(private getUserRepository: PrismaUserRepository) {}
 
-  public async findUserById(id: string): Promise<UserResponse | null> {
+  public async execute(id: string): Promise<UserResponse | null> {
     try {
       if (!id) throw new MissingParamError('user_id');
 

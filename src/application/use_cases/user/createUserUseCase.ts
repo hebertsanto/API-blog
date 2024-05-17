@@ -10,7 +10,11 @@ import { logger } from '../../../utils/logger';
 export class CreateUserUseCase {
   constructor(private userRepository: PrismaUserRepository) {}
 
-  public async create({ name, password, email }: UserRequest): Promise<UserResponse> {
+  public async execute({
+    name,
+    password,
+    email,
+  }: UserRequest): Promise<UserResponse> {
     try {
       if (!name) throw new MissingParamError('name');
       if (!password) throw new MissingParamError('password');

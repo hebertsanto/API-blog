@@ -6,7 +6,7 @@ import { logger } from '../../../utils/logger';
 export class UpdateCommentUseCase {
   constructor(private updateComment: PrismaCommentRepository) {}
 
-  public async update(
+  public async execute(
     id: string,
     data: CommentRequest,
   ): Promise<CommentResponse | null> {

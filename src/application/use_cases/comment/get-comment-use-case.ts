@@ -10,7 +10,7 @@ import { logger } from '../../../utils/logger';
 export class GetCommentUseCase {
   constructor(private commentRepository: PrismaCommentRepository) {}
 
-  public async findById(id: string): Promise<CommentResponse | null> {
+  public async execute(id: string): Promise<CommentResponse | null> {
     try {
       if (!id) throw new MissingParamError('comment_id');
 

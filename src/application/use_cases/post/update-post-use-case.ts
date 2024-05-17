@@ -13,10 +13,13 @@ export class UpdatePostUseCase {
     private userService: GetUserByIdUseCase,
   ) {}
 
-  public async update(id: string, data: PostRequest): Promise<PostResponse | null> {
+  public async execute(
+    id: string,
+    data: PostRequest,
+  ): Promise<PostResponse | null> {
     try {
       if (!id) throw new MissingParamError('post_id');
-      await this.userService.findUserById(data.userId);
+      await this.userService.execute(data.userId);
 
       const postId = await this.postRepository.findById(id);
 

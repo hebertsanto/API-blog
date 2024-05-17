@@ -5,7 +5,7 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export const getPostById = async (req: Request, res: Response) => {
   const makeGetPostById = await makeGetPostByIdUseCase();
@@ -17,7 +17,7 @@ export const getPostById = async (req: Request, res: Response) => {
   const { id } = paramsZodValidationSchema.parse(req.params);
 
   try {
-    const post = await makeGetPostById.findById(id);
+    const post = await makeGetPostById.execute(id);
 
     return res.status(200).json({
       msg: 'post found successfully',
@@ -34,7 +34,7 @@ export const getPostById = async (req: Request, res: Response) => {
         msg: 'post id is required',
       });
     }
-    Logger.error(`some error ocurred in get post controller ${error}`);
+    logger.error(`some error ocurred in get post controller ${error}`);
     throw error;
   }
 };

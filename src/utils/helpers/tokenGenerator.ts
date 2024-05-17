@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export class TokenGenerator {
+export class JwtService {
   //eslint-disable-next-line
   async generateToken(id: any) {
     const secret = process.env.SECRET_JWT as string;

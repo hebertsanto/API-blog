@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { makeCreateComment } from '../../../application/use_cases/factories/comment/make-create-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export const createComment = async (req: Request, res: Response) => {
   const createComment = await makeCreateComment();
@@ -16,7 +16,7 @@ export const createComment = async (req: Request, res: Response) => {
   const { comment, postId, userId } = commentValidationSchema.parse(req.body);
 
   try {
-    const commentCreated = await createComment.create({
+    const commentCreated = await createComment.execute({
       comment,
       postId,
       userId,
@@ -33,6 +33,6 @@ export const createComment = async (req: Request, res: Response) => {
         error,
       });
     }
-    Logger.error(`some error ocurred  in create comment controller : ${error}`);
+    logger.error(`some error ocurred  in create comment controller : ${error}`);
   }
 };

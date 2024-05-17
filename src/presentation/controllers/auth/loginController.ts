@@ -5,7 +5,7 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export const loginController = async (req: Request, res: Response) => {
   const authUseCase = await makeAuthUseCase();
@@ -18,7 +18,7 @@ export const loginController = async (req: Request, res: Response) => {
   const { email, password } = authZodValidationSchema.parse(req.body);
 
   try {
-    const { user, token } = await authUseCase.auth(email, password);
+    const { user, token } = await authUseCase.execute(email, password);
 
     return res.status(200).json({
       msg: 'Authentication successful',
@@ -36,7 +36,7 @@ export const loginController = async (req: Request, res: Response) => {
         msg: 'password/email invalid',
       });
     }
-    Logger.error(`some error ocurred in login controller ${error}`);
+    logger.error(`some error ocurred in login controller ${error}`);
     throw error;
   }
 };

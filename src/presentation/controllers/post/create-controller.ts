@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { makeCreatePostUseCase } from '../../../application/use_cases/factories/post/make-create-post-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export const createPost = async (req: Request, res: Response) => {
   const createPostUseCase = await makeCreatePostUseCase();
@@ -18,7 +18,7 @@ export const createPost = async (req: Request, res: Response) => {
   );
 
   try {
-    const makePost = await createPostUseCase.create({
+    const makePost = await createPostUseCase.execute({
       title,
       content,
       userId,
@@ -35,7 +35,7 @@ export const createPost = async (req: Request, res: Response) => {
         msg: 'userId not found',
       });
     }
-    Logger.error(`some error ocurred in create post controller ${error}`);
+    logger.error(`some error ocurred in create post controller ${error}`);
     throw error;
   }
 };

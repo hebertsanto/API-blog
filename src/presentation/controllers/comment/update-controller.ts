@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { makeUpdateCommentUseCase } from '../../../application/use_cases/factories/comment/make-upate-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export const updateComment = async (req: Request, res: Response) => {
   const makeUpdateComment = await makeUpdateCommentUseCase();
@@ -24,7 +24,7 @@ export const updateComment = async (req: Request, res: Response) => {
       req.body,
     );
 
-    const updatedComment = await makeUpdateComment.update(id, {
+    const updatedComment = await makeUpdateComment.execute(id, {
       comment,
       postId,
       userId,
@@ -40,6 +40,6 @@ export const updateComment = async (req: Request, res: Response) => {
         msg: 'this id do not exist',
       });
     }
-    Logger.error(`some error ocurred in update comment controller ${error}`);
+    logger.error(`some error ocurred in update comment controller ${error}`);
   }
 };

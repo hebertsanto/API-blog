@@ -22,7 +22,7 @@ describe('User use case', () => {
 
     mockeUserRepository.create.mockResolvedValue(mockUserData);
 
-    const createUser = await createUserUseCase.create(mockUserData);
+    const createUser = await createUserUseCase.execute(mockUserData);
 
     expect(createUser).toEqual({ user: mockUserData });
 

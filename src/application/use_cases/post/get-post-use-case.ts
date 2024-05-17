@@ -8,7 +8,7 @@ import { logger } from '../../../utils/logger';
 
 export class GetPostByIdUseCase {
   constructor(private post: PrismaPostRespository) {}
-  public async findById(id: string): Promise<PostResponse | null> {
+  public async execute(id: string): Promise<PostResponse | null> {
     try {
       if (!id) throw new MissingParamError('post_id');
 

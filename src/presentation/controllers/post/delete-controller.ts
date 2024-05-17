@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { makeDeletePostUseCase } from '../../../application/use_cases/factories/post/make-delete-post-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export const deletePost = async (req: Request, res: Response) => {
   const makeDeletePost = await makeDeletePostUseCase();
@@ -14,7 +14,7 @@ export const deletePost = async (req: Request, res: Response) => {
   const { id } = paramsZodValidationSchema.parse(req.params);
 
   try {
-    await makeDeletePost.delete(id);
+    await makeDeletePost.execute(id);
 
     return res.status(200).json({
       msg: 'this post has been deleted',
@@ -25,7 +25,7 @@ export const deletePost = async (req: Request, res: Response) => {
         msg: 'post does not exist',
       });
     }
-    Logger.error(`some error ocurred in delete post controller ${error}`);
+    logger.error(`some error ocurred in delete post controller ${error}`);
     throw error;
   }
 };

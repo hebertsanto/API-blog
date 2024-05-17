@@ -15,7 +15,7 @@ export class DeleteUserUseCase {
 
   public async execute(id: string): Promise<UserResponse | void> {
     try {
-      const user = await this.userService.findUserById(id);
+      const user = await this.userService.execute(id);
 
       if (!id) throw new MissingParamError('user_id');
 

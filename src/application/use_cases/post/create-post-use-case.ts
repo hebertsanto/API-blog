@@ -9,13 +9,17 @@ export class CreatePostUseCase {
     private postRepository: PrismaPostRespository,
     private userService: GetUserByIdUseCase,
   ) {}
-  public async create({ title, content, userId }: PostRequest): Promise<PostResponse> {
+  public async execute({
+    title,
+    content,
+    userId,
+  }: PostRequest): Promise<PostResponse> {
     try {
       if (!title) throw new MissingParamError('title');
       if (!content) throw new MissingParamError('content');
       if (!userId) throw new MissingParamError('user_id');
 
-      await this.userService.findUserById(userId);
+      await this.userService.execute(userId);
 
       const post = await this.postRepository.create({
         title,

@@ -9,9 +9,9 @@ export class DeleteCommentUseCase {
     private getCommentService: GetCommentUseCase,
   ) {}
 
-  public async findByIdAndDelete(id: string): Promise<CommentResponse | void> {
+  public async execute(id: string): Promise<CommentResponse | void> {
     try {
-      await this.getCommentService.findById(id);
+      await this.getCommentService.execute(id);
       await this.deleteCommentRepository.findByIdAndDelete(id);
     } catch (error) {
       logger.error(`some error ocurred : ${error}`);

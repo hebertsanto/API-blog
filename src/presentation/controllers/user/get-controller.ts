@@ -5,7 +5,7 @@ import {
   ParamDoesNotExist,
 } from '../../../utils/errors/index.';
 import { z } from 'zod';
-import { Logger } from '../../../utils/logger';
+import { logger } from '../../../utils/logger';
 
 export const getUserById = async (req: Request, res: Response) => {
   const paramsZodValidationSchema = z.object({
@@ -17,7 +17,7 @@ export const getUserById = async (req: Request, res: Response) => {
   const makeGetUser = await makeGetUserUseCase();
 
   try {
-    const user = await makeGetUser.findUserById(id);
+    const user = await makeGetUser.execute(id);
 
     return res.status(200).json({
       msg: 'user found',
@@ -35,7 +35,7 @@ export const getUserById = async (req: Request, res: Response) => {
       });
     }
 
-    Logger.error(`some error ocurred in get user by id controller ${error}`);
+    logger.error(`some error ocurred in get user by id controller ${error}`);
     throw error;
   }
 };

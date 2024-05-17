@@ -14,7 +14,7 @@ export class CreateCommentUseCase {
     private userService: GetUserByIdUseCase,
   ) {}
 
-  public async create({
+  public async execute({
     comment,
     postId,
     userId,
@@ -32,7 +32,7 @@ export class CreateCommentUseCase {
 
       if (!post) throw new ParamDoesNotExist('post_id');
 
-      await this.userService.findUserById(userId);
+      await this.userService.execute(userId);
 
       const commentResponse = await this.createCommentRepository.create({
         comment,
