@@ -36,7 +36,6 @@ export class AuthUseCase {
         user,
         token,
       };
-
     } catch (error) {
       Logger.error(`some error ocurred : ${error}`);
       throw error;

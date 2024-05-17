@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 import { Logger } from '../../../utils/logger';
-import makeFindCategoryUseCase from '../../../aplication/use_cases/factories/category/make-find-category';
+import makeFindCategoryUseCase from '../../../application/use_cases/factories/category/make-find-category';
 
 export const findCategory = async (request: Request, response: Response) => {
   const findCategoryUseCase = await makeFindCategoryUseCase();

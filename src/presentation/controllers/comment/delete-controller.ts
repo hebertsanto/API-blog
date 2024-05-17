@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeDeleteCommentUseCase } from '../../../aplication/use_cases/factories/comment/make-delete-comment-use-case';
+import { makeDeleteCommentUseCase } from '../../../application/use_cases/factories/comment/make-delete-comment-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 import { Logger } from '../../../utils/logger';

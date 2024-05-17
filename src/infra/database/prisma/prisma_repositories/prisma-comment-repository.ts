@@ -1,5 +1,5 @@
 import { Comment, Prisma } from '@prisma/client';
-import { CommentRepository } from '../../../../aplication/repositories/comment-repository';
+import { CommentRepository } from '../../../../application/repositories/comment-repository';
 import { prisma } from '../client/prismaClient';
 import { Logger } from '../../../../utils/logger';
 

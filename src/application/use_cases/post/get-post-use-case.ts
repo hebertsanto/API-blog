@@ -22,6 +22,5 @@ export class GetPostByIdUseCase {
       Logger.error(`some error ocurred : ${error}`);
       throw error;
     }
-
   }
 }

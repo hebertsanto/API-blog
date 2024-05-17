@@ -26,6 +26,5 @@ export class DeleteUserUseCase {
       Logger.error(`some error ocurred ${error}`);
       throw error;
     }
-
   }
 }

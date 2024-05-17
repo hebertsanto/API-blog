@@ -20,7 +20,6 @@ export class GetUserByIdUseCase {
       return {
         user,
       };
-
     } catch (error) {
       Logger.error(`some error ocurred : ${error}`);
       throw error;

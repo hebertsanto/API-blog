@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeDeletePostUseCase } from '../../../aplication/use_cases/factories/post/make-delete-post-use-case';
+import { makeDeletePostUseCase } from '../../../application/use_cases/factories/post/make-delete-post-use-case';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 import { Logger } from '../../../utils/logger';

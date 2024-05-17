@@ -13,7 +13,7 @@ export class CreatePostUseCase {
     try {
       if (!title) throw new MissingParamError('title');
 
-      if (!content) throw new  MissingParamError('content');
+      if (!content) throw new MissingParamError('content');
 
       if (!userId) throw new MissingParamError('user_id');
 
@@ -32,6 +32,5 @@ export class CreatePostUseCase {
       Logger.error(`some error ocurred ${error}`);
       throw error;
     }
-
   }
 }

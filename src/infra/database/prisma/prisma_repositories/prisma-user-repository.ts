@@ -1,5 +1,5 @@
 import { User, Prisma } from '@prisma/client';
-import { UserRepository } from '../../../../aplication/repositories/user-repository';
+import { UserRepository } from '../../../../application/repositories/user-repository';
 import { prisma } from '../client/prismaClient';
 import { Logger } from '../../../../utils/logger';
 

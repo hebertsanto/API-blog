@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 import { Logger } from '../../../utils/logger';
-import makeUpdateCategoryUseCase from '../../../aplication/use_cases/factories/category/make-update-category';
+import makeUpdateCategoryUseCase from '../../../application/use_cases/factories/category/make-update-category';
 
 export const updateCategory = async (request: Request, response: Response) => {
   const updateCategoryUseCase = await makeUpdateCategoryUseCase();
@@ -19,7 +19,7 @@ export const updateCategory = async (request: Request, response: Response) => {
     const updatedCategory = await updateCategoryUseCase.execute(id, {
       id,
       name,
-      postId
+      postId,
     });
 
     return response.status(200).json({

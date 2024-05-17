@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 import { Logger } from '../../../utils/logger';
-import makeDeleteCategoryUseCase from '../../../aplication/use_cases/factories/category/make-delete-category';
+import makeDeleteCategoryUseCase from '../../../application/use_cases/factories/category/make-delete-category';
 
 export const deleteCategory = async (request: Request, response: Response) => {
   const updateCategoryUseCase = await makeDeleteCategoryUseCase();

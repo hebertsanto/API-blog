@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeCreateUserUseCase } from '../../../aplication/use_cases/factories/user/make-user-use-case';
+import { makeCreateUserUseCase } from '../../../application/use_cases/factories/user/make-user-use-case';
 import { UserAlreadyExistError } from '../../../utils/errors/index.';
 import { z } from 'zod';
 import { Logger } from '../../../utils/logger';

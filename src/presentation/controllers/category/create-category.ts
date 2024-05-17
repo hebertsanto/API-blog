@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 import { Logger } from '../../../utils/logger';
-import makeCreateCategoryUseCase from '../../../aplication/use_cases/factories/category/make-create-category';
+import makeCreateCategoryUseCase from '../../../application/use_cases/factories/category/make-create-category';
 
 export const createCategory = async (req: Request, res: Response) => {
   const createCategory = await makeCreateCategoryUseCase();

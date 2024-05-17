@@ -11,15 +11,11 @@ export class DeleteCommentUseCase {
 
   async findByIdAndDelete(id: string): Promise<CommentResponse | void> {
     try {
-
       await this.getCommentService.findById(id);
       await this.deleteCommentRepository.findByIdAndDelete(id);
-
     } catch (error) {
       Logger.error(`some error ocurred : ${error}`);
       throw error;
-
     }
-
   }
 }

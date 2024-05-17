@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeUpdatePostUseCase } from '../../../aplication/use_cases/factories/post/make-update-post-use-case';
+import { makeUpdatePostUseCase } from '../../../application/use_cases/factories/post/make-update-post-use-case';
 import { ParamDoesNotExist, UserNotExist } from '../../../utils/errors/index.';
 import { z } from 'zod';
 import { Logger } from '../../../utils/logger';

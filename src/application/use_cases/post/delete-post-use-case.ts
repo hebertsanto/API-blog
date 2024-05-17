@@ -16,11 +16,9 @@ export class DeletePostUseCase {
       if (!id) new MissingParamError('id');
 
       if (!post) throw new ParamDoesNotExist('post_id');
-
     } catch (error) {
       Logger.error(`some error ocurred ${error}`);
       throw error;
     }
-
   }
 }

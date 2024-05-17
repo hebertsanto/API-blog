@@ -35,7 +35,6 @@ export class CreateUserUseCase {
       return {
         user,
       };
-
     } catch (error) {
       Logger.error(`An error occurred: ${error}`);
       throw error;

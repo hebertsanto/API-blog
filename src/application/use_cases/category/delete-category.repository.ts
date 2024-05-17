@@ -1,19 +1,16 @@
-import { Category } from '@prisma/client';
 import { PrismaCategoryRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-category-repository';
 import { MissingParamError } from '../../../utils/errors/index.';
 import { Logger } from '../../../utils/logger';
 
-export class UpdateCategoryUseCase {
+export class DeleteCategoryUseCase {
   constructor(private categoryRepository: PrismaCategoryRepository) {}
 
-  async execute(id: string, data: Category) {
+  async execute(id: string): Promise<void> {
     try {
-      if (!id) throw new MissingParamError('category_id');
-      const category = await this.categoryRepository.findByIdAndUpdate(id, data);
-
-      return category;
+      if (!id) throw new MissingParamError('id');
+      await this.categoryRepository.findByIdAndDelete(id);
     } catch (error) {
-      Logger.error(`some error ocurred ${error}`);
+      Logger.error(`some error ocurred : ${error}`);
       throw error;
     }
   }

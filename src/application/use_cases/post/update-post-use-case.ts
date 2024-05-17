@@ -31,6 +31,5 @@ export class UpdatePostUseCase {
       Logger.error(`some error ocurred : ${error}`);
       throw error;
     }
-
   }
 }
