@@ -1,11 +1,7 @@
-import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-comment-repository';
-import { CommentResponse } from '../../../utils/@interfaces';
-
-import {
-  MissingParamError,
-  ParamDoesNotExist,
-} from '../../../utils/errors/index.';
-import { logger } from '../../../utils/logger';
+import { PrismaCommentRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-comment-repository';
+import { CommentResponse } from '../../../utils/interfaces';
+import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
+import { logger } from '../../../infrastructure/logger';
 
 export class GetCommentUseCase {
   constructor(private commentRepository: PrismaCommentRepository) {}

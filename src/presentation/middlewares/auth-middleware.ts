@@ -1,16 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
-import {
-  TokenIsNotValidError,
-  TokenWasNoProviderError,
-} from '../../utils/errors/index.';
+import { TokenIsNotValidError, TokenWasNoProviderError } from '../../utils/errors/index.';
 import jwt from 'jsonwebtoken';
 import config from '../../config/config';
 
-export const authMiddleware = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   const header = req.headers['authorization'];
   const token = header?.split(' ')[1];
   const secret = config.jwtSecret;

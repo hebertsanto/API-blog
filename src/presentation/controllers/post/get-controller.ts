@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { handleRequestController } from '../../request-controller';
 
 export class GetPostController implements handleRequestController {
-  public async handle(req: Request, res: Response) : Promise<Response> {
+  public async handle(req: Request, res: Response): Promise<Response> {
     const makeGetPostById = await makeGetPostByIdUseCase();
 
     const paramsZodValidationSchema = z.object({

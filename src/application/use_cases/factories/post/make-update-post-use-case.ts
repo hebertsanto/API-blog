@@ -1,7 +1,7 @@
-import { PrismaPostRespository } from '../../../../infra/database/prisma/prisma_repositories/prisma-post-repository';
-import { PrismaUserRepository } from '../../../../infra/database/prisma/prisma_repositories/prisma-user-repository';
+import { PrismaPostRespository } from '../../../../infrastructure/database/prisma/prisma_repositories/prisma-post-repository';
+import { PrismaUserRepository } from '../../../../infrastructure/database/prisma/prisma_repositories/prisma-user-repository';
 import { UpdatePostUseCase } from '../../post/update-post-use-case';
-import { GetUserByIdUseCase } from '../../user/getUserUseCase';
+import { GetUserByIdUseCase } from '../../user/get-user-use-case';
 
 export async function makeUpdatePostUseCase() {
   const updateRepositpory = new PrismaPostRespository();

@@ -13,9 +13,7 @@ export class AddPostController implements handleRequestController {
       userId: z.string().uuid(),
     });
 
-    const { title, content, userId } = createPostZodValidationSchema.parse(
-      req.body,
-    );
+    const { title, content, userId } = createPostZodValidationSchema.parse(req.body);
 
     try {
       const makePost = await createPostUseCase.execute({

@@ -1,10 +1,10 @@
-import { PrismaUserRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-user-repository';
+import { PrismaUserRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-user-repository';
 import { MissingParamError } from '../../../utils/errors/index.';
 import { Encrypter } from '../../../utils/helpers/encrypter';
 import { JwtService } from '../../../utils/helpers/tokenGenerator';
 import { ParamDoesNotExist } from '../../../utils/errors/index.';
 import { PasswordDoesNotMatch } from '../../../utils/errors/index.';
-import { logger } from '../../../utils/logger';
+import { logger } from '../../../infrastructure/logger';
 
 export class AuthUseCase {
   constructor(

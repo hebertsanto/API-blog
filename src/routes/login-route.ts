@@ -1,7 +1,7 @@
-import { AuthController } from '../presentation/controllers/auth/loginController';
+import { AuthController } from '../presentation/controllers/auth/login-controller';
 
 import { Router } from 'express';
 
 export const loginRoute = Router();
 
-loginRoute.post('/', new AuthController().handle);
+loginRoute.post('/session', new AuthController().handle);

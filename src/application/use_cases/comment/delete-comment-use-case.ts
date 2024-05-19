@@ -1,6 +1,7 @@
-import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-comment-repository';
-import { CommentResponse } from '../../../utils/@interfaces';
-import { logger } from '../../../utils/logger';
+import { PrismaCommentRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-comment-repository';
+import { CommentResponse } from '../../../utils/interfaces';
+import { MissingParamError } from '../../../utils/errors/index.';
+import { logger } from '../../../infrastructure/logger';
 import { GetCommentUseCase } from './get-comment-use-case';
 
 export class DeleteCommentUseCase {
@@ -10,6 +11,8 @@ export class DeleteCommentUseCase {
   ) {}
 
   public async execute(id: string): Promise<CommentResponse | void> {
+    if (!id) throw new MissingParamError('comment_id');
+
     try {
       await this.getCommentService.execute(id);
       await this.deleteCommentRepository.findByIdAndDelete(id);

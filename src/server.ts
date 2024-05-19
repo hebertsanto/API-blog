@@ -1,3 +1,7 @@
-import ExpressServer from './infra/express/express';
+import config from './config/config';
+import { ExpressApp } from './infrastructure/express';
+import main from './infrastructure/database/connection/prisma-connection';
 
-ExpressServer();
+const app = new ExpressApp();
+main();
+app.start(config.port as number);

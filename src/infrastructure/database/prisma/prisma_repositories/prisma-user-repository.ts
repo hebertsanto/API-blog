@@ -1,7 +1,7 @@
 import { User, Prisma } from '@prisma/client';
 import { UserRepository } from '../../../../application/repositories/user-repository';
-import { prisma } from '../client/prismaClient';
-import { Logger } from '../../../../utils/logger';
+import { prisma } from '../client/prisma-client';
+import { logger } from '../../../logger';
 
 export class PrismaUserRepository implements UserRepository {
   public async create(data: Prisma.UserUncheckedCreateInput): Promise<User> {
@@ -11,7 +11,7 @@ export class PrismaUserRepository implements UserRepository {
       });
       return createUser;
     } catch (error) {
-      Logger.error(`Error creating user: ${error}`);
+      logger.error(`Error creating user: ${error}`);
       throw new Error('Failed to create user');
     }
   }
@@ -25,7 +25,7 @@ export class PrismaUserRepository implements UserRepository {
       });
       return user;
     } catch (error) {
-      Logger.error(`Error finding user by email: ${error}`);
+      logger.error(`Error finding user by email: ${error}`);
       throw new Error('Failed to find user by email');
     }
   }
@@ -38,7 +38,7 @@ export class PrismaUserRepository implements UserRepository {
         },
       });
     } catch (error) {
-      Logger.error(`Error deleting user: ${error}`);
+      logger.error(`Error deleting user: ${error}`);
       throw new Error('Failed to delete user');
     }
   }
@@ -56,7 +56,7 @@ export class PrismaUserRepository implements UserRepository {
       });
       return updateUser;
     } catch (error) {
-      Logger.error(`Error updating user: ${error}`);
+      logger.error(`Error updating user: ${error}`);
       throw new Error('Failed to update user');
     }
   }
@@ -70,7 +70,7 @@ export class PrismaUserRepository implements UserRepository {
       });
       return user;
     } catch (error) {
-      Logger.error(`Error finding user by id: ${error}`);
+      logger.error(`Error finding user by id: ${error}`);
       throw new Error('Failed to find user by id');
     }
   }

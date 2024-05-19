@@ -3,7 +3,7 @@ import { makeGetUserUseCase } from '../../../application/use_cases/factories/use
 import { handleRequestController } from '../../request-controller';
 import { z } from 'zod';
 export class GetUserController implements handleRequestController {
-  public async handle(req: Request, res: Response) : Promise<Response> {
+  public async handle(req: Request, res: Response): Promise<Response> {
     const paramsZodValidationSchema = z.object({
       id: z.string().uuid(),
     });
