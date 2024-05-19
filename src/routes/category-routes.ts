@@ -6,7 +6,7 @@ import { FindCategoryController } from '../presentation/controllers/category/fin
 
 export const categoryRoutes = Router();
 
-categoryRoutes.get(':id', new FindCategoryController().handle);
-categoryRoutes.post('/', new AddCategoryController().handle);
-categoryRoutes.put('/:id', new UpdateCategoryController().handle);
-categoryRoutes.delete('/:id', new RemoveCategoryController().handle);
+categoryRoutes.get(':id/retrieve', new FindCategoryController().handle);
+categoryRoutes.post('/add', new AddCategoryController().handle);
+categoryRoutes.put('/:id/edit', new UpdateCategoryController().handle);
+categoryRoutes.delete('/:id/remove', new RemoveCategoryController().handle);

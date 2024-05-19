@@ -4,5 +4,5 @@ import { GetUserController } from '../presentation/controllers/user/get-controll
 
 export const userRoutes = Router();
 
-userRoutes.get('/:id', new GetUserController().handle);
-userRoutes.post('/', new CreateUserController().handle);
+userRoutes.get('/:id/retrieve', new GetUserController().handle);
+userRoutes.post('/add', new CreateUserController().handle);
