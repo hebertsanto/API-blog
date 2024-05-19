@@ -1,5 +1,5 @@
 import { Prisma, Category } from '@prisma/client';
-import { prisma } from '../client/prismaClient';
+import { prisma } from '../client/prisma-client';
 import { CategoryRepository } from '../../../../application/repositories/category-repository';
 import { logger } from '../../../../utils/logger';
 

@@ -1,6 +1,6 @@
 import { Post, Prisma } from '@prisma/client';
 import { PostRepository } from '../../../../application/repositories/post-repository';
-import { prisma } from '../client/prismaClient';
+import { prisma } from '../client/prisma-client';
 import { logger } from '../../../../utils/logger';
 
 export class PrismaPostRespository implements PostRepository {
