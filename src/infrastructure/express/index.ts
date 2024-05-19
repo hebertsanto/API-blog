@@ -1,7 +1,7 @@
 import { Request, Response, Express } from 'express';
 import { loggerMiddleware } from '../../presentation/middlewares/logger-middleware';
 import { zodErrorMiddleware } from '../../presentation/middlewares/zodError-middleware';
-import { logger } from '../../utils/logger';
+import { logger } from '../logger';
 import { v1Router } from '../../routes';
 import express from 'express';
 import helmet from 'helmet';

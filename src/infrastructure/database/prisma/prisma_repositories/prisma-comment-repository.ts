@@ -1,7 +1,7 @@
 import { Comment, Prisma } from '@prisma/client';
 import { CommentRepository } from '../../../../application/repositories/comment-repository';
 import { prisma } from '../client/prisma-client';
-import { logger } from '../../../../utils/logger';
+import { logger } from '../../../logger';
 
 export class PrismaCommentRepository implements CommentRepository {
   public async create(data: Prisma.CommentUncheckedCreateInput): Promise<Comment> {

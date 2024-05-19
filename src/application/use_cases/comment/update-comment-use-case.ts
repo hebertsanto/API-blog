@@ -1,7 +1,7 @@
-import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-comment-repository';
+import { PrismaCommentRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-comment-repository';
 import { MissingParamError } from '../../../utils/errors/index.';
-import { CommentRequest, CommentResponse } from '../../../utils/@interfaces';
-import { logger } from '../../../utils/logger';
+import { CommentRequest, CommentResponse } from '../../../utils/interfaces';
+import { logger } from '../../../infrastructure/logger';
 
 export class UpdateCommentUseCase {
   constructor(private updateComment: PrismaCommentRepository) {}

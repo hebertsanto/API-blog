@@ -1,4 +1,4 @@
-import { PrismaCategoryRepository } from '../../../../infra/database/prisma/prisma_repositories/prisma-category-repository';
+import { PrismaCategoryRepository } from '../../../../infrastructure/database/prisma/prisma_repositories/prisma-category-repository';
 import { UpdateCategoryUseCase } from '../../category/update-category-repository';
 
 export default async function makeUpdateCategoryUseCase() {

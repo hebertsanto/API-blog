@@ -1,7 +1,7 @@
-import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-comment-repository';
-import { CommentResponse } from '../../../utils/@interfaces';
+import { PrismaCommentRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-comment-repository';
+import { CommentResponse } from '../../../utils/interfaces';
 import { MissingParamError } from '../../../utils/errors/index.';
-import { logger } from '../../../utils/logger';
+import { logger } from '../../../infrastructure/logger';
 import { GetCommentUseCase } from './get-comment-use-case';
 
 export class DeleteCommentUseCase {

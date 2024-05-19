@@ -1,7 +1,7 @@
 import { Post, Prisma } from '@prisma/client';
 import { PostRepository } from '../../../../application/repositories/post-repository';
 import { prisma } from '../client/prisma-client';
-import { logger } from '../../../../utils/logger';
+import { logger } from '../../../logger';
 
 export class PrismaPostRespository implements PostRepository {
   public async create(data: Prisma.PostUncheckedCreateInput): Promise<Post> {

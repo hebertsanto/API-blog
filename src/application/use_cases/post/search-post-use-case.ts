@@ -1,4 +1,4 @@
-import { PrismaPostRespository } from '../../../infra/database/prisma/prisma_repositories/prisma-post-repository';
+import { PrismaPostRespository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-post-repository';
 
 export class SearchPostUseCase {
   constructor(private posts: PrismaPostRespository) {}

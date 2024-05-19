@@ -1,7 +1,7 @@
 import { Prisma, Category } from '@prisma/client';
 import { prisma } from '../client/prisma-client';
 import { CategoryRepository } from '../../../../application/repositories/category-repository';
-import { logger } from '../../../../utils/logger';
+import { logger } from '../../../logger';
 
 export class PrismaCategoryRepository implements CategoryRepository {
   public async create(data: Prisma.CategoryUncheckedCreateInput): Promise<Category> {

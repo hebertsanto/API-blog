@@ -1,7 +1,7 @@
 import { User, Prisma } from '@prisma/client';
 import { UserRepository } from '../../../../application/repositories/user-repository';
 import { prisma } from '../client/prisma-client';
-import { logger } from '../../../../utils/logger';
+import { logger } from '../../../logger';
 
 export class PrismaUserRepository implements UserRepository {
   public async create(data: Prisma.UserUncheckedCreateInput): Promise<User> {

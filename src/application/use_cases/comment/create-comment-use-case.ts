@@ -1,9 +1,9 @@
-import { PrismaCommentRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-comment-repository';
+import { PrismaCommentRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-comment-repository';
 import { GetUserByIdUseCase } from '../user/get-user-use-case';
-import { CommentRequest, CommentResponse } from '../../../utils/@interfaces';
+import { CommentRequest, CommentResponse } from '../../../utils/interfaces';
 import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
-import { prisma } from '../../../infra/database/prisma/client/prisma-client';
-import { logger } from '../../../utils/logger';
+import { prisma } from '../../../infrastructure/database/prisma/client/prisma-client';
+import { logger } from '../../../infrastructure/logger';
 
 export class CreateCommentUseCase {
   constructor(

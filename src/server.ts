@@ -1,6 +1,6 @@
 import config from './config/config';
-import { ExpressApp } from './infra/express/express';
-import main from './infra/database/connection/prismaConnect';
+import { ExpressApp } from './infrastructure/express';
+import main from './infrastructure/database/connection/prisma-connection';
 
 const app = new ExpressApp();
 main();

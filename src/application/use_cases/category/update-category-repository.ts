@@ -1,7 +1,7 @@
 import { Category } from '@prisma/client';
-import { PrismaCategoryRepository } from '../../../infra/database/prisma/prisma_repositories/prisma-category-repository';
+import { PrismaCategoryRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-category-repository';
 import { MissingParamError } from '../../../utils/errors/index.';
-import { logger } from '../../../utils/logger';
+import { logger } from '../../../infrastructure/logger';
 
 export class UpdateCategoryUseCase {
   constructor(private categoryRepository: PrismaCategoryRepository) {}
