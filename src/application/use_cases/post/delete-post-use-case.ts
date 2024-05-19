@@ -7,15 +7,16 @@ export class DeletePostUseCase {
   constructor(private postRepository: PrismaPostRespository) {}
 
   public async execute(id: string): Promise<PostResponse | void> {
+    if (!id) new MissingParamError('id');
+
     try {
       const post = await this.postRepository.findByIdAndDelete(id);
-
-      if (!id) new MissingParamError('id');
-
-      if (!post) throw new ParamDoesNotExist('post_id');
+      if (!post) {
+        throw new ParamDoesNotExist('post_id');
+      }
     } catch (error) {
       logger.error(`some error ocurred ${error}`);
-      throw error;
+      throw new Error('Unable delete post');
     }
   }
 }

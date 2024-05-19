@@ -10,7 +10,6 @@ export class FindCategoryUseCase {
     try {
       if (!id) throw new MissingParamError('category_id');
       const category = await this.categoryRepository.findById(id);
-
       if (!category) {
         throw new ParamDoesNotExist('category_id');
       }
@@ -18,7 +17,7 @@ export class FindCategoryUseCase {
       return category;
     } catch (error) {
       logger.error(`some error ocurred ${error}`);
-      throw error;
+      throw new Error('Unable find a category');
     }
   }
 }

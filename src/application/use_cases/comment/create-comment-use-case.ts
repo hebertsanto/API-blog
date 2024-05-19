@@ -26,8 +26,9 @@ export class CreateCommentUseCase {
           id: postId,
         },
       });
-
-      if (!post) throw new ParamDoesNotExist('post_id');
+      if (!post) {
+        throw new ParamDoesNotExist('post_id');
+      }
 
       await this.userService.execute(userId);
 
@@ -42,7 +43,7 @@ export class CreateCommentUseCase {
       };
     } catch (error) {
       logger.error(`some error ocurred ${error}`);
-      throw error;
+      throw new Error('Unable create comment');
     }
   }
 }

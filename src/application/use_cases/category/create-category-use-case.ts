@@ -7,10 +7,10 @@ export class CreateCategoryUseCase {
   constructor(private categoryRepository: PrismaCategoryRepository) {}
 
   public async execute({ name, postId }: Category): Promise<Category | null> {
-    try {
-      if (!name) throw new MissingParamError('name');
-      if (!postId) throw new MissingParamError('post_id');
+    if (!name) throw new MissingParamError('name');
+    if (!postId) throw new MissingParamError('post_id');
 
+    try {
       const category = await this.categoryRepository.create({
         name,
         postId,
@@ -19,7 +19,7 @@ export class CreateCategoryUseCase {
       return category;
     } catch (error) {
       logger.error(`An error occurred: ${error}`);
-      throw error;
+      throw new Error('Uneable create a new category');
     }
   }
 }

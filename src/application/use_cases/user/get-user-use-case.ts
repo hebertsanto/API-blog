@@ -7,19 +7,20 @@ export class GetUserByIdUseCase {
   constructor(private getUserRepository: PrismaUserRepository) {}
 
   public async execute(id: string): Promise<UserResponse | null> {
+    if (!id) throw new MissingParamError('user_id');
+
     try {
-      if (!id) throw new MissingParamError('user_id');
-
       const user = await this.getUserRepository.findById(id);
-
-      if (!user) throw new ParamDoesNotExist('user_id');
+      if (!user) {
+        throw new ParamDoesNotExist('user_id');
+      }
 
       return {
         user,
       };
     } catch (error) {
       logger.error(`some error ocurred : ${error}`);
-      throw error;
+      throw new Error('Unable get user');
     }
   }
 }

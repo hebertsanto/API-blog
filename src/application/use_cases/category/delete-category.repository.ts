@@ -11,7 +11,7 @@ export class DeleteCategoryUseCase {
       await this.categoryRepository.findByIdAndDelete(id);
     } catch (error) {
       logger.error(`some error ocurred : ${error}`);
-      throw error;
+      throw new Error('Unable delete category');
     }
   }
 }

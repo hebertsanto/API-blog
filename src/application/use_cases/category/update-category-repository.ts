@@ -14,7 +14,7 @@ export class UpdateCategoryUseCase {
       return category;
     } catch (error) {
       logger.error(`some error ocurred ${error}`);
-      throw error;
+      throw new Error('Unable update a category');
     }
   }
 }
