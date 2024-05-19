@@ -1,37 +1,45 @@
-import { setHeaderMiddleware } from '../../presentation/middlewares/set-header-midlleware';
+import { Request, Response, Express } from 'express';
 import { loggerMiddleware } from '../../presentation/middlewares/logger-middleware';
 import { zodErrorMiddleware } from '../../presentation/middlewares/zodError-middleware';
 import { logger } from '../../utils/logger';
 import { v1Router } from '../../routes';
-import dotenv from 'dotenv';
-import main from '../database/connection/prismaConnect';
 import express from 'express';
 import helmet from 'helmet';
-import config from '../../config/config';
+import compression from 'compression';
 
-export default async function ExpressServer() {
-  dotenv.config();
-  const app = express();
-  const prefix = config.prefixUrl as string;
+export class ExpressApp {
+  private expressApp: Express;
 
-  await main();
+  constructor() {
+    this.expressApp = express();
+    this.middlewares();
+    this.routes();
+  }
 
-  app.use(helmet());
-  app.use(loggerMiddleware);
+  private middlewares(): void {
+    this.expressApp.use(zodErrorMiddleware);
+    this.expressApp.use(loggerMiddleware);
+    this.expressApp.use(helmet());
+    this.expressApp.use(compression());
+    this.expressApp.use(express.json());
+    this.expressApp.use(express.urlencoded({ extended: true, limit: '50mb' }));
+  }
 
-  app.use(setHeaderMiddleware);
+  private routes() {
+    const prefixRouter = '/api/v1';
 
-  app.use(prefix, v1Router);
+    this.expressApp.use(prefixRouter, v1Router);
 
-  app.use(express.json());
-
-  app.use(zodErrorMiddleware);
-
-  app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-
-  const port = config.port;
-
-  app.listen(port, () => {
-    logger.info(`server is running on : ${port}`);
-  });
+    this.expressApp.get('/health', (_req: Request, res: Response) => {
+      return res.status(200).json({
+        message: 'Server up',
+        date: new Date().toISOString(),
+      });
+    });
+  }
+  public start(port: number) {
+    this.expressApp.listen(port, () => {
+      logger.info('Sever is running !');
+    });
+  }
 }
