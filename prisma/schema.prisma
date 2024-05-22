@@ -8,14 +8,24 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
+enum ConfirmAccountStatus {
+  PENDING
+  CONFIRMED
+}
+
 model User {
-  id       String    @id @unique @default(uuid())
+  id       String               @id @unique @default(uuid())
   name     String
-  email    String    @unique
+  email    String               @unique
   password String
+  status   ConfirmAccountStatus @default(PENDING)
   posts    Post[]
   comments Comment[]
   Profile  Profile[]
+  createAt DateTime
+  updateAt DateTime             @default(now())
+
+  @@index([email, createAt])
 }
 
 model Post {
@@ -23,12 +33,15 @@ model Post {
   title     String
   content   String
   userId    String
+  pathImage String
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   Comment   Comment[]
   tag       Tag[]
   category  Category[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+
+  @@index([createdAt])
 }
 
 model Comment {
@@ -40,15 +53,19 @@ model Comment {
   post     Post     @relation(fields: [postId], references: [id])
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+
+  @@index([createAt])
 }
 
 model Profile {
   id       String   @id @unique @default(uuid())
-  name     String
+  username String
   social   String[]
   position String
   userId   String
   user     User     @relation(fields: [userId], references: [id])
+
+  @@index([username])
 }
 
 model Category {
