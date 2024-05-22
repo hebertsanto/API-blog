@@ -1,6 +1,6 @@
 import { PrismaCommentRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-comment-repository';
 import { CommentResponse } from '../../../utils/interfaces';
-import { MissingParamError } from '../../../utils/errors/index.';
+import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
 import { logger } from '../../../infrastructure/logger';
 import { GetCommentUseCase } from './get-comment-use-case';
 
@@ -15,10 +15,13 @@ export class DeleteCommentUseCase {
 
     try {
       await this.getCommentService.execute(id);
-      await this.deleteCommentRepository.findByIdAndDelete(id);
+      const existentComment = await this.deleteCommentRepository.findByIdAndDelete(id);
+      if (!existentComment) {
+        throw new ParamDoesNotExist('comment_id');
+      }
     } catch (error) {
       logger.error(`some error ocurred : ${error}`);
-      throw error;
+      throw new Error('Unable delete comment');
     }
   }
 }

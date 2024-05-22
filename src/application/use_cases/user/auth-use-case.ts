@@ -14,25 +14,29 @@ export class AuthUseCase {
   ) {}
 
   public async execute(email: string, password: string) {
+    if (!email) throw new MissingParamError('email');
+    if (!password) throw new MissingParamError('pasword');
+
     try {
-      if (!email) throw new MissingParamError('email');
-      if (!password) throw new MissingParamError('pasword');
+      const existentUser = await this.user.findByEmail(email);
 
-      const user = await this.user.findByEmail(email);
-
-      if (!user?.email) throw new ParamDoesNotExist('user dot not exist');
+      if (!existentUser?.email) {
+        throw new ParamDoesNotExist('user dot not exist');
+      }
 
       const isValidPassword = await this.encrypter.compare(
         password,
-        user?.password as string,
+        existentUser?.password as string,
       );
 
-      if (!isValidPassword) throw new PasswordDoesNotMatch();
+      if (!isValidPassword) {
+        throw new PasswordDoesNotMatch();
+      }
 
-      const token = await this.acesstoken.generateToken(user.id);
+      const token = await this.acesstoken.generateToken(existentUser.id);
 
       return {
-        user,
+        existentUser,
         token,
       };
     } catch (error) {

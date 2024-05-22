@@ -10,9 +10,9 @@ export class UpdateCommentUseCase {
     id: string,
     data: CommentRequest,
   ): Promise<CommentResponse | null> {
-    try {
-      if (!id) throw new MissingParamError('id');
+    if (!id) throw new MissingParamError('id');
 
+    try {
       const commentResponse = await this.updateComment.findByIdAndUpdate(id, data);
 
       return {
@@ -20,7 +20,7 @@ export class UpdateCommentUseCase {
       };
     } catch (error) {
       logger.error(`some error ocurred : ${error}`);
-      throw error;
+      throw new Error('Unable update comment');
     }
   }
 }

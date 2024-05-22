@@ -7,19 +7,21 @@ export class GetCommentUseCase {
   constructor(private commentRepository: PrismaCommentRepository) {}
 
   public async execute(id: string): Promise<CommentResponse | null> {
-    try {
-      if (!id) throw new MissingParamError('comment_id');
+    if (!id) throw new MissingParamError('comment_id');
 
+    try {
       const commentResponse = await this.commentRepository.findById(id);
 
-      if (!commentResponse) throw new ParamDoesNotExist('comment_id');
+      if (!commentResponse) {
+        throw new ParamDoesNotExist('comment_id');
+      }
 
       return {
         commentResponse,
       };
     } catch (error) {
       logger.error(`some error ocurred : ${error}`);
-      throw error;
+      throw new Error('Unable get comment');
     }
   }
 }

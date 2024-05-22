@@ -2,7 +2,7 @@ import { PrismaUserRepository } from '../../../infrastructure/database/prisma/pr
 import { UserResponse } from '../../../utils/interfaces';
 import { MissingParamError, ParamDoesNotExist } from '../../../utils/errors/index.';
 import { logger } from '../../../infrastructure/logger';
-import { GetUserByIdUseCase } from './getUserUseCase';
+import { GetUserByIdUseCase } from './get-user-use-case';
 
 export class DeleteUserUseCase {
   constructor(
@@ -11,17 +11,18 @@ export class DeleteUserUseCase {
   ) {}
 
   public async execute(id: string): Promise<UserResponse | void> {
+    if (!id) throw new MissingParamError('user_id');
+
     try {
       const user = await this.userService.execute(id);
-
-      if (!id) throw new MissingParamError('user_id');
-
-      if (!user) throw new ParamDoesNotExist('user_id');
+      if (!user) {
+        throw new ParamDoesNotExist('user_id');
+      }
 
       await this.userRepositoy.findByIdAndDelete(id);
     } catch (error) {
-      logger.error(`some error ocurred ${error}`);
-      throw error;
+      logger.error(`Some error ocurred ${error}`);
+      throw new Error('Unable delete user');
     }
   }
 }
