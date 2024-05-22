@@ -58,7 +58,8 @@ Here on my profile you have all my social networks.
 
 ## Data modeling
 
-![modelagem](https://i.ibb.co/Gkzpm75/Screenshot-from-2024-02-03-16-29-57.png)
+![Captura de tela de 2024-05-21 22-41-51](https://github.com/hebertsanto/API-blog/assets/108555424/f56b643e-584e-4b17-ac84-07dbc9a13ff3)
+
 
 ## Contact
 
