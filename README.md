@@ -50,12 +50,6 @@ Here on my profile you have all my social networks.
 - **nginx**
 - **github actions**
 
-## System design 
-
-**Note** : This is a skill I'm trying to improve, I'm starting to put it into practice now
-
-![system-design](https://github.com/hebertsanto/API-blog/assets/108555424/5de68229-debd-4a66-93f6-938d337449b4)
-
 ## Data modeling
 
 ![Captura de tela de 2024-05-21 22-41-51](https://github.com/hebertsanto/API-blog/assets/108555424/f56b643e-584e-4b17-ac84-07dbc9a13ff3)
