@@ -1,26 +1,34 @@
 import { Request, Response } from 'express';
-import { makeGetUserUseCase } from '../../../application/use_cases/factories/user/make-get-user-use-case';
 import { handleRequestController } from '../../request-controller';
-import { z } from 'zod';
+import { HttpStatusCode } from '../../../utils/helpers/http-status';
+import { GetUserByIdUseCase } from '../../../application/use_cases/user/get-user-use-case';
+import { param } from 'express-validator';
+import { validateRequest } from '../../middlewares/request-validator';
+import { PrismaUserRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-user-repository';
+
 export class GetUserController implements handleRequestController {
+  private userService: GetUserByIdUseCase;
+  constructor(userService: GetUserByIdUseCase) {
+    this.userService = userService;
+  }
+
+  public validate = [
+    param('user_id').notEmpty().isUUID().withMessage('Must be a valid id'),
+    validateRequest,
+  ];
+
   public async handle(req: Request, res: Response): Promise<Response> {
-    const paramsZodValidationSchema = z.object({
-      id: z.string().uuid(),
-    });
-
-    const { id } = paramsZodValidationSchema.parse(req.params);
-
-    const makeGetUser = await makeGetUserUseCase();
-
     try {
-      const user = await makeGetUser.execute(id);
-
-      return res.status(200).json({
-        msg: 'User found',
+      const user = await this.userService.execute(req.params.id);
+      return res.status(HttpStatusCode.Ok).json({
         user,
       });
     } catch (error) {
-      return res.status(500).json(error);
+      return res.status(error.code).json({ message: error.message });
     }
   }
 }
+
+export const getUserHandler = new GetUserController(
+  new GetUserByIdUseCase(new PrismaUserRepository()),
+);

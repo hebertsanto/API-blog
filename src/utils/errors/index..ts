@@ -1,7 +1,11 @@
+import { HttpStatusCode } from '../helpers/http-status';
+
 export class MissingParamError extends Error {
+  code: number;
   constructor(params: string) {
     super(`Missing parameter ${params}`);
     this.name = 'MissingParamError';
+    this.code = HttpStatusCode.NotFound;
   }
 }
 
@@ -12,8 +16,11 @@ export class PasswordDoesNotMatch extends Error {
 }
 
 export class UserAlreadyExistError extends Error {
-  constructor() {
-    super('user already exists');
+  code: number;
+  constructor(message: string, code: number) {
+    super();
+    this.code = code;
+    this.message = message;
   }
 }
 
@@ -34,8 +41,18 @@ export class ParamDoesNotExist extends Error {
     super(`${params} does not exist`);
   }
 }
+
 export class UserNotExist extends Error {
   constructor() {
     super('user not exit');
+  }
+}
+
+export class AppError extends Error {
+  code: number;
+  constructor(message: string, code: number) {
+    super();
+    this.code = code;
+    this.message = message;
   }
 }
