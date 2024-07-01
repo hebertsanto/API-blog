@@ -1,8 +1,13 @@
 import { PrismaUserRepository } from '../../../infrastructure/database/prisma/prisma_repositories/prisma-user-repository';
 import { UserRequest, UserResponse } from '../../../utils/interfaces';
 import { hash } from 'bcrypt';
-import { MissingParamError, UserAlreadyExistError } from '../../../utils/errors/index.';
+import {
+  AppError,
+  MissingParamError,
+  UserAlreadyExistError,
+} from '../../../utils/errors/index.';
 import { logger } from '../../../infrastructure/logger';
+import { HttpStatusCode } from '../../../utils/helpers/http-status';
 
 export class CreateUserUseCase {
   constructor(private userRepository: PrismaUserRepository) {}
@@ -18,8 +23,9 @@ export class CreateUserUseCase {
 
       if (existentUser?.email) {
         logger.info(`[${existentUser} aready exist]`);
-        throw new UserAlreadyExistError();
+        throw new UserAlreadyExistError('User already exists', HttpStatusCode.Conflict);
       }
+
       const user = await this.userRepository.create({
         name,
         email,
@@ -31,7 +37,7 @@ export class CreateUserUseCase {
       };
     } catch (error) {
       logger.error(`Some error has been ocurred ${error}`);
-      throw new Error('Unable create a new user');
+      throw new AppError('Unable create a new user', HttpStatusCode.InternalServerError);
     }
   }
 }
